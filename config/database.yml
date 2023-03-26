@@ -53,5 +53,4 @@ test:
 production:
   <<: *default
   database: EC_app_production
-  username: EC_app
   password: <%= ENV["EC_APP_DATABASE_PASSWORD"] %>
