@@ -1,33 +1,64 @@
-<h2>Sign up</h2>
+<h2>新規会員登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
+    <%= f.label :username, 'お名前' %><span>※必須</span><br />
+    <%= f.text_field :username, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :username_kana, 'お名前(カナ)' %><br />
+    <%= f.text_field :username_kana %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :address, '住所' %><span>※必須</span><br />
+    〒<%= f.text_field :postal_code %><br />
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tel, '電話番号' %><span>※必須</span><br />
+    <%= f.text_field :tel %>
+  </div>
+
+   <div class="field">
+    <%= f.label :email, 'メールアドレス' %><span>※必須</span><br />
+    <%= f.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, 'パスワード' %><span>※必須</span>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %>文字以上)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :birthday, '生年月日' %><br />
+    <%= f.text_field :birthday %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sex, '性別' %><br />
+    <%= f.radio_button :sex, '男性' %>
+    <%= f.label :sex, '男性' %>
+
+    <%= f.radio_button :sex, '女性' %>
+    <%= f.label :sex, '女性' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :job, '職業' %><br />
+    <%= f.select :job, {'公務員': 1, 'コンサルタント': 2, 'コンピューター関連の技術職': 3}, { include_blank: '選択してください'} %>
+  </div>
+
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "登録する" %>
   </div>
 <% end %>
 
