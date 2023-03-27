@@ -40,7 +40,7 @@
 
   <div class="field">
     <%= f.label :birthday, '生年月日' %><br />
-    <%= f.text_field :birthday %>
+    <%= f.date_select :birthday, include_blank: true, use_month_numbers: true, start_year: Time.now.year, end_year: 1913, default: nil, date_separator:' / '%>
   </div>
 
   <div class="field">
@@ -54,7 +54,7 @@
 
   <div class="field">
     <%= f.label :job, '職業' %><br />
-    <%= f.select :job, {'公務員': 1, 'コンサルタント': 2, 'コンピューター関連の技術職': 3}, { include_blank: '選択してください'} %>
+    <%= f.select :job, JOB_LIST, { include_blank: '選択してください'} %>
   </div>
 
   <div class="actions">
