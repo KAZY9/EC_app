@@ -8,6 +8,9 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 
 gem 'devise'
 
+gem 'jp_prefecture' # 都道府県コードから都道府県名を変換するgem
+gem 'jquery-rails' # RailsでjQueryを使えるようにするgem
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

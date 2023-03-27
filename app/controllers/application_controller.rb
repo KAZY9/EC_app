@@ -13,10 +13,30 @@ class ApplicationController < ActionController::Base
 
   protected
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :username_kana, :postal_code, 
-                                                         :address, :tel, :birthday, :sex, :job])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:username, :username_kana, :postal_code, 
-                                                                :address, :tel, :birthday, :sex, :job])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [
+        :username, 
+        :username_kana, 
+        :postal_code, 
+        :prefecture_code, 
+        :city, 
+        :street_and_others, 
+        :tel, 
+        :birthday, 
+        :sex, 
+        :job
+      ])
+      devise_parameter_sanitizer.permit(:account_update, keys: [
+        :username, 
+        :username_kana, 
+        :postal_code, 
+        :prefecture_code,
+        :city, 
+        :street_and_others, 
+        :tel, 
+        :birthday,
+        :sex, 
+        :job
+      ])
     end
 
 end
