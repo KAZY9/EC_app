@@ -3,7 +3,7 @@
 
 <h2>新規会員登録</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_with model: @user, url: users_sign_up_confirm_path(@user), local: true do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -19,7 +19,7 @@
   <div class="field">
     <%= f.label :address, '住所' %><span>※必須</span><br />
     〒<%= f.text_field :postal_code %><br />
-    <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '都道府県を選択'}   %><br />
+    <%= f.collection_select :prefecture_name, JpPrefecture::Prefecture.all, :name, :name, { prompt: '都道府県を選択'}   %><br />
     <%= f.text_field :city %><br />
     <%= f.text_field :street_and_others %>
   </div>
@@ -35,10 +35,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :password, 'パスワード' %><span>※必須</span>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %>文字以上)</em>
-    <% end %><br />
+    <%= f.label :password, 'パスワード' %><span>※必須</span><br />
     <%= f.password_field :password, autocomplete: "new-password" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
@@ -63,7 +60,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "登録する" %>
+    <%= f.submit "確認する" %>
   </div>
 <% end %>
 

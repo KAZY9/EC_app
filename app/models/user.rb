@@ -2,7 +2,7 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :username_kana, presence: true
   validates :postal_code, presence: true
-  validates :prefecture_code, presence: true
+  validates :prefecture_name, presence: true
   validates :city, presence: true
   validates :street_and_others, presence: true
 
@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   include JpPrefecture
   jp_prefecture :prefecture_code
-
+         
   def prefecture_name
     JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
   end
