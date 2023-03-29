@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+
 
   private 
     def sign_in_required
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
         :username, 
         :username_kana, 
         :postal_code, 
-        :prefecture_name, 
+        :prefecture_code, 
         :city, 
         :street_and_others, 
         :tel, 
@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
         :username, 
         :username_kana, 
         :postal_code, 
-        :prefecture_name,
+        :prefecture_code,
         :city, 
         :street_and_others, 
         :tel, 

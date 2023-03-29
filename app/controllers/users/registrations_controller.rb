@@ -6,25 +6,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :create, only: [:complete]
 
   # GET /resource/sign_up
-  # def new
-  #   @user = User.new
-  #   super
-  # end
-
-  # POST /resource
-  def create
-    @user = User.new(sign_up_params) 
-    render :new and return if params[:back]
+  def new
+    @user = User.new
     super
   end
 
   def confirm
     @user = User.new(sign_up_params)
-    if @user.valid?
-     render :action => 'confirm'
-    else
-     render :action => 'new'
-    end
+    render :new if @user.invalid?
+  end
+
+  # POST /resource
+  def create
+    @user = User.new(sign_up_params) 
+    render :new and return if params[:back] || !@user.save
+    redirect_to :users_sign_up_complete
+    super
   end
 
   def complete

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     post 'users/sign_up/confirm', to: 'users/registrations#confirm'
     post 'users/sign_up/complete', to: 'users/registrations#complete'
+    # get 'users/sign_up/complete', to: 'users/registrations#complete'
   end
 
   root 'pages#index'

@@ -1,6 +1,6 @@
 <h2>新規会員登録</h2>
 
-<%= form_with model: @user, url: users_sign_up_confirm_path(@user), local: true do |f| %>
+<%= form_with model: @user, url: users_sign_up_confirm_path(@user), local: true, data: { turbo: false } do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -16,7 +16,7 @@
   <div class="field">
     <%= f.label :address, '住所' %><span>※必須</span><br />
     〒<%= f.text_field :postal_code %><br />
-    <%= f.collection_select :prefecture_name, JpPrefecture::Prefecture.all, :name, :name, { prompt: '都道府県を選択'}   %><br />
+    <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, { prompt: '都道府県を選択'}   %><br />
     <%= f.text_field :city %><br />
     <%= f.text_field :street_and_others %>
   </div>
