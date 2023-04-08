@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
 class Users::PasswordsController < Devise::PasswordsController
+  def complete
+  end
   # GET /resource/password/new
   # def new
   #   super
   # end
 
   # POST /resource/password
-  # def create
-  #   super
-  # end
+  def create
+    super
+    # redirect_to forgot_complete_path
+  end
 
   # GET /resource/password/edit?reset_password_token=abcdef
   # def edit

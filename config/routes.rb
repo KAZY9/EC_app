@@ -1,14 +1,20 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
+    passwords: 'users/passwords',
     registrations: 'users/registrations'
   }
 
   # views/users/registrations内に作成したconfirm.html.erbとcomplete.html.erbもルーティングに追加します。
   devise_scope :user do
-    post 'users/sign_up/confirm', to: 'users/registrations#confirm'
-    post 'users/sign_up/complete', to: 'users/registrations#complete'
-    # get 'users/sign_up/complete', to: 'users/registrations#complete'
+    get '/sign_up', to: 'users/registrations#new'
+    post '/sign_up', to: 'users/registrations#confirm'
+    get '/sign_up/complete', to: 'users/registrations#complete'
+    post '/sign_up/complete', to: 'users/registrations#create'
+    get '/forgot', to: 'users/passwords#new'
+    get '/forgot/complete', to: 'users/passwords#complete'
+    get '/mypage/login', to: 'users/sessions#new'
+    get '/mypage/change', to: 'users/registrations#edit'
   end
 
   root 'pages#index'

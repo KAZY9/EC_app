@@ -1,43 +1,150 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="ec-register">
+  <div class="ec-pageHeader">
+    <h2 class="title">会員情報変更</h2>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+  <div class="ec-formBody"> 
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <div class="valid-error-mssg"> 
+        <%= render "devise/shared/error_messages", resource: resource %>
+      </div>
+      <div class="ec-borderedDefs">
+        <dl>
+          <dt>
+            <%= f.label :username, 'お名前', class: "control-label" %>
+            <span class="ec-required">必須</span>
+          </dt>
+          <dd>
+            <div class="ec-field">
+              <%= f.text_field :username, autofocus: true, class: "form-control w90"  %>
+            </div>
+          </dd>
+        </dl>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+        <dl>
+          <dt>
+            <%= f.label :username_kana, 'お名前(カナ)', class: "control-label" %>
+            <span class="ec-required">必須</span>
+          </dt>
+          <dd>
+            <div class="ec-field">
+              <%= f.text_field :username_kana, autofocus: true, class: "form-control w90"  %>
+            </div>
+          </dd>
+        </dl>
+
+        <dl>
+          <dt>
+            <%= f.label :postal_code, '住所', class: "control-label" %>
+            <span class="ec-required">必須</span>
+          </dt>
+          <dd>
+            <div class="ec-zipInput">
+              <span class="post-mark">〒</span>
+              <%= f.text_field :postal_code, placeholder: "例：1234567", class: "form-control w-150px" %>
+            </div>
+            <div class="ec-select">
+              <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, { prompt: '都道府県を選択'}, class: "form-select w-180px"  %>
+            </div>
+            <div class="ec-field">
+              <%= f.text_field :city, placeholder: "市区町村(例：東京都港区)", class: "form-control w90"  %>
+            </div>
+            <div class="ec-field">
+              <%= f.text_field :street_and_others, placeholder: "番地・ビル名(例：〇〇1丁目23-4)",class: "form-control w90"  %>
+            </div>
+          </dd> 
+        </dl>
+
+        <dl>
+          <dt>
+            <%= f.label :tel, '電話番号', class: "control-label" %>
+            <span class="ec-required">必須</span>
+          </dt>
+          <dd>
+            <div class="ec-telInput">
+              <%= f.text_field :tel, placeholder: "例：08012345678", class: "form-control w90" %>
+            </div>
+          </dd>
+        </dl>
+
+        <dl>
+          <dt>
+            <%= f.label :email, 'メールアドレス', class: "control-label" %>
+            <span class="ec-required">必須</span>
+          </dt>
+          <dd>
+            <div class="ec-field">
+              <%= f.email_field :email, placeholder: "例：abc@example.com", autocomplete: "email", class: "form-control w90" %>
+            </div>
+          </dd>
+        </dl>
+
+        <dl>
+          <dt>
+            <%= f.label :password, 'パスワード', class: "control-label" %>
+            <span class="ec-required">必須</span>
+          </dt>
+          <dd>
+            <div class="ec-field">
+              <%= f.password_field :password, placeholder: "半角英数記号8〜32文字", autocomplete: "new-password", class: "form-control w90" %>
+            </div>
+            <div class="ec-field">
+              <%= f.password_field :password_confirmation, placeholder: "確認のためもう一度入力してください", autocomplete: "new-password", class: "form-control w90" %>
+            </div>
+          </dd>
+        </dl>
+
+        <dl>
+          <dt>
+            <%= f.label :birthday, '生年月日', class: "control-label" %>
+          </dt>
+          <dd>
+            <div class="ec-birth">
+              <%= f.date_select :birthday, { use_month_numbers: true, start_year: Time.now.year, end_year: 1913, date_separator: " / ",prompt: { day: "--", month: "--", year: "----" } }, { class: "form-select" } %>
+            </div>
+          </dd>
+        </dl>
+        
+        <dl>
+          <dt>
+            <%= f.label :sex, '性別', class: "control-label" %>
+          </dt>
+          <dd>
+            <div class="ec-radio">
+              <div id="entry_sex">
+                <div class="radio_button">
+                  <%= f.radio_button :sex, '男性', id: "male" %>
+                  <%= f.label :sex_male, '男性', for: "male" %>
+                </div>
+                <div class="radio_button">
+                  <%= f.radio_button :sex, '女性', id: "female" %>
+                  <%= f.label :sex_female, '女性', for: "female" %>
+              </div>
+            </div>
+          </dd>
+        </dl>
+
+        <dl class="job">
+          <dt>
+            <%= f.label :job, '職業', class: "control-label" %>
+          </dt>
+          <dd>
+            <div class="ec-select">
+              <%= f.select :job, JOB_LIST, { prompt: '選択してください'}, class: "form-select w75" %>
+            </div>
+          </dd>
+        </dl>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "更新する", class: "btn btn-dark" %>
+      </div>
     <% end %>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+<div class="ec-withdrawal">
+  <%= button_to "退会する", registration_path(resource_name), data: { confirm: "本当に退会しますか?", turbo_confirm: "本当に退会しますか?" }, method: :delete, class: "btn-withdrawal" %>
+</div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+<%= link_to "戻る", :back %>

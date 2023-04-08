@@ -1,0 +1,58 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        username: お名前
+        postal_code: 郵便番号
+        prefecture_code: 都道府県
+        city: 市区町村
+        street_and_others: 番地・ビル名
+        tel: 電話番号
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード(確認)
+        agreement: 利用規約
+  errors:
+    messages:
+      not_found: 'が見つかりませんでした'
+      already_confirmed: 'はすでに確認済みです'
+      not_locked: 'はロックされていません'
+      not_saved:
+        one: ''
+        other: ''
+      invalid: 'が不正です'
+      already_authenticated: 'はすでに認証済みです'
+      not_a_confirmation_token: 'は確認用トークンではありません'
+      not_an_unlock_token: 'はアンロック用トークンではありません'
+      not_a_reset_password_token: 'はパスワード再設定用トークンではありません'
+  devise:
+    confirmations:
+      send_instructions: 'アカウントの確認用メールを送信しました。確認してください。'
+      confirmed: 'アカウントが確認されました。'
+      send_paranoid_instructions: 'もしアカウントが登録されていれば、確認用メールが送信されます。'
+    passwords:
+      send_instructions: 'パスワード再設定用のメールを送信しました。メール内の手順に従ってください。'
+      updated: 'パスワードが変更されました。'
+      expired: 'パスワード再設定用のトークンの有効期限が切れています。もう一度リクエストしてください。'
+      passwords_blank: "パスワードを入力してください"
+      passwords_short: "パスワードは%{count}文字以上で入力してください"
+      passwords_mismatch: "パスワードが一致しません"
+      passwords_invalid: "パスワードが無効です"
+      signed_up: '登録が完了しました。'
+      signed_up_but_unconfirmed: '登録が完了しました。確認用メールを送信しましたので、メール内の手順に従ってアカウントを確認してください。'
+      signed_up_but_inactive: '登録が完了しました。管理者の承認待ちです。'
+      updated: 'アカウント情報が更新されました。'
+      destroyed: 'アカウントが削除されました。'
+    sessions:
+      signed_in: 'ログインしました。'
+      already_signed_in: 'すでにログインしています。'
+      signed_out: 'ログアウトしました。'
+    unlocks:
+      send_instructions: 'アカウントのロック解除用のメールを送信しました。メール内の手順に従ってアカウントをロック解除してください。'
+      unlocked: 'アカウントがロック解除されました。'
+      send_paranoid_instructions: 'もしアカウントがロックされていれば、ロック解除用のメールが送信されます。'
+    failure: 
+      user:
+        invalid: ''
