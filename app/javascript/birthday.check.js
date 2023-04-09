@@ -21,7 +21,7 @@
 
   yearSelect.addEventListener('change', limitDays);
   monthSelect.addEventListener('change', limitDays);
-  
+  limitDays();
 
   
 

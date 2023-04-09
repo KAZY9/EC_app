@@ -49,10 +49,10 @@ class User < ApplicationRecord
 
   private
 
-  #パスワードは半角英数字記号含め8〜32文字で設定する
+  #パスワードは半角英数字特殊記号含め8〜32文字で設定する
   def password_complexity
     if password.present? and not password.match(/\A(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[ -~]{8,32}\z/)
-      errors.add :password, "は半角英数字記号を含め、8〜32文字で設定してください"
+      errors.add :password, "は半角英数字特殊記号を含め、8〜32文字で設定してください"
     end
   end
 end
