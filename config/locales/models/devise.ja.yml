@@ -20,31 +20,66 @@ ja:
       already_confirmed: 'はすでに確認済みです'
       not_locked: 'はロックされていません'
       not_saved:
-        one: ''
-        other: ''
-      invalid: 'が不正です'
+        one: ""
+        other: ""
+      invalid: 'が無効です'
       already_authenticated: 'はすでに認証済みです'
       not_a_confirmation_token: 'は確認用トークンではありません'
       not_an_unlock_token: 'はアンロック用トークンではありません'
       not_a_reset_password_token: 'はパスワード再設定用トークンではありません'
+      confirmation_period_expired: "%{period}以内に確認する必要があります。新しい確認メールをリクエストしてください。"
+      expired: "期限が切れています。新しいリセット用メールをリクエストしてください。"
   devise:
     confirmations:
       send_instructions: 'アカウントの確認用メールを送信しました。確認してください。'
       confirmed: 'アカウントが確認されました。'
-      send_paranoid_instructions: 'もしアカウントが登録されていれば、確認用メールが送信されます。'
+      send_paranoid_instructions: 'アカウントが登録されていれば、確認用メールが送信されます。'
+      send_instructions: "数分後に、メールアドレスを確認するための手順が記載されたメールが届きます。"
+    mailer:
+      confirmation_instructions:
+        subject: "確認手続きのご案内"
+      reset_password_instructions:
+        subject: "パスワード再設定のご案内"
+      unlock_instructions:
+        subject: "アカウントロック解除のご案内"
+      email_changed:
+        subject: "メールアドレス変更のご案内"
+      password_change:
+        subject: "パスワード変更のご案内"
+    failure:
+      already_authenticated: "すでにサインインしています。"
+      inactive: "アカウントはまだアクティベートされていません。"
+      invalid: "メールアドレスとパスワードを入力してください"
+      locked: "アカウントがロックされています。"
+      last_attempt: "アカウントがロックされる前に、もう1度試行することができます。"
+      not_found_in_database: "無効な%{authentication_keys}またはパスワードです。"
+      timeout: "セッションが期限切れになりました。続行するには、再度サインインしてください。"
+      unauthenticated: "続行する前に、サインインまたはサインアップする必要があります。"
+      unconfirmed: "続行する前に、メールアドレスを確認する必要があります。"
     passwords:
       send_instructions: 'パスワード再設定用のメールを送信しました。メール内の手順に従ってください。'
       updated: 'パスワードが変更されました。'
       expired: 'パスワード再設定用のトークンの有効期限が切れています。もう一度リクエストしてください。'
-      passwords_blank: "パスワードを入力してください"
-      passwords_short: "パスワードは%{count}文字以上で入力してください"
-      passwords_mismatch: "パスワードが一致しません"
-      passwords_invalid: "パスワードが無効です"
+      passwords_blank: "パスワードを入力してください。"
+      passwords_short: "パスワードは%{count}文字以上で入力してください。"
+      passwords_mismatch: "パスワードが一致しません。"
+      passwords_invalid: "パスワードが無効です。"
       signed_up: '登録が完了しました。'
       signed_up_but_unconfirmed: '登録が完了しました。確認用メールを送信しましたので、メール内の手順に従ってアカウントを確認してください。'
       signed_up_but_inactive: '登録が完了しました。管理者の承認待ちです。'
-      updated: 'アカウント情報が更新されました。'
       destroyed: 'アカウントが削除されました。'
+      no_token: "パスワードリセットのメールから来ていない場合、このページにアクセスできません。パスワードリセットのメールから来た場合は、提供された完全なURLが使用されたかどうかを確認してください。"
+      send_paranoid_instructions: "もしメールアドレスが登録されている場合、数分でメールアドレスにパスワードリカバリーリンクが送信されます。"
+      updated_not_active: "パスワードが正常に変更されました。"
+    registrations:
+      destroyed: "ご利用ありがとうございました！ アカウントは正常に削除されました。またのご利用をお待ちしています。"
+      signed_up: "ようこそ！ 登録が完了しました。"
+      signed_up_but_inactive: "登録は完了しましたが、アカウントがまだ有効化されていないため、ログインできません。"
+      signed_up_but_locked: "登録は完了しましたが、アカウントがロックされているため、ログインできません。"
+      signed_up_but_unconfirmed: "確認用リンクが記載されたメッセージがあなたのメールアドレスに送信されました。アカウントを有効化するには、リンクに従ってください。"
+      update_needs_confirmation: "アカウントが正常に更新されましたが、新しいメールアドレスを確認する必要があります。メールを確認して、確認用リンクに従って新しいメールアドレスを確認してください。"
+      updated: "アカウントが正常に更新されました。"
+      updated_but_not_signed_in: "アカウントが正常に更新されましたが、パスワードが変更されたため、再度ログインする必要があります。"
     sessions:
       signed_in: 'ログインしました。'
       already_signed_in: 'すでにログインしています。'
@@ -53,6 +88,3 @@ ja:
       send_instructions: 'アカウントのロック解除用のメールを送信しました。メール内の手順に従ってアカウントをロック解除してください。'
       unlocked: 'アカウントがロック解除されました。'
       send_paranoid_instructions: 'もしアカウントがロックされていれば、ロック解除用のメールが送信されます。'
-    failure: 
-      user:
-        invalid: ''
