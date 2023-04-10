@@ -14,29 +14,22 @@ document.addEventListener("turbo:load", function() {
       return;
     }
   
+    //入力された年と月からその年月の日数を取得
     const daysInMonth = new Date(year, month, 0).getDate();
-  
+
     // 選択肢を更新
-    for (let i = daySelectElm.options.length - 1; i >= daysInMonth; i--) {
+    for (let i = daySelectElm.options.length - 1; i > daysInMonth; i--) {
       daySelectElm.remove(i);
     }
+    
     for (let i = daySelectElm.options.length; i <= daysInMonth; i++) {
       const option = document.createElement('option');
       option.value = i;
       option.text = i;
       daySelectElm.add(option);
     }
-  
-    if (selectedDay) {
-      for (let i = 1; i < daySelectElm.options.length; i++ ) {
-        if (selectedDay.value == daySelectElm.options[i].value) {
-          daySelectElm.options[i].setAttribute('selected', 'selected');
-        }
-      }
-    }
   }
   
-
   // DOM 要素が存在する場合、日付を更新する
   if (yearSelectElm && monthSelectElm && daySelectElm) {
     yearSelectElm.addEventListener('change', updateDaySelect);

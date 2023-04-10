@@ -26,6 +26,15 @@
   display: contents;
 }
 
+:root {
+  --sumi: #525263;
+}
+
+select option:first-child {
+  color: var(--sumi); /*プロンプトの文字色をグレーに変更*/
+}
+
+
 /* バリデーションエラーメッセージ */
 
 #error_explanation {
@@ -72,7 +81,9 @@ ul li {
   border-bottom: 1.2px solid #ccc;
   margin: 0 auto;
   width: 1050px;
+  color: var(--sumi);
   font-size: 30px;
+  font-weight: bold;
   padding-bottom: 5px;
 }
 
@@ -125,8 +136,13 @@ dd {
 }
 
 .ec-required {
-  color: #de4d4d;
+  color: #DE5D50;
   font-size: 12px;
+  font-weight: normal;
+}
+
+.control-label {
+  color: var(--sumi);
 }
 
 .form-control {
@@ -160,10 +176,6 @@ dd {
   margin-right: 30px;
 }
 
-.ec-radio {
-  background-color: #fff;
-}
-
 .radio_button {
   display: inline-block;
   margin-right: 20px;
@@ -172,6 +184,10 @@ dd {
 #entry_sex {
   padding-left: 20px;
   display: flex;
+}
+
+.radio_button {
+  color: var(--sumi);
 }
 
 .actions {
@@ -185,14 +201,16 @@ dd {
 
 .check {
   text-align: center;
+  color: var(--sumi);
 }
 
 .mail-cautions {
-  border: 1px solid #000000;
+  border: 1px solid var(--sumi);
   margin: 10px auto;
   width: 900px;
   align-items: center;
   padding: 15px;
+  color: var(--sumi);
   font-size: 15px;
 }
 
@@ -214,6 +232,14 @@ dd {
   border-radius: 25px;
 }
 
+.pw-guide {
+  padding-left: 15px;
+  color: #de4d4d;
+}
+
+h4 {
+  color: var(--sumi);
+}
 
 /* ログイン画面 */
 
