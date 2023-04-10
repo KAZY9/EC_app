@@ -25,8 +25,11 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}",
+      'Expires' => 1.hour.from_now.to_formatted_s(:rfc822),
+      'Access-Control-Allow-Origin' => '*'
     }
+
   else
     config.action_controller.perform_caching = false
 
@@ -37,7 +40,17 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :user_name => 'kazu.m.sora9@gmail.com',
+    :password => 'qfzlpnagcdlxqjsb',
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 
   config.action_mailer.perform_caching = false
 

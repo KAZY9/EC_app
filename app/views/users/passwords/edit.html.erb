@@ -1,0 +1,47 @@
+<div class="ec-register">
+  <div class="ec-pageHeader">
+    <h2 class="title">パスワード再発行(再設定)</h2>
+  </div>
+
+  <div class="ec-formBody">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <div class="valid-error-mssg"> 
+        <%= render "devise/shared/error_messages", resource: resource %>
+      </div>
+      <%= f.hidden_field :reset_password_token %>
+      <div class="ec-borderedDefs">
+        <dl>
+          <dt>
+            <%= f.label :email, 'メールアドレス', class: "control-label" %>
+            <span class="ec-required">必須</span>
+          </dt>
+          <dd>
+            <div class="ec-field">
+              <%= f.email_field :email, placeholder: "例：abc@example.com", autocomplete: "email", class: "form-control w90" %>
+            </div>
+          </dd>
+        </dl>
+
+        <dl>
+          <dt>
+            <%= f.label :password, 'パスワード', class: "control-label" %>
+            <span class="ec-required">必須</span>
+          </dt>
+          <dd>
+            <div class="ec-field">
+              <%= f.password_field :password, placeholder: "半角英数記号8〜32文字", autocomplete: "new-password", class: "form-control w90" %>
+            </div>
+            <div class="ec-field">
+              <%= f.password_field :password_confirmation, placeholder: "確認のためもう一度入力してください", autocomplete: "new-password", class: "form-control w90" %>
+            </div>
+          </dd>
+        </dl>
+      </div>
+      
+      <div class="ec-password_reset actions">
+        <%= f.submit "登録する", class: "btn btn-danger" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+ 

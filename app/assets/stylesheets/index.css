@@ -1,0 +1,472 @@
+.w50 {
+  width: 50% !important;
+}
+
+.w75 {
+  width: 75% !important;
+}
+
+.w90 {
+  width: 95% !important;
+}
+
+.w-150px {
+  width: 150px !important;
+}
+
+.w-350px {
+  width: 350px !important;
+}
+
+.w-180px {
+  width: 180px !important;
+}
+
+.field_with_errors {
+  display: contents;
+}
+
+:root {
+  --sumi: #525263;
+}
+
+select option:first-child {
+  color: var(--sumi); /*プロンプトの文字色をグレーに変更*/
+}
+
+
+/* バリデーションエラーメッセージ */
+
+#error_explanation {
+  margin: 0 auto; 
+  margin-bottom: 10px;
+  padding-top: 7px;
+  width: 800px;
+  border: 2px solid #de4d4d;
+}
+
+ul li {
+  font-size: 15px;
+  color: #de4d4d;
+  list-style: square;
+}
+
+.valid-error-mssg {
+  padding-bottom: 10px;
+}
+
+.alert {
+  width: 1050px;
+  margin: 0 auto;
+}
+
+.notice {
+  width: 1050px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+/* 新規会員登録画面、登録確認画面、会員情報編集画面 */
+
+.ec-register {
+  margin: 0 auto;
+}
+
+.ec-pageHeader {
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.title {
+  border-bottom: 1.2px solid #ccc;
+  margin: 0 auto;
+  width: 1050px;
+  color: var(--sumi);
+  font-size: 30px;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+.ec-formBody {
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.ec-borderedDefs {
+  margin: 0 auto;
+  width: 900px;
+  justify-content: center;
+}
+
+dl {
+  border-top: 1px dotted #ccc;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.job {
+  border-bottom: 1px dotted #ccc;
+}
+
+dt {
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+}
+
+dd {
+  padding: 10px 0 10px 0;
+  width: 600px;
+}
+
+.output {
+  padding-left: 10px;
+}
+
+.ec-zipInput {
+  display: flex;
+  width: 40%;
+}
+
+.post-mark {
+  margin-top: 15px;
+  padding-left: 15px;
+}
+
+.ec-required {
+  color: #DE5D50;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.control-label {
+  color: var(--sumi);
+}
+
+.form-control {
+  margin: 10px;
+}
+
+.ec-birth {
+  display: flex;
+  align-items: center;
+}
+
+.form-select {
+  margin: 10px;
+}
+
+#user_birthday_1i {
+  display: block;
+  width: 25% !important;
+  font-size: 89.8%;
+}
+
+#user_birthday_2i, #user_birthday_3i {
+  display: block;
+  width: 19.9% !important;
+  font-size: 89.8%;
+}
+
+.control-label {
+  font-weight: bold;
+  font-family: Georgia;
+  margin-right: 30px;
+}
+
+.radio_button {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+#entry_sex {
+  padding-left: 20px;
+  display: flex;
+}
+
+.radio_button {
+  color: var(--sumi);
+}
+
+.actions {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.ec-buttons {
+  margin-top: 60px;
+}
+
+.check {
+  text-align: center;
+  color: var(--sumi);
+}
+
+.mail-cautions {
+  border: 1px solid var(--sumi);
+  margin: 10px auto;
+  width: 900px;
+  align-items: center;
+  padding: 15px;
+  color: var(--sumi);
+  font-size: 15px;
+}
+
+.btn {
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.ec-withdrawal {
+  margin: 0 auto;
+  margin-bottom: 50px;
+  text-align: right;
+  width: 900px;
+}
+
+.btn-withdrawal {
+  width: 90px;
+  border-radius: 25px;
+}
+
+.pw-guide {
+  padding-left: 15px;
+  color: #de4d4d;
+}
+
+h4 {
+  color: var(--sumi);
+}
+
+/* ログイン画面 */
+
+.ec-loginBody {
+  margin: 30px auto;
+  padding: 10px;
+  height: 450px;
+  width: 650px;
+}
+
+.field {
+  height: 250px;
+  padding-top: 60px;
+} 
+
+.login-form {
+  margin: 10px auto;
+  width: 60%;
+  padding: 10px;
+} 
+
+.form-check {
+  width: 75%;
+  margin: 0 auto;
+} 
+
+.ec-login {
+  display: flex;
+  align-items: center;
+  padding: 10px 60px;
+  padding-left: 80px;
+}
+
+.btn-login {
+  width: 45%;
+  height: 50px;
+  border-radius: 5px;
+}
+ 
+.ec-login_link {
+  margin-left: 30px;
+  width: 45%;
+}  
+
+/* パスワード再発行画面 */
+
+.ec-password-reset {
+  justify-content: center;
+  padding: 30px 50px; 
+}
+
+.password-resest-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 30px auto;
+  padding: 0 60px;
+  background-color: aliceblue;
+}
+
+.ec-send-email {
+  border-bottom: 1px dotted #ccc;
+}
+
+.ec-send-email-btn {
+  margin: 10px auto; 
+  padding: 20px 0 20px 0; 
+}
+
+.btn-email {
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.password-reset-label {
+  font-weight: bold;
+  padding-left: 50px;
+}
+
+.ec-reset-messg {
+  padding-left: 10px;
+  margin: 5px 30px;
+}
+
+.error-mssg {
+  margin-left: 10px;
+}
+
+@media (max-width: 1120px) {
+  .title {
+    width: 95%;
+  }
+
+  .ec-pageHeader {
+    width: 99%;
+  }
+
+  .alert {
+    width: 95%;
+  }
+
+  .notice {
+    width: 95%;
+  }
+}
+
+@media (min-width: 980px) and (max-width: 1130px) {
+    .ec-borderedDefs {
+      width: 80%;
+    }
+
+    dl {
+      width: 100%;
+    }
+
+    #error-explanation {
+      width: 80%
+    }
+ 
+    .mail-cautions {
+      width: 80%;
+    }
+
+    .ec-withdrawal {
+      width: 80%;
+    }
+
+    .ec-loginBody {
+      width: 57%;
+    }
+}
+
+@media (max-width: 980px) {
+  /* エラーメッセージ */
+  #error_explanation {
+    width: 85%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+   
+  /* 新規会員登録、登録確認、編集共通 */
+  .ec-formBody {
+    padding: 0;
+  }
+
+  .ec-borderedDefs {
+    width: 95%;
+  }
+
+  dl {
+    display: block;
+  }
+  
+  .job {
+    border-bottom: 1px dotted #ccc;
+  }
+  
+  dt {
+    font-weight: normal;
+    padding-left: 10px;
+  }
+  
+  dd {
+    width: 100%;
+  }
+
+  .mail-cautions {
+    width: 95%;
+  }
+
+  .btn {
+    width: 95%;
+  }
+
+  .ec-withdrawal {
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 95%;
+  }
+
+  /* ログイン */
+  .ec-loginBody {
+    margin: 0 auto;
+    width: 98%;
+  }
+
+  .login-form {
+    width: 75% !important;
+  }
+
+  .form-check {
+    margin: 0 auto;
+    width: 75%;
+  } 
+
+  .ec-login {
+    display: block;
+    padding: 0 0;
+    height: 150px;
+  }
+
+  .ec-login_actions {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  .btn-login {
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+    text-align: center;
+    width: 75%;
+  }
+
+  .ec-login_link {
+    width: 75%;
+    margin: 0 auto !important;
+    margin-top: 15px !important;
+  }  
+
+  /* パスワード再発行 */
+  .btn-email {
+    width: 100%;
+  }
+}
+
+
+
+

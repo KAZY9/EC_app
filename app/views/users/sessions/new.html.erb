@@ -1,0 +1,33 @@
+<div class="ec-role">
+  <div class="ec-pageHeader">
+    <h2 class="title">ログイン</h2>
+  </div>
+
+  <div class="ec-loginBody">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="error-mssg">
+        <%= render "devise/shared/error_messages", resource: resource %>
+      </div>
+      <div class="ec-input">
+        <div class="field">
+          <%= f.email_field :email, autocomplete: "email", placeholder: "メールアドレス" , class: "form-control login-form w75" %>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control login-form w75" %>
+          <div class="form-check">
+            <% if devise_mapping.rememberable? %>
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me, "次回から自動的にログインする" %>
+            <% end %>
+          </div>
+          <div class="ec-login">
+            <%= f.submit "ログイン", class: "btn-login btn-dark" %>
+            <div class="ec-login_link">
+              <%= link_to "新規会員登録", sign_up_path, class: "ec-link" %><br />
+              <%= link_to "パスワードをお忘れですか?", new_password_path(resource_name), class: "ec-link" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
