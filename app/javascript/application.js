@@ -3,3 +3,4 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "./jpostal.js";
 import "./birthday.check.js";
+import "./navbar.js";

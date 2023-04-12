@@ -1,0 +1,69 @@
+<header class="ec-headerNaviRole">
+    <div class="header-inner">
+
+        <div class="ec-headerNavi_left">
+            <div class="ec-header-logo">
+                <%= link_to "Online Store", root_path, id: "logo" %>
+            </div>
+        </div>
+
+        <div class="ec-headerNavi_center">
+            <div class="ec-headerSearch">
+                <p>検索機能は後で実装</p>
+            </div>
+        </div>
+
+        <div class="ec-headerNavi_right">
+
+            <nav class="navbar">
+                <div id="navbar-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="navbar-menu">
+                    <li>
+                        <a class="header-icon" href="#">
+                            <i class="fa-regular fa-circle-user fa-xl" style="color: #ffffff;"></i>
+                            <span class="icon-name"> マイページ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="header-icon" href="#">
+                            <i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffffff;"></i>
+                            <span class="icon-name">カート</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="header-icon" href="#">
+                             <i class="fa-regular fa-star fa-xl" style="color: #ffffff;"></i>
+                            <span class="icon-name">お気に入り</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="header-icon" href="#">
+                            <i class="fa-regular fa-clipboard fa-xl" style="color: #ffffff;"></i>
+                            <span class="icon-name">注文履歴</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="hidden-menu">
+                    <ul>
+                        <li><%= link_to "TOP", root_path, id: "link" %></li>
+                        <li><%= link_to "マイページ", "#", id: "link" %></li>
+                        <li><%= link_to "カート", "#", id: "link" %></li>
+                        <li><%= link_to "お気に入り", "#", id: "link" %></li>
+                        <li><%= link_to "注文履歴", "#", id: "link" %></li>
+                        <% if !user_signed_in? %>
+                            <li><%= link_to "ログイン", mypage_login_path, id: "link" %></li>
+                            <li><%= link_to "新規会員登録", sign_up_path, id: "link" %></li>   
+                        <% else %>
+                            <li><%= link_to "ログアウト", destroy_user_session_path, id: "link" %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
