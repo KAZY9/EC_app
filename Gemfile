@@ -8,6 +8,9 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 
 gem 'devise'
 gem 'rails-i18n'
+gem 'font-awesome-sass'
+gem 'webpacker'
+
 
 gem 'jp_prefecture' # 都道府県コードから都道府県名を変換するgem
 gem 'jquery-rails' # RailsでjQueryを使えるようにするgem
@@ -50,7 +53,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
