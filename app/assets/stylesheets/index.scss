@@ -72,7 +72,6 @@ ul li {
   position: fixed;
   top: 0;
   background-color: #2c3e50;
-  -webkit-text-size-adjust: 100%;
   z-index: 9999;
   width: 100%;
 }
@@ -87,11 +86,11 @@ ul li {
   width: 1080px;
 }
 
-#logo {
+#link_logo {
   font-family:Georgia, 'Times New Roman', Times, serif;
   font-size: 20px;
   color: white;
-  background-color: transparent; /* 追加 */
+  background-color: transparent;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   background-color: transparent;
 }
@@ -186,8 +185,6 @@ a {
   width: 100%;
   padding: 10px 30px 0 0;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  // background-color: rgba(192,192,192,0.9);
-  // background-color: #ECECEC;
   background-color: rgba(236, 236, 236, 0.9);
 
   align-items: center;
@@ -205,7 +202,9 @@ a {
   margin-bottom: 0;
 }
 
-#link {
+#link_top, #link_mypage, #link_cart, #link_favorite, 
+#link_order_history, #link_login, #link_sign_up,
+#link_logout {
   display: block;
   color: rgb(100, 100, 100);
   font-family: 'Zen Antique', serif;

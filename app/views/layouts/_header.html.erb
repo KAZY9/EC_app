@@ -3,7 +3,7 @@
 
         <div class="ec-headerNavi_left">
             <div class="ec-header-logo">
-                <%= link_to "Online Store", root_path, id: "logo" %>
+                <%= link_to "Online Store", root_path, id: "link_logo" %>
             </div>
         </div>
 
@@ -50,16 +50,16 @@
 
                 <div class="hidden-menu">
                     <ul>
-                        <li><%= link_to "TOP", root_path, id: "link" %></li>
-                        <li><%= link_to "マイページ", "#", id: "link" %></li>
-                        <li><%= link_to "カート", "#", id: "link" %></li>
-                        <li><%= link_to "お気に入り", "#", id: "link" %></li>
-                        <li><%= link_to "注文履歴", "#", id: "link" %></li>
+                        <li><%= link_to "TOP", root_path, id: "link_top" %></li>
+                        <li><%= link_to "マイページ", "#", id: "link_mypage" %></li>
+                        <li><%= link_to "カート", "#", id: "link_cart" %></li>
+                        <li><%= link_to "お気に入り", "#", id: "link_favorite" %></li>
+                        <li><%= link_to "注文履歴", "#", id: "link_order_history" %></li>
                         <% if !user_signed_in? %>
-                            <li><%= link_to "ログイン", mypage_login_path, id: "link" %></li>
-                            <li><%= link_to "新規会員登録", sign_up_path, id: "link" %></li>   
+                            <li><%= link_to "ログイン", mypage_login_path, id: "link_login" %></li>
+                            <li><%= link_to "新規会員登録", sign_up_path, id: "link_sign_up" %></li>   
                         <% else %>
-                            <li><%= link_to "ログアウト", destroy_user_session_path, id: "link" %></li>
+                            <li><%= link_to "ログアウト", destroy_user_session_path, id: "link_logout" %></li>
                         <% end %>
                     </ul>
                 </div>
