@@ -1,11 +1,13 @@
-<div class="ec-mypageBody">
-    <div class="nav-menu">
+<div class="ec-mypageLayout">
+    <div class="ec-mypageBody">
         <%= render 'layouts/side_menu' %>
-        <div class="ec-upperBody">
+
+        <div class="ec-mypageBody-right">
             <div class="mypage-title">
                 <p class="mypage-username"><span class="username"><%= @username %></span>様のマイページ</p>
                 <%= link_to "ログアウト", destroy_user_session_path, id: "logout_btn" %>
             </div>
+            
             <div class="mypage-topnav">
                 <li class="mypage-list">
                     <a class="menu-icon" href="/mypage/change">

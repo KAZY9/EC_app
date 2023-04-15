@@ -4,4 +4,3 @@ import "controllers"
 import "./jpostal.js";
 import "./birthday.check.js";
 import "./navbar.js";
-import "./mypage.js";

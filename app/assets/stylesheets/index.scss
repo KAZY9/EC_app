@@ -41,7 +41,7 @@ select option:first-child {
   margin: 0 auto; 
   margin-bottom: 10px;
   padding-top: 7px;
-  width: 800px;
+  width: 750px;
   border: 2px solid #de4d4d;
 }
 
@@ -271,17 +271,17 @@ a {
 
 // マイページ
 
-.ec-mypageBody {
+.ec-mypageLayout {
   display: flex;
   justify-content: space-around;
 }
 
-.nav-menu {
+.ec-mypageBody {
   display: flex;
   justify-content: center;
 }
 
-.ec-upperBody {
+.ec-mypageBody-right {
   margin: 50px 0 0 50px;
 }
 
@@ -289,7 +289,9 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: solid 1.2px #525263;
+  border-bottom: 1.2px solid #ccc;
+  color: var(--sumi);
+  margin: 0 auto;
 }
 
 .mypage-username {
@@ -304,11 +306,12 @@ a {
 }
 
 #logout_btn {
-  height: 30px;
-  width: 100px;
-  padding-top: 3px;
+  height: 22px;
+  width: 78px;
+  padding-top: 1px;
   border-radius: 20px;
   text-align: center;
+  font-size: 13px;
   color: rgb(90, 90, 90);
   background-color: #C0C0C0;
   border: solid 1px rgb(96, 96, 96);
@@ -414,7 +417,7 @@ li {
 }
 
 @media (max-width: 1130px) {
-  .ec-upperBody {
+  .ec-mypageBody-right {
     width: 100%;
   }
 
@@ -422,7 +425,7 @@ li {
     width: 97%;
   }
 
-  .nav-menu {
+  .ec-mypageBody {
     width: 98.5%;
   }
 
@@ -436,7 +439,7 @@ li {
     display: none;
   }
 
-  .ec-upperBody {
+  .ec-mypageBody-right {
     margin: 10px auto;
     justify-content: center;
   }
@@ -447,7 +450,6 @@ li {
 
   .mypage-title {
     width: 100%;
-    // margin-left: 20px;
   }
 
   .mypage-list {
@@ -463,7 +465,7 @@ li {
 
 @media only screen and (max-width: 450px) {
 
-  .ec-upperBody {
+  .ec-mypageBody-right {
     margin: 10px auto;
     justify-content: center;
   }
@@ -499,6 +501,97 @@ li {
     color: #2c3e50;
   }
 }
+
+// 会員情報変更ページのレイアウト
+
+.userInfo-change-form {
+  margin: 0 auto;
+  width: 860px;
+}
+
+.ec-formBody-change {
+  padding: 20px;
+}
+
+.element-userInfo {
+  border-top: 1px dotted #ccc;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.ec-borderedDefs-mypage {
+  margin: 0 auto;
+  width: 780px;
+  justify-content: center;
+}
+
+.element-form-change {
+  padding: 10px 0 10px 0;
+  width: 460px;
+}
+
+
+.ec-withdrawal {
+  margin: 0 auto;
+  margin-bottom: 50px;
+  text-align: right;
+  width: 780px;
+}
+
+.btn-withdrawal {
+  width: 90px;
+  border-radius: 25px;
+}
+
+@media (min-width: 980px) and (max-width: 1130px) {
+
+  .ec-borderedDefs-mypage {
+    width: 90%;
+  }
+
+  .userInfo-change-form {
+    width: 100%;
+  }
+
+  .element-userInfo {
+    width: 100%;
+  }
+
+  .ec-withdrawal {
+    width: 100%;
+  }
+}
+
+@media (max-width: 980px) {
+
+  .ec-formBody-change {
+    padding: 10px 0 0 0;
+    width: 100%;
+  }
+
+  .ec-borderedDefs-mypage {
+    width: 95%;
+  }
+
+  .element-userInfo {
+    display: block;
+    width: 100%;
+  }
+  
+  .element-form-change {
+    width: 100%;
+  }
+
+  .ec-withdrawal {
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 95%;
+  }
+}
+
 
 /* 新規会員登録画面、登録確認画面、会員情報編集画面 */
 
@@ -653,18 +746,6 @@ li {
   width: 200px;
   height: 50px;
   border-radius: 5px;
-}
-
-.ec-withdrawal {
-  margin: 0 auto;
-  margin-bottom: 50px;
-  text-align: right;
-  width: 900px;
-}
-
-.btn-withdrawal {
-  width: 90px;
-  border-radius: 25px;
 }
 
 .pw-guide {
@@ -848,12 +929,6 @@ h4 {
 
   .btn {
     width: 95%;
-  }
-
-  .ec-withdrawal {
-  margin: 0 auto;
-  margin-top: 10px;
-  width: 95%;
   }
 
   /* ログイン */
