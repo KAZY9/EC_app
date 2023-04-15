@@ -14,12 +14,12 @@
           <%= render "devise/shared/error_messages", resource: resource %>
         </div>
      
-        <dl class="ec-send-email">
-          <dt>
+        <dl class="element ec-send-email">
+          <dt class="element-label">
             <%= f.label :email, 'メールアドレス', class: "control-label" %>
             <span class="ec-required">必須</span>
           </dt>
-          <dd>
+          <dd class="element-form">
             <div class="ec-field">
               <%= f.email_field :email, placeholder: "例：abc@example.com", autocomplete: "email", class: "form-control w90" %>
             </div>

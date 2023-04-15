@@ -23,26 +23,26 @@
                 </div>
                 <ul class="navbar-menu">
                     <li>
-                        <a class="header-icon" href="#">
-                            <i class="fa-regular fa-circle-user fa-xl" style="color: #ffffff;"></i>
+                        <a class="header-icon" href="/mypage/">
+                            <i class="fa-regular fa-circle-user fa-xl header-list" style="color: #ffffff;"></i>
                             <span class="icon-name"> マイページ</span>
                         </a>
                     </li>
                     <li>
                         <a class="header-icon" href="#">
-                            <i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffffff;"></i>
+                            <i class="fa-solid fa-cart-shopping fa-xl header-list" style="color: #ffffff;"></i>
                             <span class="icon-name">カート</span>
                         </a>
                     </li>
                     <li>
                         <a class="header-icon" href="#">
-                             <i class="fa-regular fa-star fa-xl" style="color: #ffffff;"></i>
+                            <i class="fa-regular fa-star fa-xl header-list" style="color: #ffffff;"></i>
                             <span class="icon-name">お気に入り</span>
                         </a>
                     </li>
                     <li>
                         <a class="header-icon" href="#">
-                            <i class="fa-regular fa-clipboard fa-xl" style="color: #ffffff;"></i>
+                            <i class="fa-regular fa-clipboard fa-xl header-list" style="color: #ffffff;"></i>
                             <span class="icon-name">注文履歴</span>
                         </a>
                     </li>
@@ -51,7 +51,7 @@
                 <div class="hidden-menu">
                     <ul>
                         <li><%= link_to "TOP", root_path, id: "link_top" %></li>
-                        <li><%= link_to "マイページ", "#", id: "link_mypage" %></li>
+                        <li><%= link_to "マイページ", mypage_path, id: "link_mypage" %></li>
                         <li><%= link_to "カート", "#", id: "link_cart" %></li>
                         <li><%= link_to "お気に入り", "#", id: "link_favorite" %></li>
                         <li><%= link_to "注文履歴", "#", id: "link_order_history" %></li>

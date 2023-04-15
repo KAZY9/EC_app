@@ -5,104 +5,104 @@
 
   <div class="ec-formBody">
     <div class="ec-borderedDefs">
-      <dl>
-        <dt>
+      <dl class="element">
+        <dt class="element-label">
           <label class="control-label">お名前</label>
           <span class="ec-required">必須</span>
         </dt>
-        <dd>
+        <dd class="element-form">
           <div class="output">
             <%= @user.username %>
           </div>
         </dd>
       </dl>
 
-      <dl>
-        <dt>
+      <dl class="element">
+        <dt class="element-label">
           <label class="control-label">お名前(カナ)</label>
         </dt>
-        <dd>
+        <dd class="element-form">
           <div class="output">
             <%= @user.username_kana %>
           </div>
         </dd>
       </dl>
 
-      <dl>
-        <dt>
+      <dl class="element">
+        <dt class="element-label">
           <label class="control-label">住所</label>
           <span class="ec-required">必須</span>
         </dt>
-        <dd>
+        <dd class="element-form">
           <div class="output">
             〒<%= @user.postal_code %><br /><%= @user.prefecture_code %><br /><%= @user.city %><br /><%= @user.street_and_others %>
           </div>
         </dd>
       </dl>
       
-      <dl>
-        <dt>
+      <dl class="element">
+        <dt class="element-label">
           <label class="control-label">電話番号</label>
           <span class="ec-required">必須</span>
         </dt>
-        <dd>
+        <dd class="element-form">
           <div class="output">
             <%= @user.tel %>
           </div>
         </dd>
       </dl>
 
-      <dl>
-        <dt>
+      <dl class="element"> 
+        <dt class="element-label">
           <label class="control-label">メールアドレス</label>
           <span class="ec-required">必須</span>
         </dt>
-        <dd>
+        <dd class="element-form">
           <div class="output">
             <%= @user.email %>
           </div>
         </dd>
       </dl>
       
-       <dl>
-        <dt>
+       <dl class="element">
+        <dt class="element-label">
           <label class="control-label">パスワード</label>
           <span class="ec-required">必須</span>
         </dt>
-        <dd>
+        <dd class="element-form">
           <div class="output">
             <%= "*" * @user.password.length %><br /><%= "*" * @user.password_confirmation.length %>
           </div>
         </dd>
       </dl>
 
-      <dl>
-        <dt>
+      <dl class="element">
+        <dt class="element-label">
           <label class="control-label">生年月日</label>
         </dt>
-        <dd>
+        <dd class="element-form">
           <div class="output">
             <%= @user.birthday %>
           </div>
         </dd>
       </dl>
       
-      <dl>
-        <dt>
+      <dl class="element">
+        <dt class="element-label">
           <label class="control-label">性別</label>
         </dt>
-        <dd>
+        <dd class="element-form">
           <div class="output">
             <%= @user.sex %>
           </div>
         </dd>
       </dl>
       
-      <dl class="job">
-        <dt>
+      <dl class="element job">
+        <dt class="element-label">
           <label class="control-label">職業</label>
         </dt>
-        <dd>
+        <dd class="element-form">
           <div class="output">
             <%= @user.job %>
           </div>

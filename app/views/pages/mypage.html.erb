@@ -1,0 +1,44 @@
+<div class="ec-mypageBody">
+    <div class="nav-menu">
+        <%= render 'layouts/side_menu' %>
+        <div class="ec-upperBody">
+            <div class="mypage-title">
+                <p class="mypage-username"><span class="username"><%= @username %></span>様のマイページ</p>
+                <%= link_to "ログアウト", destroy_user_session_path, id: "logout_btn" %>
+            </div>
+            <div class="mypage-topnav">
+                <li class="mypage-list">
+                    <a class="menu-icon" href="/mypage/change">
+                        <i class="fa-regular fa-circle-user fa-3x mypage-icon"></i>
+                        <span class="menu-name"> 会員情報変更</span>
+                    </a>
+                </li>
+                <li class="mypage-list">
+                    <a class="menu-icon" href="">
+                        <i class="fa-regular fa-clipboard fa-3x mypage-icon"></i>
+                        <span class="menu-name">注文履歴</span>
+                    </a>
+                </li>
+                <li class="mypage-list">
+                    <a class="menu-icon" href="">
+                        <i class="fa-regular fa-star fa-3x mypage-icon"></i>
+                        <span class="menu-name">お気に入り</span>
+                    </a>
+                </li>
+                <li class="mypage-list">
+                    <a class="menu-icon" href="">
+                        <i class="fa-regular fa-credit-card fa-3x mypage-icon"></i>
+                        <span class="menu-name">カード情報変更</span>
+                    </a>
+                </li>
+                <li class="mypage-list">
+                    <a class="menu-icon" href="">
+                        <i class="fa-solid fa-truck fa-3x mypage-icon"></i>
+                        <span class="menu-name">お届け先一覧</span>
+                    </a>
+                </li>
+                <li class="mypage-list hidden-list"></li>
+            </div>
+        </div>
+    </div>
+</div>
