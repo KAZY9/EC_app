@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_01_072813) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_045152) do
+  create_table "addresses", charset: "utf8mb3", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "name_kana"
+    t.string "company"
+    t.string "postal_code", null: false
+    t.string "prefecture_code", null: false
+    t.string "city", null: false
+    t.string "street_and_others", null: false
+    t.string "tel", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

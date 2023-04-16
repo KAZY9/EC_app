@@ -516,6 +516,10 @@ li {
   width: 860px;
 }
 
+.mypageTop-link {
+  margin-bottom: 5px;
+}
+
 .ec-formBody-change {
   padding: 20px;
 }
@@ -551,6 +555,10 @@ li {
 .btn-withdrawal {
   width: 90px;
   border-radius: 25px;
+}
+
+.tel-field {
+  border-bottom: 1px dotted #ccc;
 }
 
 @media (min-width: 980px) and (max-width: 1130px) {
@@ -601,6 +609,68 @@ li {
   margin-top: 10px;
   width: 95%;
   }
+}
+
+// お届け先一覧
+
+.mssg_and_add-btn {
+  padding: 10px 10px 20px;
+  border-bottom: 1px dotted #ccc;
+}
+
+.btn-add-address, .btn-change-address {
+  display: inline-block;
+    margin-bottom: 0;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    border-radius: 0px;
+    padding: 10px 16px;
+    background-color: #F5F7F8;
+    border-color: #ccc;
+}
+
+.btn-add-address:hover, .btn-change-address:hover {
+  background-color: #D8E3EF;
+}
+
+#add_address_link, #change_address_link {
+  color: #525263;
+}
+
+.address {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 25%;
+  border-bottom: 1px dotted #ccc;
+}
+
+.address_and_batsu {
+  display: flex;
+  align-items: center;
+}
+
+.batsu {
+  font-size: 23px;
+  color: #C0C0C0;
+  padding: 0 20px;
+}
+
+.address-info {
+  margin-top: 19px;
+}
+
+.btn-change-address {
+  margin: 0 20px;
 }
 
 
