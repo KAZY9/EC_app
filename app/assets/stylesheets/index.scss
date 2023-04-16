@@ -211,6 +211,13 @@ a {
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
 
+#link_top:hover, #link_mypage:hover, #link_cart:hover, #link_favorite:hover, 
+#link_order_history:hover, #link_login:hover, #link_sign_up:hover,
+#link_logout:hover {
+  color: #337ab7;
+}
+
+
 @media only screen and (max-width: 980px) {
   .navbar-menu {
     display: none;
@@ -566,6 +573,10 @@ li {
 }
 
 @media (max-width: 980px) {
+
+  .userInfo-change-form {
+    width: 100%;
+  }
 
   .ec-formBody-change {
     padding: 10px 0 0 0;
