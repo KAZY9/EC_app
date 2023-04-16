@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get '/mypage/change', to: 'users/registrations#edit'
   end
 
+  get '/mypage/', to: 'pages#mypage'
   root 'pages#index'
   # get 'pages#show'
   get '/pages/show', to: 'pages#show'
