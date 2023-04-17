@@ -33,8 +33,9 @@ class AddressesController < ApplicationController
     end
 
     def destroy
-        @address.destroy
-        redirect_to addresses_url,  status: :see_other
+        if @address.destroy
+            redirect_to addresses_url,  status: :see_other
+        end
     end
 
     protected
