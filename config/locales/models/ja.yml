@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      address: お届け先
     attributes:
       user:
         username: お名前
@@ -14,6 +15,13 @@ ja:
         password: パスワード
         password_confirmation: パスワード(確認)
         agreement: 利用規約
+      address:
+        name: お名前
+        postal_code: 郵便番号
+        prefecture_code: 都道府県
+        city: 市区町村
+        street_and_others: 番地・ビル名
+        tel: 電話番号
   errors:
     messages:
       not_found: 'が見つかりませんでした'

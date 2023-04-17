@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :addresses, dependent: :destroy
   VALID_POSTAL_CODE_REGEX = /\A\d{3}[-]?\d{4}\z/
   VALID_TEL_REGEX = /\A0(\d{1}[-(]?\d{4}|\d{2}[-(]?\d{3}|\d{3}[-(]?\d{2}|\d{4}[-(]?\d{1})[-)]?\d{4}\z|\A0[5789]0[-]?\d{4}[-]?\d{4}\z/
   validates :username, presence: true
@@ -29,22 +30,6 @@ class User < ApplicationRecord
     result = update(params, *options)
     clean_up_passwords
     result
-  end
-
-  #都道府県コードから都道府県名に変換
-  include JpPrefecture
-  jp_prefecture :prefecture_code
-         
-  def prefecture_name
-    JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
-  end
-         
-  def prefecture_name=(prefecture_name)
-    self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
-  end
-
-  def postal_code_with_mark
-    "〒" + postal_code.to_s
   end
 
   private

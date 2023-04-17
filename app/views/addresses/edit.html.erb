@@ -1,0 +1,97 @@
+<div class="ec-mypageLayout">
+    <div class="ec-mypageBody">
+        <%= render 'layouts/side_menu' %>
+        
+        <div class="ec-mypageBody-right">
+            <div class="userInfo-change-form" >
+                <div class="mypageTop-link">
+                    <%= link_to "< マイページTOP", mypage_path %>
+                </div>
+                <div class="mypage-title">
+                <h2>お届け先登録</h2>
+                </div>
+
+                <div class="ec-formBody-change"> 
+                    <%= form_with model: @address, url: address_path, local: true, data: { turbo: false } do |f| %>
+                        <div class="valid-error-mssg"> 
+                        <%= render "devise/shared/error_messages", resource: @address %>
+                        </div>
+                        <div class="ec-borderedDefs-mypage">
+                            <dl class="element-userInfo">
+                                <dt class="element-label">
+                                    <%= f.label :name, 'お名前', class: "control-label" %>
+                                    <span class="ec-required">必須</span>
+                                </dt>
+                                <dd class="element-form-change">
+                                    <div class="ec-field">
+                                        <%= f.text_field :name, class: "form-control w90"  %>
+                                    </div>
+                                </dd>
+                            </dl>
+
+                            <dl class="element-userInfo">
+                                <dt class="element-label">
+                                    <%= f.label :name_kana, 'お名前(カナ)', class: "control-label" %>
+                                </dt>
+                                <dd class="element-form-change">
+                                    <div class="ec-field">
+                                        <%= f.text_field :name_kana, class: "form-control w90"  %>
+                                    </div>
+                                </dd>
+                            </dl>
+
+                            <dl class="element-userInfo">
+                                <dt class="element-label">
+                                    <%= f.label :company, '会社', class: "control-label" %>
+                                </dt>
+                                <dd class="element-form-change">
+                                    <div class="ec-field">
+                                        <%= f.text_field :company, class: "form-control w90"  %>
+                                    </div>
+                                </dd>
+                            </dl>
+
+                            <dl class="element-userInfo">
+                                <dt class="element-label">
+                                    <%= f.label :postal_code, '住所', class: "control-label" %>
+                                    <span class="ec-required">必須</span>
+                                </dt>
+                                <dd class="element-form-change">
+                                    <div class="ec-zipInput">
+                                        <span class="post-mark">〒</span>
+                                        <%= f.text_field :postal_code, placeholder: "例：1234567", class: "form-control w-150px" %>
+                                    </div>
+                                    <div class="ec-select">
+                                        <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, { prompt: '都道府県を選択'}, class: "form-select w-180px"  %>
+                                    </div>
+                                    <div class="ec-field">
+                                        <%= f.text_field :city, placeholder: "市区町村(例：東京都港区)", class: "form-control w90"  %>
+                                    </div>
+                                    <div class="ec-field">
+                                        <%= f.text_field :street_and_others, placeholder: "番地・ビル名(例：〇〇1丁目23-4)",class: "form-control w90"  %>
+                                    </div>
+                                </dd> 
+                            </dl>
+
+                            <dl class="element-userInfo tel-field">
+                                <dt class="element-label">
+                                    <%= f.label :tel, '電話番号', class: "control-label" %>
+                                    <span class="ec-required">必須</span>
+                                </dt>
+                                <dd class="element-form-change">
+                                    <div class="ec-telInput">
+                                        <%= f.text_field :tel, placeholder: "例：08012345678", class: "form-control w90" %>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+
+                        <div class="actions">
+                        <%= f.submit "更新する", class: "btn btn-secondary" %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

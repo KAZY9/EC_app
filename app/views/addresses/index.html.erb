@@ -1,0 +1,50 @@
+<div class="ec-mypageLayout">
+  <div class="ec-mypageBody">
+    <%= render 'layouts/side_menu' %>
+    
+    <div class="ec-mypageBody-right">
+        <div class="userInfo-change-form" >
+            <div class="mypageTop-link">
+                <%= link_to "< マイページTOP", mypage_path %>
+            </div>
+            <div class="mypage-title">
+                <h2>お届け先一覧</h2>
+            </div>
+
+            <div class="ec-formBody-change"> 
+                <div class="mssg_and_add-btn">
+                    <% if current_user.addresses.present? %>
+                        <p><%= current_user.addresses.count %>件のお届け先があります</p>
+                    <% else %>
+                        <p>お届け先は登録されていません。</p>
+                    <% end %>
+                    <div class="btn-add-address">
+                        <%= link_to "新規お届け先を追加する", new_address_path, id: "add_address_link" %>
+                    </div>
+                </div>
+                <div class="address-list">
+                    <% current_user.addresses.each do |address| %>
+                        <div class="address">
+                            <div class="address_and_batsu">
+                                <div class="batsu">
+                                    <%= link_to "×", address_path(address), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか?" }, 
+                                      id: "add_address_link" %>
+                                </div>
+                                <p class="address-info">
+                                    <%= address.name %><br />
+                                    〒<%= address.postal_code %>&nbsp;<%= address.prefecture_code %>
+                                    <%= address.city %>&nbsp;<%= address.street_and_others %><br />
+                                    <%= address.tel %>
+                                </p>
+                            </div>
+                            <div class="btn-change-address">
+                                <%= link_to "変更", edit_address_path(address), id: "change_address_link" %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

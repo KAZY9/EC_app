@@ -15,7 +15,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def confirm
     @user = User.new(sign_up_params)
-    # render :new if @user.invalid?
     if @user.invalid?
       render :new
     else

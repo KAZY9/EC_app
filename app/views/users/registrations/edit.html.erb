@@ -4,7 +4,9 @@
     
     <div class="ec-mypageBody-right">
       <div class="userInfo-change-form" >
-        <%= link_to "< マイページTOP", mypage_path %>
+        <div class="mypageTop-link">
+          <%= link_to "< マイページTOP", mypage_path %>
+        </div>
         <div class="mypage-title">
           <h2>会員情報変更</h2>
         </div>
@@ -145,7 +147,7 @@
             </div>
 
             <div class="actions">
-              <%= f.submit "更新する", class: "btn btn-dark" %>
+              <%= f.submit "更新する", class: "btn btn-secondary" %>
             </div>
           <% end %>
         </div>

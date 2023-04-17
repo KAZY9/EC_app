@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  # resources :addresses, except: [:show]
+
   # views/users/registrations内に作成したconfirm.html.erbとcomplete.html.erbもルーティングに追加します。
   devise_scope :user do
     get '/sign_up', to: 'users/registrations#new'
@@ -15,6 +17,10 @@ Rails.application.routes.draw do
     get '/forgot/complete', to: 'users/passwords#complete'
     get '/mypage/login', to: 'users/sessions#new'
     get '/mypage/change', to: 'users/registrations#edit'
+  end
+
+  scope :mypage do
+    resources :addresses, except: [:show] 
   end
 
   get '/mypage/', to: 'pages#mypage'
