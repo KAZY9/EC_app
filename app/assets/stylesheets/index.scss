@@ -442,6 +442,10 @@ li {
 }
 
 @media only screen and (max-width: 980px) {
+  .ec-mypageLayout {
+    padding: 30px 0;
+  }
+
   .mypage-side-menu {
     display: none;
   }
@@ -456,7 +460,11 @@ li {
   }
 
   .mypage-title {
-    width: 100%;
+    width: 97%;
+  }
+
+  .mypageTop-link {
+    width: 97%;
   }
 
   .mypage-list {
@@ -514,6 +522,7 @@ li {
 .userInfo-change-form {
   margin: 0 auto;
   width: 860px;
+  justify-content: center;
 }
 
 .mypageTop-link {
@@ -521,7 +530,7 @@ li {
 }
 
 .ec-formBody-change {
-  padding: 20px;
+  padding: 30px 50px;
 }
 
 .element-userInfo {
@@ -564,7 +573,7 @@ li {
 @media (min-width: 980px) and (max-width: 1130px) {
 
   .ec-borderedDefs-mypage {
-    width: 90%;
+    width: 100%;
   }
 
   .userInfo-change-form {
@@ -592,7 +601,8 @@ li {
   }
 
   .ec-borderedDefs-mypage {
-    width: 95%;
+    width: 97%;
+    padding: 0 20px;
   }
 
   .element-userInfo {
@@ -642,7 +652,7 @@ li {
   background-color: #D8E3EF;
 }
 
-#add_address_link, #change_address_link {
+#add_address_link, #change_address_link, #delete_address_link {
   color: #525263;
 }
 
@@ -671,6 +681,98 @@ li {
 
 .btn-change-address {
   margin: 0 20px;
+}
+
+// カード情報変更
+
+.ec-formBody-card {
+  margin-top: 30px;
+  padding: 0 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+table {
+  justify-content: space-around;
+  width: 100%;
+}
+
+tbody {
+  border-top: #ccc solid 1.2px;
+}
+
+th, td {
+  text-align: center;
+  padding: 5px;
+  color: var(--sumi);
+}
+
+#delete_card_link {
+  font-size: 23px;
+  color: #C0C0C0;
+}
+
+.ec-borderedDefs-card {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cardInfo-last {
+  border-bottom: 1px dotted #ccc;
+}
+
+.element-cardInfo {
+  border-top: 1px dotted #ccc;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+p {
+  margin-top: 15px;
+}
+
+#number-form, #expiry-form, #cvc-form, #cardholder_name {
+  width: 60%;
+}
+
+.number-form, .expiry-form, .cvc-form, .cardholder_name {
+  color: var(--sumi);
+  font-weight: bold;
+  font-family: Georgia;
+}
+
+#cardholder_name {
+  height: 33.19px;
+}
+
+.payjp .form-control:focus {
+  border-color: #80bdff;
+}
+
+.form-control:focus, .form-select:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+@media (max-width: 980px) {
+  .ec-formBody-card {
+    padding: 0 20px;
+  }
+
+  .ec-borderedDefs-card {
+    padding-top: 10px;
+  }
+
+  .element-cardInfo {
+    display: block;
+  }
 }
 
 

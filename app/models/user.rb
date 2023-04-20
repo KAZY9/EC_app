@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :addresses, dependent: :destroy
+  has_many :card, dependent: :destroy
   VALID_POSTAL_CODE_REGEX = /\A\d{3}[-]?\d{4}\z/
   VALID_TEL_REGEX = /\A0(\d{1}[-(]?\d{4}|\d{2}[-(]?\d{3}|\d{3}[-(]?\d{2}|\d{4}[-(]?\d{1})[-)]?\d{4}\z|\A0[5789]0[-]?\d{4}[-]?\d{4}\z/
   validates :username, presence: true
