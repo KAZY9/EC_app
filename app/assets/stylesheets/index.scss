@@ -628,6 +628,10 @@ li {
   border-bottom: 1px dotted #ccc;
 }
 
+.ec-formBody-address {
+  padding: 20px 40px;
+}
+
 .btn-add-address, .btn-change-address {
   display: inline-block;
     margin-bottom: 0;
@@ -683,11 +687,17 @@ li {
   margin: 0 20px;
 }
 
+@media (max-width: 980px) {
+  .ec-formBody-address {
+    padding: 20px 25px;
+  }
+}
+
 // カード情報変更
 
 .ec-formBody-card {
   margin-top: 30px;
-  padding: 0 60px;
+  padding: 0 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;

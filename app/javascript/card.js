@@ -5,38 +5,10 @@ document.addEventListener("turbo:load", function() {
     
     var elements = payjp.elements();
 
-    // var numberElement = elements.create('cardNumber');
-    // var expiryElement = elements.create('cardExpiry');
-    // var cvcElement = elements.create('cardCvc');
-
-    var numberElement = elements.create('cardNumber', {
-        style: {
-          base: {
-            placeholder: ""
-          }
-        }
-      });
-
-      numberElement.update({style: {base: {placeholder: ''}}})
+    var numberElement = elements.create('cardNumber', {placeholder: ""});
+    var expiryElement = elements.create('cardExpiry', {placeholder: "月/年"});
+    var cvcElement = elements.create('cardCvc', {placeholder: "例：123"});
       
-      var expiryElement = elements.create('cardExpiry', {
-        style: {
-          base: {
-            placeholder: ""
-          }
-        }
-      });
-      
-      var cvcElement = elements.create('cardCvc', {
-        style: {
-          base: {
-            placeholder: ""
-          }
-        }
-      });
-      
-
-
     // elementをDOM上に配置
     numberElement.mount('#number-form');
     expiryElement.mount('#expiry-form');
