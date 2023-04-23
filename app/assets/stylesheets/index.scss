@@ -708,13 +708,13 @@ table {
   width: 100%;
 }
 
-tbody {
-  border-top: #ccc solid 1.2px;
+thead {
+  border-bottom: #ccc solid 1.2px;
 }
 
 th, td {
   text-align: center;
-  padding: 5px;
+  padding: 0 5px;
   color: var(--sumi);
 }
 
