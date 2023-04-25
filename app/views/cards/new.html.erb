@@ -24,8 +24,11 @@
                             <% @cards.each_with_index do |card, index| %>
                                 <tbody>
                                     <tr>
-                                        <td class="batsu-delete"><%= link_to "×", card_path(card), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか?" }, 
-                                      id: "delete_card_link" %></td>
+                                        <td class="batsu-delete"><%= button_to card_path(card), method: :delete, remote: true,  form: { onSubmit: "return confirmDelete();"},
+                                      id: "delete_btn" do %>
+                                            <i class="fa-solid fa-xmark fa-xs" style="color: #85898e;"></i>
+                                        <% end %>
+                                        </td> 
                                         <td class="number"><%= index + 1 %></td>
                                         <td class="card-number">************<%= card.last4 %></td>
                                         <td class="exp_time"><%= card.exp_year %>年<%= card.exp_month %>月</td>
@@ -38,7 +41,7 @@
                         <p>登録されたカード情報はありません</p>
                     <% end %>
 
-                    <%= form_with url: cards_path, id: "card_form" do |f| %>
+                    <%= form_with url: cards_path, data: { turbo: false }, id: "card_form" do |f| %>
                         <div class="ec-borderedDefs-card">
                             <div class="element-cardInfo payjp">   
                                 <label for="number-form" class="number-form">カード番号</label>              
@@ -70,3 +73,8 @@
         </div>
     </div>
 </div>
+<script>
+    function confirmDelete() {
+        return confirm("本当に削除しますか？");
+    }
+</script>

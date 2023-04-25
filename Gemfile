@@ -12,7 +12,6 @@ gem 'rails-i18n'
 gem 'font-awesome-sass'
 gem 'webpacker'
 
-
 gem 'jp_prefecture' # 都道府県コードから都道府県名を変換するgem
 gem 'jquery-rails' # RailsでjQueryを使えるようにするgem
 

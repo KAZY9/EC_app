@@ -27,8 +27,10 @@
                         <div class="address">
                             <div class="address_and_batsu">
                                 <div class="batsu">
-                                    <%= link_to "×", address_path(address), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか?" }, 
-                                      id: "delete_address_link" %>
+                                    <%= button_to address_path(address), method: :delete, remote: true, form: { onSubmit: "return confirmDelete();"},
+                                      id: "delete_btn" do %>
+                                      <i class="fa-solid fa-xmark fa-xs" style="color: #85898e;"></i>
+                                    <% end %>
                                 </div>
                                 <p class="address-info">
                                     <%= address.name %><br />
@@ -48,3 +50,8 @@
     </div>
   </div>
 </div>
+<script>
+    function confirmDelete() {
+    return confirm("本当に削除しますか？");
+    }
+</script>

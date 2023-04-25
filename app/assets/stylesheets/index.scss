@@ -656,7 +656,7 @@ li {
   background-color: #D8E3EF;
 }
 
-#add_address_link, #change_address_link, #delete_address_link {
+#add_address_link, #change_address_link {
   color: #525263;
 }
 
@@ -674,9 +674,31 @@ li {
 }
 
 .batsu {
-  font-size: 23px;
-  color: #C0C0C0;
   padding: 0 20px;
+}
+
+#delete_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15px;
+  width: 15px;
+  border: 1px solid #C0C0C0;
+}
+
+#delete_btn:hover {
+  background-color: #D0D0D0;
+}
+
+.batsu_mark {
+  width: 22px;
+  height: 22px;
+  padding: 0 0 3px 2px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  color: #C0C0C0;
 }
 
 .address-info {
@@ -713,14 +735,12 @@ thead {
 }
 
 th, td {
-  text-align: center;
-  padding: 0 5px;
+  padding: 0 10px 0 25px;
   color: var(--sumi);
 }
 
-#delete_card_link {
-  font-size: 23px;
-  color: #C0C0C0;
+.number {
+  text-align: center;
 }
 
 .ec-borderedDefs-card {
