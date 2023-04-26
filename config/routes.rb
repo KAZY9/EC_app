@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'cards/new'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
 
   scope :mypage do
     resources :addresses, except: [:show] 
+    resources :cards, only: [:new, :create, :destroy]
   end
 
   get '/mypage/', to: 'pages#mypage'

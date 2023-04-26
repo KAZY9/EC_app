@@ -47,6 +47,6 @@ class AddressesController < ApplicationController
 
     def correct_user
         @address = current_user.addresses.find_by(id: params[:id])
-        redirect_to root_url, status: :see_other if @address.nil?
+        redirect_to addresses_url, status: :see_other if @address.nil?
     end
 end

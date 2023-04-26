@@ -7,10 +7,10 @@ ruby "2.7.7"
 gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 
 gem 'devise'
+gem 'payjp'
 gem 'rails-i18n'
 gem 'font-awesome-sass'
 gem 'webpacker'
-
 
 gem 'jp_prefecture' # 都道府県コードから都道府県名を変換するgem
 gem 'jquery-rails' # RailsでjQueryを使えるようにするgem

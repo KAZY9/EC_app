@@ -1,7 +1,9 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "@hotwired/turbo-rails"
+import { Turbo } from "@hotwired/turbo-rails"
+Turbo.session.drive = false
 import "controllers"
 import "./jpostal.js";
 import "./birthday.check.js";
 import "./navbar.js";
-//= require rails-ujs
+import "./card.js";
+

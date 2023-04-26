@@ -1,0 +1,80 @@
+<div class="ec-mypageLayout">
+    <div class="ec-mypageBody">
+        <%= render 'layouts/side_menu' %>
+        
+        <div class="ec-mypageBody-right">
+            <div class="userInfo-change-form" >
+                <div class="mypageTop-link">
+                    <%= link_to "< マイページTOP", mypage_path %>
+                </div>
+                <div class="mypage-title">
+                    <h2>カード情報変更</h2>
+                </div>
+
+                <div class="ec-formBody-card"> 
+                    <% if current_user.card.present? %>
+                        <table>
+                            <thead>
+                                <th class="batsu-delete"></th>
+                                <th class="number">番号</th>
+                                <th class="card-number">カード番号</th>
+                                <th class="exp_time">有効期限</th>
+                                <th class="cardholder">名義人</th>
+                            </thead>
+                            <% @cards.each_with_index do |card, index| %>
+                                <tbody>
+                                    <tr>
+                                        <td class="batsu-delete"><%= button_to card_path(card), method: :delete, remote: true,  form: { onSubmit: "return confirmDelete();"},
+                                      id: "delete_btn" do %>
+                                            <i class="fa-solid fa-xmark fa-xs" style="color: #85898e;"></i>
+                                        <% end %>
+                                        </td> 
+                                        <td class="number"><%= index + 1 %></td>
+                                        <td class="card-number">************<%= card.last4 %></td>
+                                        <td class="exp_time"><%= card.exp_year %>年<%= card.exp_month %>月</td>
+                                        <td class="cardholder"><%= card.name %></td>
+                                    </tr>
+                                </tbody>
+                            <% end %>
+                        </table>
+                    <% else %>
+                        <p>登録されたカード情報はありません</p>
+                    <% end %>
+
+                    <%= form_with url: cards_path, data: { turbo: false }, id: "card_form" do |f| %>
+                        <div class="ec-borderedDefs-card">
+                            <div class="element-cardInfo payjp">   
+                                <label for="number-form" class="number-form">カード番号</label>              
+                                <div id="number-form" class="payjs-outer form-control"><!-- カード番号入力フォーム --></div>                    
+                            </div>
+
+                            <div class="element-cardInfo payjp">
+                                <label for="expiry-form" class="expiry-form">有効期限</label>      
+                                <div id="expiry-form" class="payjs-outer form-control"><!-- 有効期限入力フォーム --></div> 
+                            </div>
+
+                            <div class="element-cardInfo payjp">
+                                <label for="cvc-form" class="cvc-form">セキュリティコード</label>      
+                                <div id="cvc-form" class="payjs-outer form-control"><!-- CVC入力フォーム --></div>
+                            </div>
+
+                            <div class="element-cardInfo cardInfo-last">
+                                <label for="cardholder_name" class="cardholder_name">名義人</label>      
+                                <%= f.text_field :cardholder_name, placeholder: "例：TARO YAMADA", id: "cardholder_name", class: "form-control" %>
+                            </div>
+                        </div>
+                        <div id="card_token"></div>
+                        <div class="actions">
+                            <%= f.submit "登録する", class: "btn btn-secondary", id: "info_submit" %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function confirmDelete() {
+        return confirm("本当に削除しますか？");
+    }
+</script>

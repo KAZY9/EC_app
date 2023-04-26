@@ -28,16 +28,16 @@
                     </a>
                 </li>
                 <li class="mypage-list">
-                    <a class="menu-icon" href="">
+                    <%= link_to new_card_path, data: { turbo: false }, class: "menu-icon" do %>
                         <i class="fa-regular fa-credit-card fa-3x mypage-icon"></i>
                         <span class="menu-name">カード情報変更</span>
-                    </a>
+                    <% end %>
                 </li>
                 <li class="mypage-list">
-                    <a class="menu-icon" href="/mypage/addresses">
+                    <%= link_to addresses_path, data: { turbo: false }, class: "menu-icon" do %>
                         <i class="fa-solid fa-truck fa-3x mypage-icon"></i>
                         <span class="menu-name">お届け先一覧</span>
-                    </a>
+                    <% end %>
                 </li>
                 <li class="mypage-list hidden-list"></li>
             </div>
