@@ -6,7 +6,7 @@
   <div class="ec-formBody">
     <%= form_with model: @user, url: sign_up_path(@user), local: true, data: { turbo: false }, html: { class: "entry-form" } do |f| %>  
       <div class="valid-error-mssg"> 
-        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= render "shared/error_messages", resource: resource %>
       </div>
       <div class="ec-borderedDefs">
         <dl class="element">

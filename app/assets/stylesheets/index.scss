@@ -1058,6 +1058,27 @@ h4 {
   margin-left: 10px;
 }
 
+/* 商品登録画面 */
+
+.admin-pro-formBody {
+  overflow: hidden;
+  padding: 20px 0; 
+}
+
+.ec-admin-product {
+  margin: 0 auto;
+  margin-top: 60px;
+}
+
+.product-register-header {
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.image {
+  border-bottom: 1px dotted #ccc;
+}
+
 @media (max-width: 1120px) {
   .title {
     width: 95%;
