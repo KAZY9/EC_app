@@ -1,2 +1,52 @@
-<h1>Customer::Products#show</h1>
-<p>Find me in app/views/customer/products/show.html.erb</p>
+<div class="ec-productRole">
+  <div class="product-customer">
+    <div class="product-customer-detail">
+        <div class="product-customer-left">
+            <div class="slick-main">
+                <% @product.images.each do |image| %>
+                    <% if image %>
+                        <div class="slick_slide"><%= image_tag image.variant(resize: "545x560") %></div>
+                    <% end %>
+                <% end %>
+            </div>
+             <div class="slick-thumbnail">
+                <% @product.images.each do |image| %>
+                    <% if image %>
+                        <div class="slick_slide"><%= image_tag image.variant(resize: "100x120") %></div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="product-customer-right">
+          <div class="product-customer-desc">
+            <h3 class="product-customer-name">
+                <%= @product.name %>
+            </h3>
+            <p class="product-price-customer"><%= number_to_currency(@product.price, strip_insignificant_zeros: true) %></p>
+            <div class="product-color">
+                <p>カラー：</p>
+                <p><%= @product.color %></p>
+            </div>
+            <div class="product-stock">
+                <p class="stock">在庫：</p>
+                <% if @product.stock < 5 %>
+                    <p class="stock">残りわずか</p>
+                <% else %>
+                    <%= @product.stock %>
+                <% end %>
+            </div>
+            <div class="product-quantity">
+                <p>数量</p>
+                <p>※数量入力やカート機能は後で実装</p>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="product-costomer-center">
+      <p class="product-description-title">商品説明</p>
+      <p class="product-description-sen"><%= @product.description %></p>
+    </div>
+  </div>
+</div>
+ 

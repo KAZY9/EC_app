@@ -1,8 +1,9 @@
 class Admin::ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update]
+  before_action :is_not_admin?
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = Product.all
+    @products = Product.all.page(params[:page]).per(5)
   end
 
   def show
@@ -32,13 +33,23 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    if @product.destroy
+        redirect_to admin_products_url,  status: :see_other
+    end
+  end
+
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :image)
+    params.require(:product).permit(:name, :description, :price, :stock, :color, images: [])
   end
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def is_not_admin?
+    redirect_to root_url unless current_user && current_user.admin?
   end
 end

@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   scope module: :customer do
     resources :products, only: [:index, :show]
+    root 'products#index'
   end
 
   namespace :admin do
-    resources :products, only: [:index, :show, :new, :create, :edit, :update]
+    resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   end
 
   devise_for :users, controllers: {

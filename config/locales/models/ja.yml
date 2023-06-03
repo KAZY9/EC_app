@@ -27,7 +27,9 @@ ja:
         name: 商品名
         description: 商品説明
         price: 価格
-        image: 商品画像
+        stock: 在庫
+        color: カラー
+        images: 商品画像
   errors:
     messages:
       not_found: 'が見つかりませんでした'

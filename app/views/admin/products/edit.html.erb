@@ -42,14 +42,36 @@
                         </div>
                     </dd>
                 </dl>
-                <dl class="element image">
+                <dl class="element">
                     <dt class="element-label">
-                        <%= f.label :image, "商品画像", class: "control-label" %>
+                        <%= f.label :stock, "在庫", class: "control-label" %>
                         <span class="ec-required">必須</span>
                     </dt>
                     <dd class="element-form">
                         <div class="ec-field">
-                        <%= f.file_field :image, class: "form-control-file" %>
+                        <%= f.number_field :stock, class: "form-control w90" %>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :color, "カラー", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form">
+                        <div class="ec-field">
+                        <%= f.text_field :color, class: "form-control w90" %>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="element image">
+                    <dt class="element-label">
+                        <%= f.label :images, "商品画像", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form">
+                        <div class="ec-field">
+                        <%= f.file_field :images, multiple: true, class: "form-control-file" %>
                         </div>
                     </dd>
                 </dl>
@@ -58,6 +80,9 @@
                 <%= f.submit class: "btn btn-secondary" %>
             </div>
         <% end %>
+        <div class="product-list-link">
+            <%= link_to "商品一覧へ", admin_products_path %>
+        </div>
     </div>
 </div>
 
