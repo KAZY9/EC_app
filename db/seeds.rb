@@ -8,12 +8,27 @@ User.create!(
     city: "千代田区千代田",
     street_and_others: "１－１宮内庁",
     tel: "08011112222",
-    email: "",
+    email: "kazu.m.sora9@gmail.com",
     password: "Passw0rd1!",
     password_confirmation: "Passw0rd1!",
     agreement: true,
     admin: true
   )
+
+  User.create!(
+    username: "山田太郎",
+    postal_code: "1008111",
+    prefecture_code: "東京都",
+    city: "千代田区千代田",
+    street_and_others: "１－１宮内庁",
+    tel: "08011112222",
+    email: "gi09ty01@gmail.com",
+    password: "Passw0rd1!",
+    password_confirmation: "Passw0rd1!",
+    agreement: true,
+    admin: false
+  )
+
 
 #商品データを追加
 50.times do |i|
@@ -29,5 +44,5 @@ User.create!(
     product.images.attach(io: File.open(Rails.root.join('app/assets/images/snowman02.webp')),
                         filename: 'snowman02.webp')
     product.images.attach(io: File.open(Rails.root.join('app/assets/images/snowman03.webp')),
-                        filename: 'snowman03.webp')
+                        filename: 'snowman03.webp')              
 end

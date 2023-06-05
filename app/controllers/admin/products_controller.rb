@@ -4,6 +4,9 @@ class Admin::ProductsController < ApplicationController
 
   def index
     @products = Product.all.page(params[:page]).per(5)
+    if @products.nil?
+      redirect_to admin_products_url
+    end
   end
 
   def show
@@ -46,7 +49,10 @@ class Admin::ProductsController < ApplicationController
   end
 
   def set_product
-    @product = Product.find(params[:id])
+    @product = Product.find_by(params[:id])
+    if @product.nil?
+      redirect_to admin_products_url
+    end
   end
 
   def is_not_admin?

@@ -3,13 +3,9 @@
     <div class="product-customer-detail">
         <div class="product-customer-left">
             <div class="slick-main">
-                <% @product.images.each do |image| %>
-                  <% if image %>
-                    <div class="slick_slide"><%= image_tag image.variant(resize: "545x560") %></div>
-                  <% else %>
-                    <p>画像は登録されていません。</p>
-                  <% end %>
-                <% end %>
+              <% @product.images.each do |image| %>
+                  <div class="slick_slide"><%= image_tag image.variant(resize: "545x560") %></div>
+              <% end %>
             </div>
              <div class="slick-thumbnail">
                 <% @product.images.each do |image| %>

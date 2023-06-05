@@ -1094,7 +1094,7 @@ h4 {
   margin: 0 auto;
 }
 
-.add-product {
+.add-product, .product-mssg {
   margin: 20px 0;
   padding-left: 15px;
 }
@@ -1215,6 +1215,12 @@ h4 {
 
 .search-product {
   width: 200px;
+}
+
+.product-mssg-customer {
+  width: 78%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .slick-product-new1-cover {

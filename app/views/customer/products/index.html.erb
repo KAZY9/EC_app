@@ -6,53 +6,56 @@
     <div class="product-title-new">
       <p class="product-title">新着商品</p>
     </div>
-    <div class="slick-product-new1">
-      <% @products_latest.each do |product| %>
-        <div class="slick_slide">
-          <div class="product-item">
-            <%= link_to product_path(product) do %>
-              <%= image_tag product.images.first, class: "product-image-customer" %>
-              <p class="product-name-index"><%= product.name %></p>
-              <p class="product-price-index"><%= number_to_currency(product.price, strip_insignificant_zeros: true) %></p>
-            <% end %>
+    <% if @products_latest.nil? || @products_latest.empty? %>
+      <p class="product-mssg-customer">商品が登録されていません</p>
+    <% else %>
+      <div class="slick-product-new1">
+        <% @products_latest.each do |product| %>
+          <div class="slick_slide">
+            <div class="product-item">
+              <%= link_to product_path(product) do %>
+                <%= image_tag product.images.first, class: "product-image-customer" %>
+                <p class="product-name-index"><%= product.name %></p>
+                <p class="product-price-index"><%= number_to_currency(product.price, strip_insignificant_zeros: true) %></p>
+              <% end %>
+            </div>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <div class="slick-product-new2-cover">
     <div class="product-title-recommend">
       <p class="product-title">人気商品</p>
     </div>
-    <div class="slick-product-new2">
-      <% @products.each do |product| %>
-        <div class="slick_slide">
-          <div class="product-item">
-            <%= link_to product_path(product) do %>
-              <%= image_tag product.images.first, class: "product-image-customer" %>
-              <p class="product-name-index"><%= product.name %></p>
-              <p class="product-price-index"><%= number_to_currency(product.price, strip_insignificant_zeros: true) %></p>
-            <% end %>
+    <% if @products.nil? || @products.empty? %>
+      <p class="product-mssg-customer">商品が登録されていません</p>
+    <% else %>
+      <div class="slick-product-new2">
+        <% @products.each do |product| %>
+          <div class="slick_slide">
+            <div class="product-item">
+              <%= link_to product_path(product) do %>
+                <%= image_tag product.images.first, class: "product-image-customer" %>
+                <p class="product-name-index"><%= product.name %></p>
+                <p class="product-price-index"><%= number_to_currency(product.price, strip_insignificant_zeros: true) %></p>
+              <% end %>
+            </div>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <div class="hot-products-whole">
     <div class="products-list-normal">
       <p class="product-title">商品一覧</p>
     </div>
-    <% if @products.count == 3 %>
-      <div class="hot-products-3">
-    <% elsif @products.count == 2 %>
-      <div class="hot-products-2">
-    <% elsif @products.count == 1 %>
-      <div class="hot-products-1">
+    <% if @products.nil? || @products.empty? %>
+      <p class="product-mssg-customer">商品が登録されていません</p>
     <% else %>
-      <div class="hot-products">
-    <% end %>
+      <div class="hot-products<% if @products.count > 0 && @products.count < 4 %>-<%= @products.count %><% end %>">
         <% @products.each do |product| %>
           <div class="product-items">
             <%= link_to product_path(product) do %>
@@ -63,5 +66,6 @@
           </div>
         <% end %>
       </div>
+    <% end %>
   </div>
 </div>
