@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       address: お届け先
+      product: 商品
     attributes:
       user:
         username: お名前
@@ -22,6 +23,13 @@ ja:
         city: 市区町村
         street_and_others: 番地・ビル名
         tel: 電話番号
+      product:
+        name: 商品名
+        description: 商品説明
+        price: 価格
+        stock: 在庫
+        color: カラー
+        images: 商品画像
   errors:
     messages:
       not_found: 'が見つかりませんでした'

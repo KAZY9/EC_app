@@ -1,5 +1,7 @@
 class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
+  primary_abstract_class
+  scope :latest, -> { order(created_at: :desc) }
 
    #都道府県コードから都道府県名に変換
    include JpPrefecture

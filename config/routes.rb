@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
-  get 'cards/new'
+  scope module: :customer do
+    resources :products, only: [:index, :show]
+    root 'products#index'
+  end
+
+  namespace :admin do
+    resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  end
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
     registrations: 'users/registrations'
   }
 
-  # resources :addresses, except: [:show]
-
-  # views/users/registrations内に作成したconfirm.html.erbとcomplete.html.erbもルーティングに追加します。
   devise_scope :user do
     get '/sign_up', to: 'users/registrations#new'
     post '/sign_up', to: 'users/registrations#confirm'
@@ -26,8 +31,6 @@ Rails.application.routes.draw do
   end
 
   get '/mypage/', to: 'pages#mypage'
-  root 'pages#index'
-  # get 'pages#show'
   get '/pages/show', to: 'pages#show'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

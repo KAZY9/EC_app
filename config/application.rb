@@ -12,6 +12,8 @@ module ECApp
     config.load_defaults 7.0
     config.i18n.default_locale = :ja
     config.i18n.load_path+=Dir[Rails.root.join('config','locales','**','*.yml').to_s]
+    
+    config.active_storage.variant_processor = :mini_magick
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

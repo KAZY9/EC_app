@@ -1,0 +1,92 @@
+<div class="ec-admin-product">
+    <div class="product-register-header">
+    <h2 class="title">商品登録</h2>
+    </div>
+
+    <div class="admin-pro-formBody">
+        <%= form_with model: @product, url: admin_products_path, local: true, class: "product-register-form"  do |f| %>
+            <div class="valid-error-mssg">
+                <%= render "shared/error_messages", resource: @product %>
+            </div>
+            <div class="ec-borderedDefs">
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :name, "商品名", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form">
+                        <div class="ec-field">
+                        <%= f.text_field :name, class: "form-control w90" %>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :description, "商品説明", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form">
+                        <div class="ec-field">
+                        <%= f.text_area :description, rows: "8", class: "form-control w90" %>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :price, "価格", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form">
+                        <div class="ec-field">
+                        <%= f.number_field :price, class: "form-control w90" %>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :stock, "在庫", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form">
+                        <div class="ec-field">
+                        <%= f.number_field :stock, class: "form-control w90" %>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :color, "カラー", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form">
+                        <div class="ec-field">
+                        <%= f.text_field :color, class: "form-control w90" %>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="element image">
+                    <dt class="element-label">
+                        <%= f.label :images, "商品画像", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form">
+                        <div class="ec-field">
+                        <%= f.file_field :images, multiple: true, class: "form-control-file" %>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+            <div class="form-group actions">
+                <%= f.submit class: "btn btn-secondary" %>
+            </div>
+        <% end %>
+        <div class="product-list-link">
+            <%= link_to "商品一覧へ", admin_products_path %>
+        </div>
+    </div>
+</div>
+
+
+
+  
+  
