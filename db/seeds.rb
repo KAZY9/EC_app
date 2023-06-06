@@ -15,19 +15,19 @@ User.create!(
     admin: true
   )
 
-  User.create!(
-    username: "山田太郎",
-    postal_code: "1008111",
-    prefecture_code: "東京都",
-    city: "千代田区千代田",
-    street_and_others: "１－１宮内庁",
-    tel: "08011112222",
-    email: "gi09ty01@gmail.com",
-    password: "Passw0rd1!",
-    password_confirmation: "Passw0rd1!",
-    agreement: true,
-    admin: false
-  )
+User.create!(
+  username: "山田太郎",
+  postal_code: "1008111",
+  prefecture_code: "東京都",
+  city: "千代田区千代田",
+  street_and_others: "１－１宮内庁",
+  tel: "08011112222",
+  email: "gi09ty01@gmail.com",
+  password: "Passw0rd1!",
+  password_confirmation: "Passw0rd1!",
+  agreement: true,
+  admin: false
+)
 
 
 #商品データを追加
@@ -39,10 +39,9 @@ User.create!(
                     stock: Faker::Number.between(from: 1, to: 20),
                     color: Faker::Color.color_name
                 )
-    product.images.attach(io: File.open(Rails.root.join('app/assets/images/snowman01.webp')),
-                        filename: 'snowman01.webp')
-    product.images.attach(io: File.open(Rails.root.join('app/assets/images/snowman02.webp')),
-                        filename: 'snowman02.webp')
-    product.images.attach(io: File.open(Rails.root.join('app/assets/images/snowman03.webp')),
-                        filename: 'snowman03.webp')              
+    
+    filenames = ['snowman01.webp', 'snowman02.webp', 'snowman03.webp']
+    filenames.each do |filename|
+      product.images.attach(io: File.open(Rails.root.join('app/assets/images', filename)), filename: filename)
+    end
 end
