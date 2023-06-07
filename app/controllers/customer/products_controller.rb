@@ -13,9 +13,7 @@ class Customer::ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find_by(params[:id])
-    if @product.nil?
-      redirect_to products_url
-    end
+    @product = Product.find(params[:id])
+    redirect_to products_url unless @product
   end
 end

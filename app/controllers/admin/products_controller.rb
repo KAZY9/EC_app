@@ -49,10 +49,8 @@ class Admin::ProductsController < ApplicationController
   end
 
   def set_product
-    @product = Product.find_by(params[:id])
-    if @product.nil?
-      redirect_to admin_products_url
-    end
+    @product = Product.find(params[:id])
+    redirect_to admin_products_url unless @product
   end
 
   def is_not_admin?
