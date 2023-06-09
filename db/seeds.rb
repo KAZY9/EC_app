@@ -46,3 +46,11 @@ User.create!(
     product.images.attach(io: File.open(Rails.root.join('app/assets/images/snowman03.webp')),
                         filename: 'snowman03.webp')              
 end
+
+#商品をお気に入りに追加
+15.times do |i|
+  Favorite.create!(
+    user_id: 2,
+    product_id: i + 1,
+  )
+end
