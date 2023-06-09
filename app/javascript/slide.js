@@ -1,5 +1,4 @@
-$(document).ready(function(){
-    console.log("読み込まれました");
+$(document).on("turbo:load", function(){
     $('.slick-main').slick({
         slidesToShow: 1,
         slidesToScroll: 1,

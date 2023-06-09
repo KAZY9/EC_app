@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :favorites, dependent: :destroy
   has_many :addresses, dependent: :destroy
   has_many :card, dependent: :destroy
   VALID_POSTAL_CODE_REGEX = /\A\d{3}[-]?\d{4}\z/
