@@ -8,15 +8,18 @@ class Customer::ProductsController < ApplicationController
     @products = Product.where.not(id: latest_product_ids).limit(12)
    
     if @products_latest.nil? || @products.nil?
-      redirect_to products_url
+      redirect_to root_path
     end
   end
 
   def show
-    @product = Product.find(params[:id])
-    if current_user
-      @favorite = Favorite.find_by(user_id: current_user.id, product_id: @product.id)
+    @product = Product.find_by(id: params[:id])
+    if @product
+      if current_user
+        @favorite = Favorite.find_by(user_id: current_user.id, product_id: @product.id)
+      end
+    else
+      redirect_to root_path
     end
-    redirect_to products_url unless @product 
   end
 end

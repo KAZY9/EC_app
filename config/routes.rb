@@ -30,7 +30,6 @@ Rails.application.routes.draw do
   end
 
   scope :mypage do
-    # resources :favorites, only: [:index]
     resources :addresses, except: [:show] 
     resources :cards, only: [:new, :create, :destroy]
   end

@@ -48,4 +48,10 @@ class Customer::FavoritesController < ApplicationController
         redirect_to root_path
       end
     end
+
+    def authenticate_user!
+      unless current_user
+        redirect_to mypage_login_path # ログインページにリダイレクト
+      end
+    end
 end

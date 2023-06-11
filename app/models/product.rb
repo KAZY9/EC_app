@@ -7,13 +7,13 @@ class Product < ApplicationRecord
       validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 9999999 }
       validates :stock, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 99 }
       validates :color, length: { maximum: 20 }
-      # validates :images
+      validates :images
   end
   validate :validate_images_count, :validate_image_file_size
 
-  #
+  #商品がユーザーによってお気に入り登録されているか確認する
   def liked_by?(user)
-    favorites.exists?(user_id: user.id)
+      user.present? && favorites.exists?(user_id: user.id)
   end
 
   private
