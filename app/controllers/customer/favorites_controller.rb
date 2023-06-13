@@ -4,8 +4,8 @@ class Customer::FavoritesController < ApplicationController
     before_action :authenticate_user!
 
     def index
-      favorites = Favorite.where(user_id: current_user.id).pluck(:product_id)
-      @favorite_list = Product.where(id: favorites).page(params[:page]).per(12)
+      product_ids = Favorite.where(user_id: current_user.id).pluck(:product_id)
+      @favorite_list = Product.where(id: product_ids).page(params[:page]).per(12)
     end
   
     def create
