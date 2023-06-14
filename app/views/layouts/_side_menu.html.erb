@@ -6,7 +6,7 @@
                 <li><%= link_to "マイページTOP", mypage_path, id: "link_mypage_top" %></li>
                 <li><%= link_to "会員情報変更", mypage_change_url, id: "link_mypage_user" %></li>
                 <li><%= link_to "注文履歴", "#", id: "link_mypage_order" %></li>
-                <li><%= link_to "お気に入り", "#", id: "link_mypage_favorite" %></li>
+                <li><%= link_to "お気に入り", favorites_path, id: "link_mypage_favorite" %></li>
                 <li><%= link_to "お届け先一覧", addresses_url, id: "link_mypage_address" %></li>
                 <li><%= link_to "カード情報変更", new_card_url, data: { turbo: false }, id: "link_mypage_card" %></li>
             </dd>

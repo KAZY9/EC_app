@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   scope module: :customer do
-    resources :products, only: [:index, :show]
+    resources :products, only: [:show] do
+      resource :favorites, only: [:create, :destroy]
+      delete 'destroy_favorite_item', to: 'favorites#destroy_favorite_item', as: 'destroy_favorite_item'
+    end
     root 'products#index'
+    resources :favorites, only: [:index]
   end
 
   namespace :admin do

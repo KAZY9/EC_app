@@ -40,6 +40,9 @@
                 <p>数量</p>
                 <p>※数量入力やカート機能は後で実装</p>
             </div>
+            <div class="add-button-favorite" id="favorite_buttons_<%= @product.id %>">
+                <%= render 'customer/favorites/favorites', liked: @product.liked_by?(current_user)  %>
+            </div>
           </div>
         </div>
     </div>

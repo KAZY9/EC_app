@@ -1,0 +1,28 @@
+
+<% if current_user %>
+    <turbo-frame id="add-favorite-button">
+    <% if liked %>
+        <%= button_to  product_favorites_path(@product), method: :delete, remote: true, class: "favorite-btn added-favorite-btn" do %>
+            <i class="fa-solid fa-star"></i>
+            <span>お気に入り追加済み</span>
+        <% end %>
+    <% else %>
+        <%= button_to product_favorites_path(@product), method: :post, remote: true, class: "favorite-btn add-favorite-btn" do %>
+            <i class="fa-regular fa-star"></i>
+            <span>お気に入りに追加</span>
+        <% end %>
+    <% end %>
+    </turbo-frame>
+<% else %>
+    <% if liked %>
+        <%= button_to  product_favorites_path(@product), method: :delete, remote: true, class: "favorite-btn added-favorite-btn" do %>
+            <i class="fa-solid fa-star"></i>
+            <span>お気に入り追加済み</span>
+        <% end %>
+    <% else %>
+        <%= button_to product_favorites_path(@product), method: :post, remote: true, class: "favorite-btn add-favorite-btn" do %>
+            <i class="fa-regular fa-star"></i>
+            <span>お気に入りに追加</span>
+        <% end %>
+    <% end %>
+<% end %>

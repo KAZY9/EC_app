@@ -1,0 +1,40 @@
+<div class="ec-mypageLayout">
+  <div class="ec-mypageBody">
+    <%= render 'layouts/side_menu' %>
+    
+    <div class="ec-mypageBody-right">
+      <div class="userInfo-change-form" >
+        <div class="mypageTop-link">
+          <%= link_to "< マイページTOP", mypage_path %>
+        </div>
+        <div class="mypage-title">
+          <h2>お気に入り</h2>
+        </div>
+
+        <% if @favorite_list.empty? %>
+            <p>お気に入りの商品は登録されていません</p>
+         <% else %>
+            <div class="favorite-product-list">
+                <% @favorite_list.each do |favorite|  %>
+                    <div class="favorite-product-item">
+                        <%=  button_to product_destroy_favorite_item_path(favorite), method: :delete, form: { onSubmit: "return confirmDelete();"}, class: "favorite-delete" do %>
+                            <i class="fa-solid fa-xmark fa-xl" style="color: #ffffff;"></i>
+                        <% end %>
+                        <%=  link_to product_path(favorite) do %>
+                            <%= image_tag favorite.images.first, class: "product-image-customer" %>
+                        <% end %>
+                        <p class="product-name-index"><%= favorite.name %></p>
+                        <p class="product-price-index"><%= number_to_currency(favorite.price, strip_insignificant_zeros: true) %></p>
+                    </div>
+                <% end %>
+            </div>
+            <div class="favorite-paginate"><%= paginate @favorite_list %></div>
+         <% end %>
+    </div>
+  </div>
+</div>
+<script>
+    function confirmDelete() {
+        return confirm("本当に削除しますか？");
+    }
+</script>
