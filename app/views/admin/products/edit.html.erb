@@ -4,7 +4,7 @@
     </div>
 
     <div class="admin-pro-formBody">
-        <%= form_with model: @product, url: admin_product_path(@product), local: true, class: "product-update-form"  do |f| %>
+        <%= form_with model: @product, url: admin_product_path(@product), local: true, ata: { turbo: false }, class: "product-update-form"  do |f| %>
             <div class="valid-error-mssg">
                 <%= render "shared/error_messages", resource: @product %>
             </div>
@@ -53,14 +53,81 @@
                         </div>
                     </dd>
                 </dl>
-                <dl class="element">
+                 <dl class="element">
                     <dt class="element-label">
                         <%= f.label :color, "カラー", class: "control-label" %>
                         <span class="ec-required">必須</span>
                     </dt>
-                    <dd class="element-form">
+                    <dd class="element-form checkbox-field">
                         <div class="ec-field">
-                        <%= f.text_field :color, class: "form-control w90" %>
+                            <div class="check_box">
+                                <%= f.select :color, COLOR_LIST, { prompt: '選択してください'}, class: "form-select w75" %>
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :brand, "ブランド", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form checkbox-field">
+                        <div class="ec-field">
+                            <div class="check_box">
+                                <%= f.select :brand, BRAND_LIST, { prompt: '選択してください'}, class: "form-select w75" %>
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :shape, "形", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form checkbox-field">
+                        <div class="ec-field">
+                            <div class="check_box">
+                                <%= f.select :shape, SHAPE, { prompt: '選択してください'}, class: "form-select w75" %>
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :carrying_style, "持ち方", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form checkbox-field">
+                        <div class="ec-field">
+                            <div class="check_box">
+                                    <%= f.select :carrying_style, CARRYING_STYLE, { prompt: '選択してください'}, class: "form-select w75" %>
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :style, "テイスト", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form checkbox-field">
+                        <div class="ec-field">
+                            <div class="check_box">
+                                    <%= f.select :style, STYLE, { prompt: '選択してください'}, class: "form-select w75" %>
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :closure_method, "開閉方法", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form checkbox-field">
+                        <div class="ec-field">
+                            <div class="check_box">
+                                <%= f.select :closure_method, CLOSURE_METHOD, { prompt: '選択してください'}, class: "form-select w75" %>
+                            </div>
                         </div>
                     </dd>
                 </dl>
@@ -85,6 +152,7 @@
         </div>
     </div>
 </div>
+
 
 
 

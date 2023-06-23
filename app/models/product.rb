@@ -6,7 +6,12 @@ class Product < ApplicationRecord
       validates :description, length: { maximum: 1500 }
       validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 9999999 }
       validates :stock, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 99 }
-      validates :color, length: { maximum: 20 }
+      validates :color
+      validates :brand
+      validates :shape
+      validates :carrying_style
+      validates :style
+      validates :closure_method
       validates :images
   end
   validate :validate_images_count, :validate_image_file_size
@@ -14,6 +19,10 @@ class Product < ApplicationRecord
   #商品がユーザーによってお気に入り登録されているか確認する
   def liked_by?(user)
       user.present? && favorites.exists?(user_id: user.id)
+  end
+
+  def self.looks(word)
+    @product = Product.where("name LIKE ? OR description LIKE ?", "%#{word}%", "%#{word}%")
   end
 
   private

@@ -29,6 +29,11 @@ ja:
         price: 価格
         stock: 在庫
         color: カラー
+        brand: ブランド
+        shape: 形
+        carrying_style: 持ち方
+        style: テイスト
+        closure_method: 開閉方法
         images: 商品画像
   errors:
     messages:

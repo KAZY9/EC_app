@@ -37,7 +37,12 @@ User.create!(
                     price: Faker::Number.between(from: 5000, to: 50000),
                     description: Faker::Lorem.sentence,
                     stock: Faker::Number.between(from: 1, to: 20),
-                    color: Faker::Color.color_name
+                    color: COLOR_LIST.sample,
+                    brand: BRAND_LIST.sample,
+                    shape: SHAPE.sample,
+                    carrying_style: CARRYING_STYLE.sample,
+                    style: STYLE.sample,
+                    closure_method: CLOSURE_METHOD.sample
                 )
     product.images.attach(io: File.open(Rails.root.join('app/assets/images/snowman01.webp')),
                         filename: 'snowman01.webp')

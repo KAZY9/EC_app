@@ -25,12 +25,32 @@
                 <p><%= @product.color %></p>
             </div>
             <div class="product-stock">
-                <p class="stock">在庫：</p>
+                <p>在庫：</p>
                 <% if @product.stock < 5 %>
                     <p class="stock">残りわずか</p>
                 <% else %>
                     <%= @product.stock %>
                 <% end %>
+            </div>
+            <div class="product-brand">
+                <p>ブランド：</p>
+                <p><%= @product.brand %></p>
+            </div>
+            <div class="product-shape">
+                <p>形：</p>
+                <p><%= @product.shape %></p>
+            </div>
+            <div class="product-carrying_style">
+                <p>持ち方：</p>
+                <p><%= @product.carrying_style %></p>
+            </div>
+            <div class="product-style">
+                <p>テイスト：</p>
+                <p><%= @product.style %></p>
+            </div>
+            <div class="product-closure_method">
+                <p>開閉方法：</p>
+                <p><%= @product.closure_method %></p>
             </div>
              <div class="editAndList-link">
               <%= link_to edit_admin_product_path(@product), class: "product-edit-link" do %>

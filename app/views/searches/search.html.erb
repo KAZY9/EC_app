@@ -1,0 +1,30 @@
+<div class="search-product-body">
+    <%= render 'searches/filter_search'%>
+    <div class="search-product-right">
+      <div class="search-products-list">
+        <% if @word.blank? %>
+          <p class="search-result">全ての商品</p>
+        <% else %>
+          <p class="search-result">「<%= @word %>」の検索結果</p>
+        <% end %>
+      
+        <% if @products.nil? || @products.empty? %>
+          <p class="product-mssg-customer">お探しの商品はありません。</p>
+        <% else %>
+          <p class="search-result-count"><span class="products-count"><%= @products.total_count %>件</span>の商品が見つかりました。</p>
+          <div class="search-product-list">
+            <% @products.each do |product| %>
+              <div class="search-product-item">
+                <%= link_to product_path(product) do %>
+                  <%= image_tag product.images.first, class: "product-image-customer" %>
+                  <p class="product-name-index"><%= product.name %></p>
+                  <p class="product-price-index"><%= number_to_currency(product.price, strip_insignificant_zeros: true) %></p>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <div class="search-result-paginate"><%= paginate @products %></div>
+        <% end %>
+      </div>
+    </div>
+  </div>

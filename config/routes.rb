@@ -34,6 +34,9 @@ Rails.application.routes.draw do
     resources :cards, only: [:new, :create, :destroy]
   end
 
+  get 'search', to: 'searches#search'
+  get 'filter_search', to: 'searches#filter_search'
+
   get '/mypage/', to: 'pages#mypage'
   get '/pages/show', to: 'pages#show'
 

@@ -1,0 +1,69 @@
+<div class="filter-search">
+    <div class="search-menu">
+        <dl>
+            <dt class="sidemenu-title">絞り込み検索</dt>
+            <dd>
+                <%= form_with url: filter_search_path, local: true, method: :get, class: "search-form search-form-header" do |f| %>
+                    <li class="search-item brand-toggle">ブランド</li>
+                    <div class="checkbox-item search-brand">
+                        <% BRAND_LIST.each.with_index do |brand, i| %>
+                            <div class="check_box">
+                                <%= f.check_box :brand, { multiple: true, include_hidden: false, id: "brand#{i + 1}", value: brand.to_s, checked: @brand.present? && @brand.include?(brand.to_s) }, brand, nil %>
+                                <%= f.label :brand, brand, for: "brand#{i + 1}" %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <li class="search-item color-toggle">カラー</li>
+                    <div class="checkbox-item search-color">
+                        <% COLOR_LIST.each.with_index do |color, i| %>
+                            <div class="check_box">
+                                <%= f.check_box :color, { multiple: true, include_hidden: false, id: "color#{i + 1}", value: color.to_s, checked: @color.present? && @color.include?(color.to_s) }, color, nil %>
+                                <%= f.label :color, color, for: "color#{i + 1}" %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <li class="search-item shape-toggle">形</li>
+                    <div class="checkbox-item search-shape">
+                        <% SHAPE.each.with_index do |shape, i| %>
+                            <div class="check_box">
+                                <%= f.check_box :shape, { multiple: true, include_hidden: false, id: "shape#{i + 1}", value: shape.to_s, checked: @shape.present? && @shape.include?(shape.to_s) }, shape, nil %>
+                                <%= f.label :shape, shape, for: "shape#{i + 1}" %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <li class="search-item carrying_style-toggle">持ち方</li>
+                    <div class="checkbox-item search-carrying_style">
+                        <% CARRYING_STYLE.each.with_index do |carrying_style, i| %>
+                            <div class="check_box">
+                                <%= f.check_box :carrying_style, { multiple: true, include_hidden: false, id: "carrying_style_#{i + 1}", value: carrying_style.to_s, checked: @carrying_style.present? && @carrying_style.include?(carrying_style.to_s) }, carrying_style, nil %>
+                                <%= f.label :carrying_style, carrying_style, for: "carrying_style_#{i + 1}" %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <li class="search-item style-toggle">テイスト</li>
+                    <div class="checkbox-item search-style">
+                        <% STYLE.each.with_index do |style, i| %>
+                            <div class="check_box">
+                                <%= f.check_box :style, { multiple: true, include_hidden: false, id: "style#{i + 1}", value: style.to_s, checked: @style.present? && @style.include?(style.to_s) }, style, nil %>
+                                <%= f.label :style, style, for: "style#{i + 1}" %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <li class="search-item closure_method-toggle">開閉方法</li>
+                    <div class="checkbox-item search-closure_method">
+                        <% CLOSURE_METHOD.each.with_index do |closure_method, i| %>
+                            <div class="check_box">
+                                <%= f.check_box :closure_method, { multiple: true, include_hidden: false, id: "closure_method#{i + 1}", value: closure_method.to_s, checked: @closure_method.present? && @closure_method.include?(closure_method.to_s) }, closure_method, nil %>
+                                <%= f.label :closure_method, closure_method, for: "closure_method#{i + 1}" %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <div class="search-item filter-search-box">
+                        <%= f.text_field :word, placeholder: "キーワード", class: "filter-search-field" %>
+                        <button type="submit" id="filter-search-btn">検索</button>
+                    </div>
+                <% end %>
+            </dd>
+        </dl>
+    </div>
+</div>

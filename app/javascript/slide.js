@@ -24,13 +24,13 @@ $(document).on("turbo:load", function(){
         nextArrow: '<button class="slide-arrow next-arrow"></button>',
         responsive: [
             {
-            breakpoint: 980,
+            breakpoint: 1200,
             settings: {
                 slidesToShow: 3
             }
             },
             {
-            breakpoint: 700,
+            breakpoint: 780,
             settings: {
                 slidesToShow: 2
             }
@@ -47,13 +47,13 @@ $(document).on("turbo:load", function(){
         nextArrow: '<button class="slide-arrow next-arrow"></button>',
         responsive: [
             {
-            breakpoint: 980,
+            breakpoint: 1200,
             settings: {
                 slidesToShow: 3
             }
             },
             {
-            breakpoint: 700,
+            breakpoint: 780,
             settings: {
                 slidesToShow: 2
             }

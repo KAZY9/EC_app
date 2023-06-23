@@ -23,7 +23,7 @@ $(document).on("turbo:load", function () {
   
     $(window).resize(function() {
       var windowWidth = $(window).width();
-      if(windowWidth > 768) {
+      if(windowWidth > 980) {
         $hiddenMenu.hide();
         $navbarToggle.removeClass('open');
       }
