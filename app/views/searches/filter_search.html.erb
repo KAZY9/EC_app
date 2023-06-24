@@ -2,7 +2,7 @@
     <%= render 'searches/filter_search'%>
     <div class="search-product-right">
       <div class="search-products-list">
-        <% if @word.blank? && @brand.blank? && @color.blank? && @shape.blank? && @carrying_style.blank? && @style.blank? && @closure_method.blank? %>
+        <% if params[:word].blank? && params[:brand].blank? && params[:color].blank? && params[:shape].blank? && params[:carrying_style].blank? && params[:style].blank? && params[:closure_method].blank? %>
           <p class="search-result">全ての商品</p>
         <% else %>
           <p class="search-result">絞り込み検索結果</p>
