@@ -26,6 +26,8 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
+    @colors = @product.color || [] 
+    @brands = @product.brand || []
   end
 
   def update
@@ -45,8 +47,10 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :stock, :color, images: [])
+    params.require(:product).permit(:name, :description, :price, :stock, :color, :brand, :shape, 
+                                    :carrying_style, :closure_method, :style, images: [])
   end
+  
 
   def set_product
     @product = Product.find(params[:id])

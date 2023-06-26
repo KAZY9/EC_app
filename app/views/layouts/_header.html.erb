@@ -9,7 +9,7 @@
 
         <div class="ec-headerNavi_center">
             <div class="ec-headerSearch">
-                <p>検索機能は後で実装</p>
+                <%= render 'searches/header_search' %>
             </div>
         </div>
 
@@ -56,6 +56,7 @@
 
                 <div class="hidden-menu">
                     <ul>
+                        <li><%= render 'searches/header_search' %></li>
                         <% if current_user && current_user.admin? && !(current_user == @user) %>
                             <li><%= link_to "商品一覧", admin_products_path, id: "link_admin_product_list" %></li>
                             <li><%= link_to "商品登録", new_admin_product_path, id: "link_admin_product_new" %></li>

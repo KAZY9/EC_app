@@ -1,0 +1,8 @@
+<div class="search_container search_container_toggle">
+  <%= form_with url: search_path, local: true, method: :get, class: "search-form search-form-header" do |f| %>
+      <%= f.text_field :word, placeholder: "キーワード検索", class: "search-field" %>
+      <button type="submit" class="search-button">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+  <% end %>
+</div>
