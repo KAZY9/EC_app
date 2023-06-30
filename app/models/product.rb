@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  has_many :carts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many_attached :images
   with_options presence: true do
@@ -15,6 +16,10 @@ class Product < ApplicationRecord
       validates :images
   end
   validate :validate_images_count, :validate_image_file_size
+
+  def taxin_price
+    price * 1.1
+  end
 
   #商品がユーザーによってお気に入り登録されているか確認する
   def liked_by?(user)
