@@ -18,7 +18,8 @@ class Product < ApplicationRecord
   validate :validate_images_count, :validate_image_file_size
 
   def taxin_price
-    price * 1.1
+    tax_rate = Tax.find_by(id: 1)&.rate
+    price * (1 + tax_rate)
   end
 
   #商品がユーザーによってお気に入り登録されているか確認する

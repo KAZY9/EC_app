@@ -69,6 +69,17 @@
       <p class="product-description-title">商品説明</p>
       <p class="product-description-sen"><%= @product.description %></p>
     </div>
-  </div>
 </div>
+</div>
+<% if current_user %>
+    <script>
+        $(".add-cart").click(function() {
+            $(".ec-modal").css("display", "block");
+        });
+
+        $(".ec-modal-close").click(function() {
+            $(".ec-modal").css("display", "none");
+        });
+    </script>
+<% end %>
  
