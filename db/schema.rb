@@ -99,6 +99,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_030630) do
 
   create_table "taxes", charset: "utf8mb3", force: :cascade do |t|
     t.float "rate", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["id"], name: "index_taxes_on_id", unique: true

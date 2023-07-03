@@ -18,7 +18,8 @@ class Product < ApplicationRecord
   validate :validate_images_count, :validate_image_file_size
 
   def taxin_price
-    tax_rate = Tax.find_by(id: 1)&.rate
+    current_date = Time.zone.now
+    tax_rate = Tax.where("start_date <= ? AND (end_date >= ? OR end_date IS NULL)", current_date, current_date).pluck(:rate).first
     price * (1 + tax_rate)
   end
 
