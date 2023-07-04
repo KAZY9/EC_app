@@ -23,7 +23,7 @@
             <h3 class="product-customer-name">
                 <%= @product.name %>
             </h3>
-            <p class="product-price-customer"><%= number_to_currency(@product.price, strip_insignificant_zeros: true) %></p>
+            <p class="product-price-customer"><%= number_to_currency(@product.taxin_price, strip_insignificant_zeros: true) %><span class="taxin">(税込)</span></p>
             <div class="product-color">
                 <p>カラー：</p>
                 <p><%= @product.color %></p>
@@ -36,9 +36,28 @@
                     <%= @product.stock %>
                 <% end %>
             </div>
-            <div class="product-quantity">
-                <p>数量</p>
-                <p>※数量入力やカート機能は後で実装</p>
+            <div class="product-add-cart-field">
+                <%= form_with model: @cart, url: carts_path(@cart), data: {turbo: false} do |f| %>
+                    <div class="product-quantity">
+                        <p>数量：<%= f.number_field :quantity, min: 1, value: 1, class: "quantity-form" %></p>
+                    </div>
+                    <%= f.hidden_field :product_id, value: @product.id %>
+                    <%= f.submit "カートに入れる", class: "ec-blockBtn--action add-cart" %>
+                <% end %>
+                <div class="ec-modal" style="display: none;">
+                    <div class="ec-modal-overlay">
+                        <div class="ec-modal-wrap">
+                            <span class="ec-modal-close"><span class="ec-icon"><i class="fa-solid fa-xmark fa-xl" style="color: #85898e;"></i></span></span>
+                            <div id="ec-modal-header" class="text-center">カートに追加しました。</div>
+                            <div class="ec-modal-box">
+                                <div class="ec-role">
+                                    <%= link_to "お買い物を続ける", product_path, class: "ec-inlineBtn--cancel" %>
+                                    <%= link_to "カートへ進む", carts_path, class: "ec-inlineBtn--action" %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="add-button-favorite" id="favorite_buttons_<%= @product.id %>">
                 <%= render 'customer/favorites/favorites', liked: @product.liked_by?(current_user)  %>
@@ -50,6 +69,17 @@
       <p class="product-description-title">商品説明</p>
       <p class="product-description-sen"><%= @product.description %></p>
     </div>
-  </div>
 </div>
+</div>
+<% if current_user %>
+    <script>
+        $(".add-cart").click(function() {
+            $(".ec-modal").css("display", "block");
+        });
+
+        $(".ec-modal-close").click(function() {
+            $(".ec-modal").css("display", "none");
+        });
+    </script>
+<% end %>
  

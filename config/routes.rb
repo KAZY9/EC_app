@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :customer do
+    get 'carts/index'
+  end
   scope module: :customer do
     resources :products, only: [:show] do
       resource :favorites, only: [:create, :destroy]
@@ -6,6 +9,12 @@ Rails.application.routes.draw do
     end
     root 'products#index'
     resources :favorites, only: [:index]
+    resources :carts, only: [:index, :create, :destroy] do
+      member do
+        patch 'increase'
+        patch 'decrease'
+      end
+    end
   end
 
   namespace :admin do

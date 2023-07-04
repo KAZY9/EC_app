@@ -15,7 +15,7 @@
                 <%= link_to product_path(product) do %>
                   <%= image_tag product.images.first, class: "product-image-customer" %>
                   <p class="product-name-index"><%= product.name %></p>
-                  <p class="product-price-index"><%= number_to_currency(product.price, strip_insignificant_zeros: true) %></p>
+                  <p class="product-price-index"><%= number_to_currency(product.taxin_price, strip_insignificant_zeros: true) %><span class="taxin-customer">(税込)</span></p>
                 <% end %>
               </div>
             </div>
@@ -38,7 +38,7 @@
                 <%= link_to product_path(product) do %>
                   <%= image_tag product.images.first, class: "product-image-customer" %>
                   <p class="product-name-index"><%= product.name %></p>
-                  <p class="product-price-index"><%= number_to_currency(product.price, strip_insignificant_zeros: true) %></p>
+                  <p class="product-price-index"><%= number_to_currency(product.taxin_price, strip_insignificant_zeros: true) %><span class="taxin-customer">(税込)</span></p>
                 <% end %>
               </div>
             </div>
@@ -60,7 +60,7 @@
               <%= link_to product_path(product) do %>
                 <%= image_tag product.images.first, class: "product-image-customer" %>
                 <p class="product-name-index"><%= product.name %></p>
-                <p class="product-price-index"><%= number_to_currency(product.price, strip_insignificant_zeros: true) %></p>
+                <p class="product-price-index"><%= number_to_currency(product.taxin_price, strip_insignificant_zeros: true) %><span class="taxin-customer">(税込)</span></p>
               <% end %>
             </div>
           <% end %>

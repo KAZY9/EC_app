@@ -34,10 +34,10 @@
                             <% end %>
                         </li>
                         <li>
-                            <a class="header-icon" href="#">
+                            <%= link_to carts_path, class: "header-icon" do %>
                                 <i class="fa-solid fa-cart-shopping fa-xl header-list" style="color: #ffffff;"></i>
                                 <span class="icon-name">カート</span>
-                            </a>
+                            <% end %>
                         </li>
                         <li>
                             <%= link_to favorites_path, class: "header-icon" do %>
@@ -63,7 +63,7 @@
                         <% else %> 
                             <li><%= link_to "TOP", root_path, id: "link_top" %></li>
                             <li><%= link_to "マイページ", mypage_path, id: "link_mypage" %></li>
-                            <li><%= link_to "カート", "#", id: "link_cart" %></li>
+                            <li><%= link_to "カート", customer_carts_index_path, id: "link_cart" %></li>
                             <li><%= link_to "お気に入り", favorites_path, id: "link_favorite" %></li>
                             <li><%= link_to "注文履歴", "#", id: "link_order_history" %></li>
                         <% end %>

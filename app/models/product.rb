@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  has_many :carts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many_attached :images
   with_options presence: true do
@@ -15,6 +16,12 @@ class Product < ApplicationRecord
       validates :images
   end
   validate :validate_images_count, :validate_image_file_size
+
+  def taxin_price
+    current_date = Time.zone.now
+    tax_rate = Tax.where("start_date <= ? AND (end_date >= ? OR end_date IS NULL)", current_date, current_date).pluck(:rate).first
+    price * (1 + tax_rate)
+  end
 
   #商品がユーザーによってお気に入り登録されているか確認する
   def liked_by?(user)

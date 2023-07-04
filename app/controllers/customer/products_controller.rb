@@ -14,6 +14,7 @@ class Customer::ProductsController < ApplicationController
 
   def show
     @product = Product.find_by(id: params[:id])
+    @cart = Cart.new
     if @product
       if current_user
         @favorite = Favorite.find_by(user_id: current_user.id, product_id: @product.id)
