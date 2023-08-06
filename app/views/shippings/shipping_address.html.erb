@@ -1,0 +1,64 @@
+<div class="ec-shipping_address-page">
+    <div class="shipping_address-page-body" >                      
+        <div class="shipping_address-title">
+            <h2>お届け先の指定</h2>
+        </div>
+
+        <div class="ec-registerRole">
+            <div class="ec-off1Grid">
+                <div class="ec-off1Grid__cell">
+                    <div class="ec-addressRole">
+                        <div class="btn-add-address">
+                            <%= link_to "新規お届け先を追加する", shippings_new_address_path, id: "add_address_link" %>
+                        </div>
+                    </div>
+
+                    <%= form_with model: @shipping, url: shippings_path, data: { turbo: false } do |f| %>
+                        <div class="ec-addressList">
+                            <% if current_user %>
+                                <div class="ec-addressList__item">
+                                    <%= f.radio_button :address_id, 0, id: "address_1", checked: @address_id.present? && @address_id.include?(0) %>
+                                    <div class="shipping_address-label">
+                                        <%= f.label :address_id, for: "address_1" do %>
+                                            <p class="address-info">
+                                                <%= current_user.username %><br />
+                                                〒<%= current_user.postal_code %>&nbsp;<%= current_user.prefecture_code %>
+                                                <%= current_user.city %>&nbsp;<%= current_user.street_and_others %><br />
+                                                <%= current_user.tel %>
+                                            </p>
+                                        <% end %>
+                                    </div>
+                                </div>
+                                <% current_user.addresses.each.with_index do |address, i| %>
+                                    <div class="ec-addressList__item">
+                                        <%= f.radio_button :address_id, address.id, id: "address_#{i + 2}", checked: @address_id.present? && @address_id.include?(address.id) %>
+                                        <div class="shipping_address-label">
+                                            <%= f.label :address_id, for: "address_#{i + 2}" do %>
+                                                <p class="address-info">
+                                                    <%= address.company if address.company.present?%>
+                                                    <%= address.name %><br />
+                                                    〒<%= address.postal_code %>&nbsp;<%= address.prefecture_code %>
+                                                    <%= address.city %>&nbsp;<%= address.street_and_others %><br />
+                                                    <%= address.tel %>
+                                                </p>
+                                            <% end %>
+                                        </div>
+                                    </div>
+                                <% end %>
+                            <% end %>
+                        </div>
+
+                        <div class="ec-registerRole__actions">
+                            <div class="ec-off4Grid">
+                                <div class="ec-off4Grid__cell">
+                                    <%= f.submit "選択したお届け先に送る", class: "btn ec-blockBtn--action address-btn"  %>
+                                    <%= link_to "戻る", orders_path, class: "btn ec-blockBtn--cancel address-btn" %>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

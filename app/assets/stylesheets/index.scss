@@ -34,6 +34,10 @@ select option:first-child {
   color: var(--sumi); /*プロンプトの文字色をグレーに変更*/
 }
 
+dl {
+  margin: 0;
+}
+
 
 /* バリデーションエラーメッセージ */
 
@@ -667,7 +671,7 @@ li {
     width: 100%;
   }
 
-  .mypage-title {
+  .mypage-title, .ec-pageHeader {
     width: 97%;
   }
 
@@ -698,7 +702,7 @@ li {
     width: 100%;
   }
 
-  .mypage-title {
+  .mypage-title, .ec-pageHeader {
     width: 100%;
   }
 
@@ -840,7 +844,7 @@ li {
   padding: 20px 40px;
 }
 
-.btn-add-address, .btn-change-address {
+.btn-add-address, .btn-change-address, .btn-change-credit {
   display: inline-block;
     margin-bottom: 0;
     font-weight: bold;
@@ -860,7 +864,7 @@ li {
     border-color: #ccc;
 }
 
-.btn-add-address:hover, .btn-change-address:hover {
+.btn-add-address:hover, .btn-change-address:hover, .btn-change-credit:hover {
   background-color: #D8E3EF;
 }
 
@@ -1063,18 +1067,18 @@ p {
   }
 }
 
-/* カート */
+/* カート、注文ページ、配送先追加ページ */
 
-.ec-cart-page {
+.ec-cart-page, .ec-order-page, .ec-shipping_address-page, .ec-card-page {
   margin-top: 60px;
 }
 
-.cart-page-body {
+.cart-page-body, .order-page-body, .shipping_address-page-body, .card-page-body {
   margin: 0 auto;
   width: 1020px;
 }
 
-.cart-title {
+.cart-title, .order-title, .shipping_address-title, .card-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1371,11 +1375,11 @@ p {
 }
 
 @media (max-width: 980px) {
-  .ec-cart-page {
+  .ec-cart-page, .ec-order-page, .ec-shipping_address-page, .ec-card-page {
     margin-top: 35px;
   }
 
-  .cart-page-body {
+  .cart-page-body, .order-page-body, .shipping_address-page-body, .card-page-body {
     width: 93%;
   }
 
@@ -1438,6 +1442,127 @@ p {
 
   .ec-cartRole__totalAmount {
     font-size: 20px;
+  }
+}
+
+/* 注文ページ */
+
+.order-product-info {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 0.5px dotted #ccc;
+  border-bottom: 0.5px dotted #ccc;
+}
+
+.product-image-order {
+  width: 120px;
+}
+
+.product-info-order {
+  margin-left: 20px;
+}
+
+.product-name-order, .product-color-order, .product-price-order, .subtotal-order {
+  margin: 0;
+}
+
+.total-amount-orders {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.shipping_address {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.address-btn, .order-btn, .card-btn {
+  margin: 10px auto;
+}
+
+.ec-registerRole {
+  margin-top: 20px;
+}
+
+.ec-off1Grid__cell {
+  width: 98%;
+  margin: 0 auto;
+}
+
+.ec-addressList__item {
+  display: flex;
+  align-items: center;
+}
+
+.shipping_address-label {
+  margin-left: 15px;
+}
+
+.payment_method-field {
+  border-bottom: 1px dotted #ccc;
+}
+
+#registered-credit {
+  border-bottom: 1px dotted #ccc;
+  padding: 10px;
+}
+
+.registered-credit-confirm {
+  border-bottom: 1px dotted #ccc;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label-credit {
+  justify-content: space-between;
+}
+
+.credit-table {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+.change-btn {
+  height: 40px;
+}
+
+.btn-change-credit {
+  margin: 0 20px;
+}
+
+.card_info {
+  display: block;
+}
+
+.shipping_date, .shipping_time {
+  margin: 0;
+}
+
+.card-info-registered {
+  margin: 0;
+}
+
+.order-complete {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--sumi);
+  margin: 50px auto;
+  text-align: center;
+}
+
+.top-page-link {
+  text-align: right;
+  padding-right: 30px;
+}
+
+@media (max-width: 980px) {
+  .registered-credit-confirm {
+    display: block;
   }
 }
 
@@ -2106,12 +2231,22 @@ button {
 }
 
 .product-add-cart-field {
-  width: 50%;
+  width: 330px;
 }
 
 .quantity-form {
   width: 80px;
   text-align: right;
+}
+
+.mssg-no-add-cart {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  padding-left: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+  border-radius: 4px;
 }
 
 .add-cart {

@@ -30,8 +30,10 @@
             </div>
             <div class="product-stock">
                 <p class="stock">在庫：</p>
-                <% if @product.stock < 5 %>
-                    <p class="stock">残りわずか</p>
+                <% if @product.stock > 1 && @product.stock < 5 %>
+                    <p class="stock">残りわずか△(<%= @product.stock %>個)</p>
+                <% elsif @product.stock == 0 %>
+                    <p>売り切れ×</p>
                 <% else %>
                     <%= @product.stock %>
                 <% end %>
@@ -39,8 +41,13 @@
             <div class="product-add-cart-field">
                 <%= form_with model: @cart, url: carts_path(@cart), data: {turbo: false} do |f| %>
                     <div class="product-quantity">
-                        <p>数量：<%= f.number_field :quantity, min: 1, value: 1, class: "quantity-form" %></p>
+                        <p>数量：<%= f.number_field :quantity, min: 1, max: @product.stock, value: 1, class: "quantity-form" %></p>
                     </div>
+                    <% if @product.stock == 0 %>
+                        <div class="alert-danger mssg-no-add-cart">
+                            <p>在庫数が0です。カートに追加できません。</p>
+                        </div>
+                    <% end %>
                     <%= f.hidden_field :product_id, value: @product.id %>
                     <%= f.submit "カートに入れる", class: "ec-blockBtn--action add-cart" %>
                 <% end %>
@@ -71,7 +78,7 @@
     </div>
 </div>
 </div>
-<% if current_user %>
+<% if current_user && @product.stock != 0 %>
     <script>
         $(".add-cart").click(function() {
             $(".ec-modal").css("display", "block");

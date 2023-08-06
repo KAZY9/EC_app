@@ -1,0 +1,250 @@
+<div class="ec-order-page">
+    <div class="order-page-body" >
+        <div class="order-title">
+          <h2>ご注文手続き</h2>
+        </div>
+
+        <div class="ec-cartRole__progress">
+            <ul class="ec-progress">
+                <li class="ec-progress__item">
+                    <div class="ec-progress__number">1</div>
+                    <div class="ec-progress__label">カートの商品</div>
+                </li>
+                <li class="ec-progress__item is-complete">
+                    <div class="ec-progress__number">2</div>
+                    <div class="ec-progress__label">ご注文手続き</div>
+                </li>
+                <li class="ec-progress__item">
+                    <div class="ec-progress__number">3</div>
+                    <div class="ec-progress__label">ご注文内容確認</div>
+                </li>
+                <li class="ec-progress__item">
+                    <div class="ec-progress__number">4</div>
+                    <div class="ec-progress__label">注文完了</div>
+                </li>
+            </ul>
+        </div>
+
+        <%= form_with model: @order, url: orders_path(@order), local: true, data: { turbo: false }, id: "order-form" do |f| %>  
+            <div class="ec-borderedDefs">
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :username, 'お客様情報', class: "control-label" %>
+                    </dt>
+                    <dd class="element-form">
+                        <% if @user.present? %>
+                            <%= @user.username %>
+                            <% if @user.username_kana %>
+                                (<%= @user.username_kana%>)
+                            <% end %><br>
+                            <span>〒</span><%= @user.postal_code %>
+                            <%= @user.prefecture_code %>
+                            <%= @user.city %>
+                            <%= @user.street_and_others %><br>
+                            <%= @user.tel %><br>
+                            <%= @user.email %>
+                        <% end %>
+                    </dd>
+                </dl>
+
+                <dl class="element">
+                <dt class="element-label">
+                    <%= f.label :address, '商品情報', class: "control-label" %>
+                </dt>
+                <dd class="element-form">
+                    <% if @cart_list.present? %>
+                        <% @cart_list.each do |cart_item| %>
+                            <div class="order-product-info">
+                                <%= image_tag cart_item.product.images.first, class: "product-image-order" %>
+                                <div class="product-info-order">
+                                    <p class="product-name-order"><%= cart_item.product.name %></p>
+                                    <p class="product-color-order"><%= cart_item.product.color %></p>
+                                    <p class="product-price-order"><%= number_to_currency(cart_item.product.taxin_price, strip_insignificant_zeros: true) %><span> × </span><%= cart_item.quantity %></p>
+                                    <p class="subtotal-order">小計：<%= number_to_currency(cart_item.sum_of_price, strip_insignificant_zeros: true) %></p>
+                                </div>
+                            </div>
+                        <% end %>
+                        <div class="total-amount-orders">
+                            <span>合計金額：</span><%= number_to_currency(@total_price, strip_insignificant_zeros: true) %>
+                        </div>
+                    <% end %>
+                </dd>
+                </dl>
+
+                <dl class="element">
+                <dt class="element-label">
+                    <%= f.label :address, 'お届け先', class: "control-label" %>
+                </dt>
+                <dd class="element-form">
+                    <div class="shipping_address">
+                        <% if @shipping_address.present? %>
+                            <p class="address-info">
+                                <%= @shipping_address.company if @shipping_address.company.present?%>
+                                <%= @shipping_address.name %>様<br />
+                                〒<%= @shipping_address.postal_code %>&nbsp;<%= @shipping_address.prefecture_code %>
+                                <%= @shipping_address.city %>&nbsp;<%= @shipping_address.street_and_others %><br />
+                                <%= @shipping_address.tel %>
+                            </p>
+
+                            <%= f.hidden_field :name, value: @shipping_address.name %>
+                            <%= f.hidden_field :name_kana, value: @shipping_address.name_kana %>
+                            <%= f.hidden_field :company %>
+                            <%= f.hidden_field :postal_code, value: @shipping_address.postal_code %>
+                            <%= f.hidden_field :prefecture_code, value: @shipping_address.prefecture_code %>
+                            <%= f.hidden_field :city, value: @shipping_address.city %>
+                            <%= f.hidden_field :street_and_others, value: @shipping_address.street_and_others %>
+                            <%= f.hidden_field :tel, value: @shipping_address.tel %>
+                        <% else %>
+                            <p class="address-info">
+                                <%= @user.username %>様<br />
+                                〒<%= @user.postal_code %>&nbsp;<%= @user.prefecture_code %>
+                                <%= @user.city %>&nbsp;<%= @user.street_and_others %><br />
+                                <%= @user.tel %>
+                            </p>
+
+                            <%= f.hidden_field :name, value: @user.username %>
+                            <%= f.hidden_field :name_kana, value: @user.username_kana %>
+                            <%= f.hidden_field :company %>
+                            <%= f.hidden_field :postal_code, value: @user.postal_code %>
+                            <%= f.hidden_field :prefecture_code, value: @user.prefecture_code %>
+                            <%= f.hidden_field :city, value: @user.city %>
+                            <%= f.hidden_field :street_and_others, value: @user.street_and_others %>
+                            <%= f.hidden_field :tel, value: @user.tel %>
+                        <% end %>
+
+                        <div class="btn-change-address change-btn">
+                            <%= link_to "変更", shippings_shipping_address_path, id: "change_address_link" %>
+                        </div>
+                    </div>
+
+                    <div class="shipping_info">
+                        <%= f.label :delivery_date, 'お届け日：', class: "control-label" %>
+                        <%= f.select :delivery_date, options_for_select(days_options), class: "form-select w75" %><br>
+                        <%= f.label :delivery_time, 'お届け時間：', class: "control-label" %>
+                        <%= f.select :delivery_time, DELIVERY_TIME, class: "form-select w75" %>
+                    </div>
+                </dd>
+                </dl>
+
+                <dl class="element payment_method-field">
+                    <dt class="element-label">
+                        <%= f.label :payment_method, 'お支払方法', class: "control-label" %>
+                    </dt>
+                    <dd class="element-form">
+                        <% @payments.each_with_index do |payment, index| %>
+                            <%= f.radio_button :payment_method, payment.id, name: "payment_method", id: "payment_method#{index + 1}", onclick: "formSwitch()" %>
+                            <%= f.label :payment_credit, payment.payment_method, for: "payment_method#{index + 1}" %><br>
+                        <% end %>
+                    </dd>
+                </dl>
+
+                <div class="credit-field">
+                    <dl id="registered-credit">
+                        <dt class="element-label label-credit">
+                            <p class="control-label">登録済クレジットカード決済</p>
+                            <div class="btn-change-credit change-btn">
+                                <%= link_to "カードの追加", shippings_new_credit_path, id: "change_address_link" %>
+                            </div>
+                        </dt>  
+                        
+                        <dd id="registered-credit-select">
+                            <% if @cards_list %>
+                                <div class="credit-table">
+                                    <table>
+                                        <thead>
+                                            <th></th>
+                                            <th class="card-number">カード番号</th>
+                                            <th class="exp_time">有効期限</th>
+                                            <th class="cardholder">名義人</th>
+                                        </thead>
+                                        <% @cards_list.each do |card_info| %>
+                                            <div class="card_info">
+                                                <% customer = card_info['customer'][0] %>
+                                                <% id = card_info['id'] %>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><%= f.radio_button :card_id, id, name: "card_id", id: "card_id_#{id}" %></td>
+                                                        <%= f.label :card_id, for: "card_id_#{id}", class: "control-label" do %>                      
+                                                            <td>************<%= customer.last4 %></td>
+                                                            <td><%= customer.exp_year %>年<%= customer.exp_month %>月</td>
+                                                            <td><%= customer.name %></td>
+                                                        <% end %>
+                                                    </tr>
+                                                </tbody>
+                                            </div>
+                                        <% end %>
+                                    </table>
+                                </div>
+                            <% end %>
+                        </dd>
+                    </dl>
+                </div>
+
+                <%= f.hidden_field :user_id, value: @user.id %> 
+                <%= f.hidden_field :commission, value: 0 %>
+                <%= f.hidden_field :postage, value: 440 %>
+                <%= f.hidden_field :billing_amount, value: @total_price %>
+                <%= f.hidden_field :status, value: 1 %>
+
+                <div class="actions">
+                    <%= f.submit "確認する", id: "submit-btn", class: "btn ec-blockBtn--action order-btn" %>
+                    <%= link_to "カートに戻る", carts_path, class: " btn ec-blockBtn--cancel order-btn" %>
+                </div>
+        <% end %>
+    </div>
+</div>
+<script>
+    function formSwitch() {
+        option = document.getElementsByName('payment_method')
+        if (option[0].checked) {
+            document.getElementById('registered-credit').style.display = "";
+        } else {
+            document.getElementById('registered-credit').style.display = "none";
+        }
+    }
+    window.addEventListener('load', formSwitch());
+
+    function confirmPaymentMethod() {
+        return confirm("お支払方法を選択してください。");
+    }
+
+    function confirmSelectCard() {
+        return confirm("カードを選択してください。");
+    }
+
+    window.addEventListener('load', function(event) {
+        const btnSubmit = document.getElementById('submit-btn');
+        btnSubmit.addEventListener("click", function (event) {
+            let isChecked = false;
+            const radioButtons = document.getElementsByName('payment_method');
+            for (const radioButton of radioButtons) {
+                if (radioButton.checked) {
+                    isChecked = true;
+                    break;
+                }
+            }
+            if (!isChecked) {
+            event.preventDefault();
+            return confirmPaymentMethod();
+            } 
+        })
+
+        btnSubmit.addEventListener("click", function (event) {
+            const radioButton_credit = document.getElementById('payment_method1');
+            let isChecked = false;
+            if (radioButton_credit.checked) {
+                const radioButtons = document.getElementsByName('card_id');
+                for (const radioButton of radioButtons) {
+                    if (radioButton.checked) {
+                        isChecked = true;
+                        break;
+                    }
+                }
+                if (!isChecked) {
+                event.preventDefault();
+                return confirmSelectCard();
+                } 
+            }
+        })
+    });
+</script>

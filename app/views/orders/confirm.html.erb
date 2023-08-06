@@ -1,0 +1,139 @@
+<div class="ec-order-page">
+    <div class="order-page-body" >
+        <div class="order-title">
+          <h2>ご注文内容確認</h2>
+        </div>
+
+        <div class="ec-cartRole__progress">
+            <ul class="ec-progress">
+                <li class="ec-progress__item">
+                    <div class="ec-progress__number">1</div>
+                    <div class="ec-progress__label">カートの商品</div>
+                </li>
+                <li class="ec-progress__item">
+                    <div class="ec-progress__number">2</div>
+                    <div class="ec-progress__label">ご注文手続き</div>
+                </li>
+                <li class="ec-progress__item is-complete">
+                    <div class="ec-progress__number">3</div>
+                    <div class="ec-progress__label">ご注文内容確認</div>
+                </li>
+                <li class="ec-progress__item">
+                    <div class="ec-progress__number">4</div>
+                    <div class="ec-progress__label">注文完了</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="ec-borderedDefs">
+            <dl class="element">
+                <p class="control-label">お客様情報</p>
+                 <dd class="element-form">
+                    <% if @user.present? %>
+                        <%= @user.username %>
+                        <% if @user.username_kana %>
+                            (<%= @user.username_kana%>)
+                        <% end %><br>
+                        <span>〒</span><%= @user.postal_code %>
+                        <%= @user.prefecture_code %>
+                        <%= @user.city %>
+                        <%= @user.street_and_others %><br>
+                        <%= @user.tel %><br>
+                        <%= @user.email %>
+                    <% end %>
+                </dd>
+            </dl>
+
+            <dl class="element">
+                <p class="control-label">配送情報</p>
+                <dd class="element-form">
+                    <% if @cart_list.present? %>
+                        <% @cart_list.each do |cart_item| %>
+                            <div class="order-product-info">
+                                <%= image_tag cart_item.product.images.first, class: "product-image-order" %>
+                                <div class="product-info-order">
+                                    <p class="product-name-order"><%= cart_item.product.name %></p>
+                                    <p class="product-color-order"><%= cart_item.product.color %></p>
+                                    <p class="product-price-order"><%= number_to_currency(cart_item.product.taxin_price, strip_insignificant_zeros: true) %><span>×</span><%= cart_item.quantity %></p>
+                                    <p class="subtotal-order">小計：<%= number_to_currency(cart_item.sum_of_price, strip_insignificant_zeros: true) %></p>
+                                </div>
+                            </div>
+                        <% end %>
+                        <div class="total-amount-orders">
+                            <span>合計金額：</span><%= number_to_currency(@total_price, strip_insignificant_zeros: true) %>
+                        </div>
+                    <% end %>
+                </dd>
+            </dl>
+
+            
+                <dl class="element">
+                    <p class="control-label">お届け先</p>
+                    <dd class="element-form">
+                        <% if @order.present? %>
+                        <p class="address-info">
+                                <%= @order.company if @order.company.present?%>
+                                <%= @order.name %>様<br />
+                                〒<%= @order.postal_code %>&nbsp;<%= @order.prefecture_code %>
+                                <%= @order.city %>&nbsp;<%= @order.street_and_others %><br />
+                                <%= @order.tel %>
+                            </p>
+                        <% end %>
+                        <div class="shipping_info">
+                            <p class="shipping_date">お届け日：<%= @order.delivery_date %></p>
+                            <p class="shipping_time">お届け時間：<%= @order.delivery_time %></p>
+                        </div>
+                    </dd>
+                </dl>
+
+                <dl class="element payment_method-field">
+                    <p class="control-label">お支払方法</p>
+                    <dd class="element-form">
+                        <%= @payment.payment_method %>
+                    </dd>
+                </dl>
+
+                <% if @payment.payment_method == "クレジット決済" %>
+                    <dl class="registered-credit-confirm">
+                        <p class="control-label">登録済クレジットカード決済</p>
+                        <% if @card_info %>
+                            <div class="card-registered element-form">
+                                <p class="card-info-registered"><span>カード番号：</span>************<%= @card_info.last4 %></p>
+                                <p class="card-info-registered"><span>有効期限：</span><%= @card_info.exp_year %>年<%= @card_info.exp_month %>月</p>
+                                <p class="card-info-registered"><span>名義人：</span><%= @card_info.name %></P>
+                            </div>
+                        <% end %>
+                    </dl>
+                <% end %>
+
+        <%= form_with model: @order, url: orders_complete_path(@order), local: true, data: { turbo: false } do |f| %>
+
+            <%= f.hidden_field :user_id %> 
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :name_kana %>
+            <%= f.hidden_field :company %>
+            <%= f.hidden_field :postal_code %>
+            <%= f.hidden_field :prefecture_code %>
+            <%= f.hidden_field :city %>
+            <%= f.hidden_field :street_and_others %>
+            <%= f.hidden_field :tel %>
+            <%= f.hidden_field :commission %>
+            <%= f.hidden_field :postage %>
+            <%= f.hidden_field :billing_amount %>
+            <%= f.hidden_field :delivery_date %>
+            <%= f.hidden_field :delivery_time %>
+            <%= f.hidden_field :status %>
+            <%= f.hidden_field :payment_method, value: @payment %>
+            <%= f.hidden_field :card_id, value: params[:card_id] %>
+
+            <div class="ec-buttuons">
+                <div class="form-group actions">
+                <%= f.submit "注文する", class: "btn btn-danger" %>
+                </div>
+                <div class="form-group actions">
+                <%= f.submit "戻る", name: :back, class: "btn btn-secondary"%>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

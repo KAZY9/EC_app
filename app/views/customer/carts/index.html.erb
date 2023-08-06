@@ -20,7 +20,7 @@
                 </li>
                 <li class="ec-progress__item">
                     <div class="ec-progress__number">4</div>
-                    <div class="ec-progress__label">完了</div>
+                    <div class="ec-progress__label">注文完了</div>
                 </li>
             </ul>
         </div>
@@ -105,7 +105,7 @@
                     <div class="ec-cartRole__total">
                         合計：<span class="ec-cartRole__totalAmount"><%= number_to_currency(@total_price, strip_insignificant_zeros: true) %></span>
                     </div>
-                    <%= link_to "レジに進む", "#", class: "ec-blockBtn--action" %>
+                    <%= link_to "レジに進む", orders_path, class: "ec-blockBtn--action" %>
                     <%= link_to "お買い物を続ける", root_path, class: "ec-blockBtn--cancel" %>
                 </div>
             <% end %>

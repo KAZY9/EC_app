@@ -1,0 +1,13 @@
+<%= @user.username %>様
+<p>ご注文いただきありがとうございます！</p>
+<p>ご注文が完了したことをお知らせします。</p>
+<p>ご注文番号：<%= @order.order_number  %></p>
+<p>お届け日：<%= @order.delivery_date %></p>
+<p>お届け時間：<%= @order.delivery_time %></p>
+<p>お届け先：</p>
+<%= @order.name %>,<br>
+<%= @order.postal_code %><br>
+<%= @order.prefecture_code %><br>
+<%= @order.city %><br>
+<%= @order.street_and_others %><br>
+<p>注文合計：<%= number_to_currency(@order.billing_amount, strip_insignificant_zeros: true) %>
