@@ -37,7 +37,7 @@ class Customer::CartsController < ApplicationController
     if cart_item
       cart_item.increment!(:quantity, quantity)
     else
-      current_user.carts.create(product_id: product_id, quantity: quantity).save!
+      current_user.carts.create(product_id: product_id, quantity: quantity).save
     end
   end 
 

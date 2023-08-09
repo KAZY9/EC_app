@@ -89,11 +89,11 @@
                 <dl class="element payment_method-field">
                     <p class="control-label">お支払方法</p>
                     <dd class="element-form">
-                        <%= @payment.payment_method %>
+                        <%= Order.payment_methods.key(params[:order][:payment_method].to_i) %>
                     </dd>
                 </dl>
 
-                <% if @payment.payment_method == "クレジット決済" %>
+                <% if params[:order][:payment_method].to_i == Order.payment_methods["クレジット決済"] %>
                     <dl class="registered-credit-confirm">
                         <p class="control-label">登録済クレジットカード決済</p>
                         <% if @card_info %>
@@ -123,8 +123,8 @@
             <%= f.hidden_field :delivery_date %>
             <%= f.hidden_field :delivery_time %>
             <%= f.hidden_field :status %>
-            <%= f.hidden_field :payment_method, value: @payment %>
-            <%= f.hidden_field :card_id, value: params[:card_id] %>
+            <%= f.hidden_field :payment_method, value: params[:order][:payment_method] %>
+            <%= f.hidden_field :card_id, value: params[:order][:card_id] %>
 
             <div class="ec-buttuons">
                 <div class="form-group actions">

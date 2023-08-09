@@ -18,7 +18,7 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.string :card_id
       t.string :delivery_date, null: false
       t.string :delivery_time, null: false
-      t.string :order_number, default: '000000'
+      t.string :order_number, unique: true, default: '000000'
       t.timestamps
     end
   end

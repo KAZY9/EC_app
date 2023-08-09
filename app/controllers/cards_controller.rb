@@ -38,9 +38,11 @@ class CardsController < ApplicationController
   def destroy
     @card = current_user.cards.find_by(id: params[:id])
     if @card
-      customer = Payjp::Customer.retrieve(@card.customer_id)
-      if customer.delete && @card.delete
-        redirect_to new_card_path, status: :see_other
+      Card.transaction do
+        customer = Payjp::Customer.retrieve(@card.customer_id)
+        if customer.delete && @card.destroy
+          redirect_to new_card_path, status: :see_other
+        end
       end
     end
   end

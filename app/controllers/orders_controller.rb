@@ -11,8 +11,6 @@ class OrdersController < ApplicationController
         @addreess_id = Shipping.where(user_id: current_user.id).pluck(:address_id)
         @shipping_address = Address.find_by(id: @addreess_id)
 
-        @payments = Payment.all
-
         cards = Card.where(user_id: current_user.id)
         @cards_list = []
         cards.each do |card|
@@ -32,14 +30,12 @@ class OrdersController < ApplicationController
     end
 
     def confirm
-        @user = User.find(params[:order][:user_id])
+        @user = User.find(current_user.id)
 
         cart_items
 
-        @payment = Payment.find_by(id: params[:payment_method])
-
-        if params[:payment_method].to_i == 1
-            card = Card.find_by(id: params[:card_id])
+        if params[:order][:payment_method].to_i == Order.payment_methods["クレジット決済"]
+            card = Card.find_by(id: params[:order][:card_id])
             if card
                 customer = Payjp::Customer.retrieve(card.customer_id)
                 @card_info = customer.cards.retrieve(card.token_id)
@@ -75,7 +71,7 @@ class OrdersController < ApplicationController
             end
             if params[:order][:card_id]
                 if checkout(@order.billing_amount)
-                    @order.status = 2
+                    @order.status = :confirmed_payment
                     @order.save
                 end
             end
@@ -94,26 +90,29 @@ class OrdersController < ApplicationController
     private
 
     def order_params
-        params.require(:order).permit(
-            :user_id, 
-            :name, 
-            :name_kana, 
-            :company, 
-            :postal_code, 
-            :prefecture_code, 
-            :city, 
-            :street_and_others, 
-            :tel, 
-            :delivery_date, 
-            :delivery_time, 
-            :commission, 
-            :postage, 
-            :billing_amount, 
-            :status, 
-            :payment_method, 
-            :card_id, 
-            :order_number
-        )
+        pp = params.require(:order).permit(
+                :user_id, 
+                :name, 
+                :name_kana, 
+                :company, 
+                :postal_code, 
+                :prefecture_code, 
+                :city, 
+                :street_and_others, 
+                :tel, 
+                :delivery_date, 
+                :delivery_time, 
+                :commission, 
+                :postage, 
+                :billing_amount, 
+                :status, 
+                :payment_method, 
+                :card_id, 
+                :order_number
+            )
+        pp[:status] = params[:order][:status].to_i
+        pp[:payment_method] = params[:order][:payment_method].to_i
+        return pp
     end
 
     def init_payjp

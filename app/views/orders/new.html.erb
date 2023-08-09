@@ -131,9 +131,13 @@
                         <%= f.label :payment_method, 'お支払方法', class: "control-label" %>
                     </dt>
                     <dd class="element-form">
-                        <% @payments.each_with_index do |payment, index| %>
-                            <%= f.radio_button :payment_method, payment.id, name: "payment_method", id: "payment_method#{index + 1}", onclick: "formSwitch()" %>
-                            <%= f.label :payment_credit, payment.payment_method, for: "payment_method#{index + 1}" %><br>
+                        <%# <% @payments.each_with_index do |payment, index| %>
+                            <%# <%= f.radio_button :payment_method, payment.id, name: "payment_method", id: "payment_method#{index + 1}", onclick: "formSwitch()" %> 
+                            <%# <%= f.label :payment_credit, payment.payment_method, for: "payment_method#{index + 1}" %><br> 
+                        <%# <% end %> 
+                        <% Order.payment_methods.keys.each_with_index do |payment_method, index| %>
+                            <%= f.radio_button :payment_method, Order.payment_methods[payment_method], name: "order[payment_method]", id: "payment_method#{index + 1}", onclick: "formSwitch()" %>
+                            <%= f.label :payment_method, payment_method, for: "payment_method#{index + 1}" %><br>
                         <% end %>
                     </dd>
                 </dl>
@@ -163,7 +167,7 @@
                                                 <% id = card_info['id'] %>
                                                 <tbody>
                                                     <tr>
-                                                        <td><%= f.radio_button :card_id, id, name: "card_id", id: "card_id_#{id}" %></td>
+                                                        <td><%= f.radio_button :card_id, id, name: "order[card_id]", id: "card_id_#{id}" %></td>
                                                         <%= f.label :card_id, for: "card_id_#{id}", class: "control-label" do %>                      
                                                             <td>************<%= customer.last4 %></td>
                                                             <td><%= customer.exp_year %>年<%= customer.exp_month %>月</td>
@@ -184,7 +188,7 @@
                 <%= f.hidden_field :commission, value: 0 %>
                 <%= f.hidden_field :postage, value: 440 %>
                 <%= f.hidden_field :billing_amount, value: @total_price %>
-                <%= f.hidden_field :status, value: 1 %>
+                <%= f.hidden_field :status, value: Order.statuses[:waiting_payment] %>
 
                 <div class="actions">
                     <%= f.submit "確認する", id: "submit-btn", class: "btn ec-blockBtn--action order-btn" %>
@@ -195,7 +199,7 @@
 </div>
 <script>
     function formSwitch() {
-        option = document.getElementsByName('payment_method')
+        option = document.getElementsByName('order[payment_method]')
         if (option[0].checked) {
             document.getElementById('registered-credit').style.display = "";
         } else {
@@ -216,7 +220,7 @@
         const btnSubmit = document.getElementById('submit-btn');
         btnSubmit.addEventListener("click", function (event) {
             let isChecked = false;
-            const radioButtons = document.getElementsByName('payment_method');
+            const radioButtons = document.getElementsByName('order[payment_method]');
             for (const radioButton of radioButtons) {
                 if (radioButton.checked) {
                     isChecked = true;
@@ -233,7 +237,7 @@
             const radioButton_credit = document.getElementById('payment_method1');
             let isChecked = false;
             if (radioButton_credit.checked) {
-                const radioButtons = document.getElementsByName('card_id');
+                const radioButtons = document.getElementsByName('order[card_id]');
                 for (const radioButton of radioButtons) {
                     if (radioButton.checked) {
                         isChecked = true;
