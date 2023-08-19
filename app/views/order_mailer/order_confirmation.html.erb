@@ -10,4 +10,9 @@
 <%= @order.prefecture_code %><br>
 <%= @order.city %><br>
 <%= @order.street_and_others %><br>
+<p>ご注文内容：</p>
+<% @order_details.each do |order_detail| %>
+    <%= order_detail.product.name %><br>
+    <%= number_to_currency(order_detail.product.price, strip_insignificant_zeros: true) %> × <%= order_detail.quantity %>個 = <%= number_to_currency(order_detail.price, strip_insignificant_zeros: true) %><br><br>
+<% end %>
 <p>注文合計：<%= number_to_currency(@order.billing_amount, strip_insignificant_zeros: true) %>

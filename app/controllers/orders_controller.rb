@@ -57,29 +57,45 @@ class OrdersController < ApplicationController
         
         if params[:back] 
             redirect_to orders_path
-        elsif @order.save
+        else
             @cart_items = current_user.carts.includes(:product)
+            all_products_have_stock = true
+
+            # 商品の在庫をチェックする
             @cart_items.each do |cart|
-                @order_item = OrderDetail.new
-                @order_item.product_id = cart.product_id
-                @order_item.order_id = @order.id
-                @order_item.quantity = cart.quantity
-                @order_item.price = cart.product.price
-                cart.product.stock = cart.product.stock - @order_item.quantity
-                @order_item.save
-                cart.product.save
-            end
-            if params[:order][:card_id]
-                if checkout(@order.billing_amount)
-                    @order.status = :confirmed_payment
-                    @order.save
+                product = cart.product
+                if product.stock < cart.quantity
+                    all_products_have_stock = false
+                    break  # 在庫が足りない商品が見つかったらループを中断
                 end
             end
-            @cart_items.destroy_all
-            OrderMailer.order_confirmation(current_user, @order).deliver_later
-            redirect_to orders_complete_path(order_id: @order.id)
-        else
-            render :new, status: :unprocessable_entity
+
+            if all_products_have_stock &&  @order.save
+                if params[:order][:card_id]
+                    if checkout(@order.billing_amount)
+                        @order.status = :confirmed_payment
+                        @order.save
+                    end
+                end
+
+                @cart_items.each do |cart|
+                    @order_item = OrderDetail.new
+                    @order_item.product_id = cart.product_id
+                    @order_item.order_id = @order.id
+                    @order_item.quantity = cart.quantity
+                    @order_item.price = cart.product.price
+                    cart.product.stock -= @order_item.quantity
+                    @order_item.save
+                    cart.product.save
+                end
+
+                @cart_items.destroy_all
+                OrderMailer.order_confirmation(current_user, @order).deliver_later
+                redirect_to orders_complete_path(order_id: @order.id)
+            else
+                flash.now[:alert] = "在庫がありません。"
+                render :new, status: :unprocessable_entity
+            end
         end
     end
 

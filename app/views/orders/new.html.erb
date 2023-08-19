@@ -25,6 +25,12 @@
             </ul>
         </div>
 
+        <% if flash[:alert] %>
+            <div class="alert alert-danger">
+                <%= flash[:alert] %>
+            </div>
+        <% end %>
+
         <%= form_with model: @order, url: orders_path(@order), local: true, data: { turbo: false }, id: "order-form" do |f| %>  
             <div class="ec-borderedDefs">
                 <dl class="element">
@@ -131,12 +137,8 @@
                         <%= f.label :payment_method, 'お支払方法', class: "control-label" %>
                     </dt>
                     <dd class="element-form">
-                        <%# <% @payments.each_with_index do |payment, index| %>
-                            <%# <%= f.radio_button :payment_method, payment.id, name: "payment_method", id: "payment_method#{index + 1}", onclick: "formSwitch()" %> 
-                            <%# <%= f.label :payment_credit, payment.payment_method, for: "payment_method#{index + 1}" %><br> 
-                        <%# <% end %> 
                         <% Order.payment_methods.keys.each_with_index do |payment_method, index| %>
-                            <%= f.radio_button :payment_method, Order.payment_methods[payment_method], name: "order[payment_method]", id: "payment_method#{index + 1}", onclick: "formSwitch()" %>
+                            <%= f.radio_button :payment_method, Order.payment_methods[payment_method], name: "order[payment_method]", id: "payment_method#{index + 1}", checked: params[:payment_method] &.include?(Order.payment_methods[payment_method]), onclick: "formSwitch()" %>
                             <%= f.label :payment_method, payment_method, for: "payment_method#{index + 1}" %><br>
                         <% end %>
                     </dd>
