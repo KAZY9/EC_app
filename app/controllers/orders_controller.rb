@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     def new
         @user = current_user
         
-        cart_items
+        set_cart_items
 
         @addreess_id = Shipping.where(user_id: current_user.id).pluck(:address_id)
         @shipping_address = Address.find_by(id: @addreess_id)
@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
     def confirm
         @user = User.find(current_user.id)
 
-        cart_items
+        set_cart_items
 
         if params[:order][:payment_method].to_i == Order.payment_methods["クレジット決済"]
             card = Card.find_by(id: params[:order][:card_id])
@@ -43,11 +43,7 @@ class OrdersController < ApplicationController
         end
 
         @order = Order.new(order_params)
-        if @order.invalid?
-            render :new
-        else
-            session[:order] = order_params
-        end
+        render :new if @order.invalid?
     end
 
     def create
@@ -56,7 +52,13 @@ class OrdersController < ApplicationController
         @user = current_user
         
         if params[:back] 
-            redirect_to orders_path
+            # redirect_to orders_path
+            if params[:order][:payment_method].to_i == 2
+                params[:order][:card_id] = ""
+            end
+            set_cart_items
+            set_card_list
+            render :new
         else
             @cart_items = current_user.carts.includes(:product)
             all_products_have_stock = true
@@ -135,7 +137,19 @@ class OrdersController < ApplicationController
         Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     end
 
-    def cart_items
+    def set_card_list
+        cards = Card.where(user_id: current_user.id)
+        @cards_list = []
+        cards.each do |card|
+            customer = Payjp::Customer.retrieve(card.customer_id)
+            @cards_list.append({
+                'customer' => customer.cards.data,
+                'id' => card.id 
+                })
+        end
+    end
+
+    def set_cart_items
         @cart_list = Cart.joins(:product).where(user_id: current_user.id).select("carts.*, products.price")
         @total_price = @cart_list.inject(0) { |sum, item| sum + item.sum_of_price }.round
     end

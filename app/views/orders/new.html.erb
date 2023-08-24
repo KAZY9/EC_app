@@ -31,7 +31,7 @@
             </div>
         <% end %>
 
-        <%= form_with model: @order, url: orders_path(@order), local: true, data: { turbo: false }, id: "order-form" do |f| %>  
+        <%= form_with model: @order, url: orders_confirm_path(@order), local: true, data: { turbo: false }, id: "order-form" do |f| %>  
             <div class="ec-borderedDefs">
                 <dl class="element">
                     <dt class="element-label">
@@ -125,9 +125,19 @@
 
                     <div class="shipping_info">
                         <%= f.label :delivery_date, 'お届け日：', class: "control-label" %>
-                        <%= f.select :delivery_date, options_for_select(days_options), class: "form-select w75" %><br>
+                        <% if params['order'].present? && params['order']['delivery_date'].present?  %>
+                            <%= f.select :delivery_date, options_for_select(days_options, selected: params['order']['delivery_date']), class: "form-select w75" %><br>
+                        <% else %>
+                            <%= f.select :delivery_date, options_for_select(days_options), class: "form-select w75" %><br>
+                        <% end %>
+
                         <%= f.label :delivery_time, 'お届け時間：', class: "control-label" %>
-                        <%= f.select :delivery_time, DELIVERY_TIME, class: "form-select w75" %>
+                        <% if params['order'].present? && params['order']['delivery_time'].present?  %>
+                            <%= f.select :delivery_time, DELIVERY_TIME, value: params['order']['delivery_time'], class: "form-select w75" %>
+                        <% else %>
+                            <%= f.select :delivery_time, DELIVERY_TIME, class: "form-select w75" %>
+                        <% end %>
+                        
                     </div>
                 </dd>
                 </dl>
@@ -138,7 +148,11 @@
                     </dt>
                     <dd class="element-form">
                         <% Order.payment_methods.keys.each_with_index do |payment_method, index| %>
-                            <%= f.radio_button :payment_method, Order.payment_methods[payment_method], name: "order[payment_method]", id: "payment_method#{index + 1}", checked: params[:payment_method] &.include?(Order.payment_methods[payment_method]), onclick: "formSwitch()" %>
+                            <% if params['order'].present? && params['order']['payment_method'].present?  %>
+                                <%= f.radio_button :payment_method, Order.payment_methods[payment_method], name: "order[payment_method]", id: "payment_method#{index + 1}", onclick: "formSwitch()", checked: params['order']['payment_method'] == Order.payment_methods[payment_method].to_s ? true : false %>
+                            <% else %>
+                                <%= f.radio_button :payment_method, Order.payment_methods[payment_method], name: "order[payment_method]", id: "payment_method#{index + 1}", onclick: "formSwitch()" %>
+                             <% end %>
                             <%= f.label :payment_method, payment_method, for: "payment_method#{index + 1}" %><br>
                         <% end %>
                     </dd>
@@ -151,7 +165,7 @@
                             <div class="btn-change-credit change-btn">
                                 <%= link_to "カードの追加", shippings_new_credit_path, id: "change_address_link" %>
                             </div>
-                        </dt>  
+                        </dt>   
                         
                         <dd id="registered-credit-select">
                             <% if @cards_list %>
@@ -169,7 +183,13 @@
                                                 <% id = card_info['id'] %>
                                                 <tbody>
                                                     <tr>
-                                                        <td><%= f.radio_button :card_id, id, name: "order[card_id]", id: "card_id_#{id}" %></td>
+                                                        <td>
+                                                            <% if params['order'].present? && params['order']['payment_method'].present?  %>
+                                                                <%= f.radio_button :card_id, id, name: "order[card_id]", id: "card_id_#{id}", checked: params['order']['card_id'] == id.to_s ? true : false %>
+                                                            <% else %>
+                                                                <%= f.radio_button :card_id, id, name: "order[card_id]", id: "card_id_#{id}" %>
+                                                            <% end %>
+                                                        </td>
                                                         <%= f.label :card_id, for: "card_id_#{id}", class: "control-label" do %>                      
                                                             <td>************<%= customer.last4 %></td>
                                                             <td><%= customer.exp_year %>年<%= customer.exp_month %>月</td>
