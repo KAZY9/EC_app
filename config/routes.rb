@@ -38,6 +38,19 @@ Rails.application.routes.draw do
     get '/mypage/change', to: 'users/registrations#edit'
   end
 
+  get '/orders', to: 'orders#new'
+  post '/orders/confirm', to: 'orders#confirm'
+  get '/orders/confirm', to: redirect('/orders')
+  post '/orders', to: 'orders#create'
+  get '/orders/complete', to: 'orders#complete'
+  
+  resources :shippings, only: [:create]
+  get '/shippings/shipping_address', to: 'shippings#shipping_address'
+  get '/shippings/new_address', to: 'shippings#new_address'
+  post '/shippings/add_address', to: 'shippings#add_address'
+  get '/shippings/new_credit', to: 'shippings#new_credit'
+  post '/shippings/add_credit', to: 'shippings#add_credit'
+
   scope :mypage do
     resources :addresses, except: [:show] 
     resources :cards, only: [:new, :create, :destroy]

@@ -1,8 +1,10 @@
 class User < ApplicationRecord
+  has_many :shippings, dependent: :destroy
+  has_many :orders, dependent: :destroy
   has_many :carts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :addresses, dependent: :destroy
-  has_many :card, dependent: :destroy
+  has_many :cards, dependent: :destroy
   VALID_POSTAL_CODE_REGEX = /\A\d{3}[-]?\d{4}\z/
   VALID_TEL_REGEX = /\A0(\d{1}[-(]?\d{4}|\d{2}[-(]?\d{3}|\d{3}[-(]?\d{2}|\d{4}[-(]?\d{1})[-)]?\d{4}\z|\A0[5789]0[-]?\d{4}[-]?\d{4}\z/
   validates :username, presence: true
@@ -19,6 +21,25 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable
+
+
+  def line_items_checkout
+    carts.map do |cart_item|
+      {
+        quantity: cart_item.quantity,
+        price_data: {
+          currency: 'jpy',
+          unit_amount: cart_item.product.price,
+          product_data: {
+            name: cart_item.product.name,
+            metadata: {
+              product_id: cart_item.product_id
+            }
+          }
+        }
+      }
+    end
+  end
 
 
   #パスワードなしでユーザー情報編集可能にする

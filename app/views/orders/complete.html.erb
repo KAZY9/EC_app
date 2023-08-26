@@ -1,0 +1,37 @@
+<div class="ec-order-page">
+    <div class="order-page-body" >
+        <div class="order-title">
+          <h2>注文完了</h2>
+        </div>
+
+        <div class="ec-cartRole__progress">
+            <ul class="ec-progress">
+                <li class="ec-progress__item">
+                    <div class="ec-progress__number">1</div>
+                    <div class="ec-progress__label">カートの商品</div>
+                </li>
+                <li class="ec-progress__item">
+                    <div class="ec-progress__number">2</div>
+                    <div class="ec-progress__label">ご注文手続き</div>
+                </li>
+                <li class="ec-progress__item">
+                    <div class="ec-progress__number">3</div>
+                    <div class="ec-progress__label">ご注文内容確認</div>
+                </li>
+                <li class="ec-progress__item is-complete">
+                    <div class="ec-progress__number">4</div>
+                    <div class="ec-progress__label">注文完了</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="order-complete">
+            <div>商品をご注文いただきありがとうございます！</div>
+            <div class="order-details">注文が完了しました！発送までお待ちください。</div>
+            <div class="order-details">注文番号：<%= @order.order_number %></div>
+        </div>
+        <div class="top-page-link">
+            <%= link_to "トップページへ", root_path %>
+        </div>
+    </div>
+</div>

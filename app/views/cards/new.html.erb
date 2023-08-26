@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="ec-formBody-card"> 
-                    <% if current_user.card.present? %>
+                    <% if current_user.cards.present? %>
                         <table>
                             <thead>
                                 <th class="batsu-delete"></th>
@@ -21,18 +21,20 @@
                                 <th class="exp_time">有効期限</th>
                                 <th class="cardholder">名義人</th>
                             </thead>
-                            <% @cards.each_with_index do |card, index| %>
+                            <% @cards_list.each_with_index do |card_info, index| %>
+                                <% customer = card_info['customer'][0] %>
+                                <% id = card_info['id'] %>
                                 <tbody>
                                     <tr>
-                                        <td class="batsu-delete"><%= button_to card_path(card), method: :delete, remote: true,  form: { onSubmit: "return confirmDelete();"},
+                                        <td class="batsu-delete"><%= button_to card_path(id), method: :delete, remote: true,  form: { onSubmit: "return confirmDelete();"},
                                       id: "delete_btn" do %>
                                             <i class="fa-solid fa-xmark fa-xs" style="color: #85898e;"></i>
                                         <% end %>
                                         </td> 
                                         <td class="number"><%= index + 1 %></td>
-                                        <td class="card-number">************<%= card.last4 %></td>
-                                        <td class="exp_time"><%= card.exp_year %>年<%= card.exp_month %>月</td>
-                                        <td class="cardholder"><%= card.name %></td>
+                                        <td class="card-number">************<%= customer.last4 %></td>
+                                        <td class="exp_time"><%= customer.exp_year %>年<%= customer.exp_month %>月</td>
+                                        <td class="cardholder"><%= customer.name %></td>
                                     </tr>
                                 </tbody>
                             <% end %>
@@ -41,6 +43,7 @@
                         <p>登録されたカード情報はありません</p>
                     <% end %>
 
+                    
                     <%= form_with url: cards_path, data: { turbo: false }, id: "card_form" do |f| %>
                         <div class="ec-borderedDefs-card">
                             <div class="element-cardInfo payjp">   
@@ -64,6 +67,7 @@
                             </div>
                         </div>
                         <div id="card_token"></div>
+                 
                         <div class="actions">
                             <%= f.submit "登録する", class: "btn btn-secondary", id: "info_submit" %>
                         </div>

@@ -1,0 +1,18 @@
+<%= @user.username %>様
+<p>ご注文いただきありがとうございます！</p>
+<p>ご注文が完了したことをお知らせします。</p>
+<p>ご注文番号：<%= @order.order_number  %></p>
+<p>お届け日：<%= @order.delivery_date %></p>
+<p>お届け時間：<%= @order.delivery_time %></p>
+<p>お届け先：</p>
+<%= @order.name %>,<br>
+<%= @order.postal_code %><br>
+<%= @order.prefecture_code %><br>
+<%= @order.city %><br>
+<%= @order.street_and_others %><br>
+<p>ご注文内容：</p>
+<% @order_details.each do |order_detail| %>
+    <%= order_detail.product.name %><br>
+    <%= number_to_currency(order_detail.product.price, strip_insignificant_zeros: true) %> × <%= order_detail.quantity %>個 = <%= number_to_currency(order_detail.price, strip_insignificant_zeros: true) %><br><br>
+<% end %>
+<p>注文合計：<%= number_to_currency(@order.billing_amount, strip_insignificant_zeros: true) %>

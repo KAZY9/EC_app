@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_03_030630) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_10_140021) do
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -82,6 +82,38 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_030630) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "order_details", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "product_id", null: false
+    t.integer "quantity", null: false
+    t.integer "price", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.string "name_kana"
+    t.string "company"
+    t.string "postal_code", null: false
+    t.string "prefecture_code", null: false
+    t.string "city", null: false
+    t.string "street_and_others", null: false
+    t.string "tel", null: false
+    t.integer "commission", null: false
+    t.integer "postage", null: false
+    t.integer "billing_amount", null: false
+    t.integer "status", default: 1, null: false
+    t.integer "payment_method", null: false
+    t.string "card_id"
+    t.string "delivery_date", null: false
+    t.string "delivery_time", null: false
+    t.string "order_number", default: "000000"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
@@ -95,6 +127,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_030630) do
     t.string "carrying_style", null: false
     t.string "style", null: false
     t.string "closure_method", null: false
+  end
+
+  create_table "shippings", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "address_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_shippings_on_user_id"
   end
 
   create_table "taxes", charset: "utf8mb3", force: :cascade do |t|
@@ -153,4 +193,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_030630) do
   add_foreign_key "carts", "users"
   add_foreign_key "favorites", "products"
   add_foreign_key "favorites", "users"
+  add_foreign_key "shippings", "users"
 end
