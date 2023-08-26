@@ -66,74 +66,80 @@
                 </dd>
             </dl>
 
-            
-                <dl class="element">
-                    <p class="control-label">お届け先</p>
-                    <dd class="element-form">
-                        <% if @order.present? %>
-                        <p class="address-info">
-                                <%= @order.company if @order.company.present?%>
-                                <%= @order.name %>様<br />
-                                〒<%= @order.postal_code %>&nbsp;<%= @order.prefecture_code %>
-                                <%= @order.city %>&nbsp;<%= @order.street_and_others %><br />
-                                <%= @order.tel %>
-                            </p>
-                        <% end %>
-                        <div class="shipping_info">
-                            <p class="shipping_date">お届け日：<%= Date.parse(@order.delivery_date).strftime("%Y/%m/%d(#{localized_day_of_week(Date.parse(@order.delivery_date))})") %></p>
-                            <p class="shipping_time">お届け時間：<%= @order.delivery_time %></p>
+            <dl class="element">
+                <p class="control-label">お届け先</p>
+                <dd class="element-form">
+                    <% if @order.present? %>
+                    <p class="address-info">
+                            <%= @order.company if @order.company.present?%>
+                            <%= @order.name %>様<br />
+                            〒<%= @order.postal_code %>&nbsp;<%= @order.prefecture_code %>
+                            <%= @order.city %>&nbsp;<%= @order.street_and_others %><br />
+                            <%= @order.tel %>
+                        </p>
+                    <% end %>
+                    <div class="shipping_info">
+                        <p class="shipping_date">お届け日：
+                            <% if @order.delivery_date == "指定なし" %>
+                                <%= @order.delivery_date %>
+                            <% else %>
+                                <%= Date.parse(@order.delivery_date).strftime("%Y/%m/%d(#{localized_day_of_week(Date.parse(@order.delivery_date))})") %>
+                            <% end %>
+                        </p>
+                        <p class="shipping_time">お届け時間：<%= @order.delivery_time %></p>
+                    </div>
+                </dd>
+            </dl>
+
+            <dl class="element payment_method-field">
+                <p class="control-label">お支払方法</p>
+                <dd class="element-form">
+                    <%= Order.payment_methods.key(params[:order][:payment_method].to_i) %>
+                </dd>
+            </dl>
+
+            <% if params[:order][:payment_method].to_i == Order.payment_methods["クレジット決済"] %>
+                <dl class="registered-credit-confirm">
+                    <p class="control-label">登録済クレジットカード決済</p>
+                    <% if @card_info %>
+                        <div class="card-registered element-form">
+                            <p class="card-info-registered"><span>カード番号：</span>************<%= @card_info.last4 %></p>
+                            <p class="card-info-registered"><span>有効期限：</span><%= @card_info.exp_year %>年<%= @card_info.exp_month %>月</p>
+                            <p class="card-info-registered"><span>名義人：</span><%= @card_info.name %></P>
                         </div>
-                    </dd>
+                    <% end %>
                 </dl>
+            <% end %>
 
-                <dl class="element payment_method-field">
-                    <p class="control-label">お支払方法</p>
-                    <dd class="element-form">
-                        <%= Order.payment_methods.key(params[:order][:payment_method].to_i) %>
-                    </dd>
-                </dl>
+            <%= form_with model: @order, url: orders_path(@order), local: true, data: { turbo: false } do |f| %>
 
-                <% if params[:order][:payment_method].to_i == Order.payment_methods["クレジット決済"] %>
-                    <dl class="registered-credit-confirm">
-                        <p class="control-label">登録済クレジットカード決済</p>
-                        <% if @card_info %>
-                            <div class="card-registered element-form">
-                                <p class="card-info-registered"><span>カード番号：</span>************<%= @card_info.last4 %></p>
-                                <p class="card-info-registered"><span>有効期限：</span><%= @card_info.exp_year %>年<%= @card_info.exp_month %>月</p>
-                                <p class="card-info-registered"><span>名義人：</span><%= @card_info.name %></P>
-                            </div>
-                        <% end %>
-                    </dl>
-                <% end %>
+                <%= f.hidden_field :user_id %> 
+                <%= f.hidden_field :name %>
+                <%= f.hidden_field :name_kana %>
+                <%= f.hidden_field :company %>
+                <%= f.hidden_field :postal_code %>
+                <%= f.hidden_field :prefecture_code %>
+                <%= f.hidden_field :city %>
+                <%= f.hidden_field :street_and_others %>
+                <%= f.hidden_field :tel %>
+                <%= f.hidden_field :commission %>
+                <%= f.hidden_field :postage %>
+                <%= f.hidden_field :billing_amount %>
+                <%= f.hidden_field :delivery_date %>
+                <%= f.hidden_field :delivery_time %>
+                <%= f.hidden_field :status %>
+                <%= f.hidden_field :payment_method, value: params[:order][:payment_method] %>
+                <%= f.hidden_field :card_id, value: params[:order][:card_id] %>
 
-        <%= form_with model: @order, url: orders_path(@order), local: true, data: { turbo: false } do |f| %>
-
-            <%= f.hidden_field :user_id %> 
-            <%= f.hidden_field :name %>
-            <%= f.hidden_field :name_kana %>
-            <%= f.hidden_field :company %>
-            <%= f.hidden_field :postal_code %>
-            <%= f.hidden_field :prefecture_code %>
-            <%= f.hidden_field :city %>
-            <%= f.hidden_field :street_and_others %>
-            <%= f.hidden_field :tel %>
-            <%= f.hidden_field :commission %>
-            <%= f.hidden_field :postage %>
-            <%= f.hidden_field :billing_amount %>
-            <%= f.hidden_field :delivery_date %>
-            <%= f.hidden_field :delivery_time %>
-            <%= f.hidden_field :status %>
-            <%= f.hidden_field :payment_method, value: params[:order][:payment_method] %>
-            <%= f.hidden_field :card_id, value: params[:order][:card_id] %>
-
-            <div class="ec-buttuons">
-                <div class="form-group actions">
-                    <%= f.submit "注文する", class: "btn btn-danger" %>
+                <div class="ec-buttuons">
+                    <div class="form-group actions">
+                        <%= f.submit "注文する", class: "btn btn-danger" %>
+                    </div>
+                    <div class="form-group actions">
+                        <%= f.submit "戻る", name: :back, class: "btn btn-secondary"%>
+                    </div>
                 </div>
-                <div class="form-group actions">
-                    <%= f.submit "戻る", name: :back, class: "btn btn-secondary"%>
-                </div>
-            </div>
-        <% end %>
+            <% end %>
+        </div>
     </div>
 </div>

@@ -40,6 +40,8 @@ class OrdersController < ApplicationController
                 customer = Payjp::Customer.retrieve(card.customer_id)
                 @card_info = customer.cards.retrieve(card.token_id)
             end
+        elsif params[:order][:payment_method].to_i == Order.payment_methods["代金引換"]
+            params[:order][:card_id] = ""
         end
 
         @order = Order.new(order_params)
@@ -52,8 +54,7 @@ class OrdersController < ApplicationController
         @user = current_user
         
         if params[:back] 
-            # redirect_to orders_path
-            if params[:order][:payment_method].to_i == 2
+            if params[:order][:payment_method].to_i == Order.payment_methods["代金引換"]
                 params[:order][:card_id] = ""
             end
             set_cart_items

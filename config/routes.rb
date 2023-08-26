@@ -38,12 +38,12 @@ Rails.application.routes.draw do
     get '/mypage/change', to: 'users/registrations#edit'
   end
 
-  # resources :orders, only: [:buy, :purchase]
   get '/orders', to: 'orders#new'
   post '/orders/confirm', to: 'orders#confirm'
+  get '/orders/confirm', to: redirect('/orders')
   post '/orders', to: 'orders#create'
   get '/orders/complete', to: 'orders#complete'
-  post '/orders', to: 'orders#create'
+  
   resources :shippings, only: [:create]
   get '/shippings/shipping_address', to: 'shippings#shipping_address'
   get '/shippings/new_address', to: 'shippings#new_address'
