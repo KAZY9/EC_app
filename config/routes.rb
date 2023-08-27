@@ -15,10 +15,16 @@ Rails.application.routes.draw do
         patch 'decrease'
       end
     end
+    get '/order_history', to: 'order_history#index'
+    get '/order_history/:id', to: 'order_history#show', as: :order_history_detail
   end
 
   namespace :admin do
     resources :products, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    get '/order_history', to: 'order_history#index'
+    get '/order_history/:id', to: 'order_history#show', as: :order_history_detail
+    get '/order_history/:id/edit', to: 'order_history#edit', as: :order_history_detail_edit
+    patch '/order_history/:id/update', to: 'order_history#update', as: :order_history_detail_update
   end
 
   devise_for :users, controllers: {
@@ -58,6 +64,7 @@ Rails.application.routes.draw do
 
   get 'search', to: 'searches#search'
   get 'filter_search', to: 'searches#filter_search'
+  get 'order_search', to: 'searches#order_search'
 
   get '/mypage/', to: 'pages#mypage'
   get '/pages/show', to: 'pages#show'

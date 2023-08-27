@@ -16,10 +16,10 @@
                     </a>
                 </li>
                 <li class="mypage-list">
-                    <a class="menu-icon" href="">
+                    <%= link_to order_history_path, class: "menu-icon" do %>
                         <i class="fa-regular fa-clipboard fa-3x mypage-icon"></i>
                         <span class="menu-name">注文履歴</span>
-                    </a>
+                    <% end %>
                 </li>
                 <li class="mypage-list">
                     <%= link_to favorites_path, class: "menu-icon" do %>

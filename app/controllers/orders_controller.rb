@@ -76,7 +76,7 @@ class OrdersController < ApplicationController
             if all_products_have_stock &&  @order.save
                 if params[:order][:card_id]
                     if checkout(@order.billing_amount)
-                        @order.status = :confirmed_payment
+                        @order.status = Order.statuses["支払済み"]
                         @order.save
                     end
                 end

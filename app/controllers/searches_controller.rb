@@ -22,5 +22,10 @@ class SearchesController < ApplicationController
             @products = @products.looks(params[:word]).page(params[:page]).per(12) if params[:word].present?
         end
     end
+
+    def order_search
+        order_number = params[:order_number]
+        @order = Order.includes(:order_details, order_details: :product).find_by(order_number: order_number)
+    end
 end
 
