@@ -35,6 +35,9 @@ ja:
         style: テイスト
         closure_method: 開閉方法
         images: 商品画像
+  time: 
+    formats: 
+      default: "%Y/%m/%d %H:%M:%S"
   errors:
     messages:
       not_found: 'が見つかりませんでした'

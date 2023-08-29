@@ -208,9 +208,9 @@
 
                 <%= f.hidden_field :user_id, value: @user.id %> 
                 <%= f.hidden_field :commission, value: 0 %>
-                <%= f.hidden_field :postage, value: 440 %>
+                <%= f.hidden_field :postage, value: 0 %>
                 <%= f.hidden_field :billing_amount, value: @total_price %>
-                <%= f.hidden_field :status, value: Order.statuses[:waiting_payment] %>
+                <%= f.hidden_field :status, value: Order.statuses["支払待ち"] %>
 
                 <div class="actions">
                     <%= f.submit "確認する", id: "submit-btn", class: "btn ec-blockBtn--action order-btn" %>

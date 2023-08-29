@@ -8,10 +8,10 @@ class Order < ApplicationRecord
     }
     
     enum :status, { 
-        waiting_payment: 1,
-        confirmed_payment: 2,
-        shipped: 3,
-        out_of_delivery: 4,
-        delivered: 5
+        "支払待ち": 1,
+        "支払済み": 2,
+        "発送済み": 3,
+        "配送中": 4,
+        "配送完了": 5
     }
 end

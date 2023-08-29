@@ -1,0 +1,2 @@
+module Customer::OrderHistoryHelper
+end

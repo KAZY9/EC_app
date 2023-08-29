@@ -1,0 +1,60 @@
+<div class="ec-mypageLayout">
+  <div class="ec-mypageBody">
+    <div class="ec-mypageBody-right">
+      <div class="userInfo-change-form" >
+        <div class="mypage-title">
+          <h2>注文履歴</h2>
+        </div>
+        
+        <div class="order-history-body">
+            <%= render 'searches/order_search' %>
+            <div class="order-history-info">
+                <% if @order %>
+                    <div class="order-info order-search">
+                        <div class="order-info1">
+                            <div class="order-date">
+                                注文日時：<%= l @order.created_at %>
+                            </div>
+                            <div class="order-number">
+                                注文番号：<%= @order.order_number %>
+                            </div>
+                            <div class="order-status">
+                                注文状況：<%= @order.status %>
+                            </div>
+
+                            <div class="order-detail-hisotory-btn">
+                                <%= link_to "詳細を見る", admin_order_history_detail_path(@order), id: "order-history-detail-link" %>
+                            </div>
+                        </div>
+
+                        <div class="order-info2">
+                            <% @order.order_details.each do |order_detail| %>
+                                <div class="order-product-detail">
+                                    <%= link_to product_path(order_detail.product_id), class: "product-link-order-history" do %>
+                                        <%= image_tag order_detail.product.images.first, class: "product-image-order-history" %>
+                                        <div class="order-product-name-price">
+                                            <div class="order-product-name">
+                                                <%= order_detail.product.name %>
+                                            </div>
+                                            <% end %>
+                                            <div class="order-product-price">
+                                                <%= number_to_currency(order_detail.product.taxin_price, strip_insignificant_zeros: true) %> × <%= order_detail.quantity %>
+                                            </div>
+                                        </div>
+                                </div>
+                            <% end %>
+
+                            <div class="total-amount">
+                                合計金額：<%= number_to_currency(@order.billing_amount, strip_insignificant_zeros: true) %>
+                            </div>
+                        </div>
+                    </div>
+                <% else %>
+                    <p>該当する注文が見つかりませんでした。</p>
+                <% end %>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+

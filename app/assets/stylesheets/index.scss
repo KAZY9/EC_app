@@ -124,7 +124,7 @@ ul li {
 }
 
 #link_admin_product_list_header, #link_admin_product_new_header,
-#link_admin_logout_header {
+#link_admin_logout_header, #link_admin_order_history_new_header {
   font-size: 15px;
   font-family: HiraMinProN-W6;
   font-weight: bold;
@@ -344,6 +344,11 @@ a {
 }
 
 .search-button {
+  background: none;
+  border: none;
+}
+
+.order-search-btn {
   background: none;
   border: none;
 }
@@ -844,7 +849,8 @@ li {
   padding: 20px 40px;
 }
 
-.btn-add-address, .btn-change-address, .btn-change-credit {
+.btn-add-address, .btn-change-address, .btn-change-credit, .order-detail-hisotory-btn,
+.order-history-update-btn {
   display: inline-block;
     margin-bottom: 0;
     font-weight: bold;
@@ -864,11 +870,12 @@ li {
     border-color: #ccc;
 }
 
-.btn-add-address:hover, .btn-change-address:hover, .btn-change-credit:hover {
+.btn-add-address:hover, .btn-change-address:hover, .btn-change-credit:hover, .order-detail-hisotory-btn:hover,
+.order-history-update-btn:hover {
   background-color: #D8E3EF;
 }
 
-#add_address_link, #change_address_link {
+#add_address_link, #change_address_link, #order-history-detail-link, #order-history-update-link {
   color: #525263;
 }
 
@@ -1064,6 +1071,109 @@ p {
     grid-template-columns: 1fr 1fr;
     width: 90%;
     margin: 25px auto 0;
+  }
+}
+
+/* 注文履歴ページ */
+.order-history-body {
+  width: 95%;
+  margin: 10px auto;
+}
+
+.order-history-info {
+  margin-top: 15px;
+}
+
+.order-info {
+  border-top: 1px dotted #ccc;
+  display: flex;
+  padding: 10px;
+}
+
+.order-info1 {
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.order-info2 {
+  padding: 10px;
+  flex-grow: 2;
+}
+
+.product-image-order-history {
+  width: 120px;
+  padding: 5px;
+}
+
+.order-product-name-price {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.order-product-detail {
+  border-top: 1px dotted #ccc;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.total-amount {
+  border-top: 1px dotted #ccc;
+  padding: 5px;
+}
+
+.order-history-paginate {
+  border-top: 1px dotted #ccc;
+  padding-top: 20px;
+}
+
+.order-history-detail-body {
+  margin-top: 10px !important;
+  width: 100% !important;
+}
+
+.order-history-update-btn {
+  margin-left: 10px;
+}
+
+.order-history-form {
+  width: 500px !important;
+}
+
+.order-detail-hisotory-btn {
+  margin-top: 20px;
+}
+
+.product-link-order-history {
+  color: var(--sumi);
+}
+
+.order-search {
+  border-bottom: 1px dotted #ccc !important;
+}
+
+.order-serach-form {
+  width: 150px;
+}
+
+.order-status-update-btn {
+  text-align: center;
+  margin: 15px auto;
+  width: 150px;
+}
+
+@media (max-width: 980px) {
+  .order-info {
+    display: block;
+  }
+
+  .order-status-update-btn {
+    width: 95%;
+  }
+
+  .order-history-cancel {
+    width: 95%;
   }
 }
 
