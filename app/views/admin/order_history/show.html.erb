@@ -38,7 +38,7 @@
                         <% if @order.present? %>
                             <%= @order.user.username %>
                             <% if @order.user.username_kana %>
-                                (<%= @user.user.username_kana%>)
+                                (<%= @order.user.username_kana%>)
                             <% end %><br>
                             <span>〒</span><%= @order.user.postal_code %>
                             <%= @order.user.prefecture_code %>
