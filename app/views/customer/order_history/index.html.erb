@@ -1,68 +1,69 @@
 <div class="ec-mypageLayout">
-  <div class="ec-mypageBody">
-    <%= render 'layouts/side_menu' %>
+    <div class="ec-mypageBody">
+        <%= render 'layouts/side_menu' %>
     
-    <div class="ec-mypageBody-right">
-      <div class="userInfo-change-form" >
-        <div class="mypageTop-link">
-          <%= link_to "< マイページTOP", mypage_path %>
-        </div>
-        <div class="mypage-title">
-          <h2>注文履歴</h2>
-        </div>
-        
-        <div class="order-history-body">
-            <% if @order_histories.empty? %>
-                <p>注文した商品がありません。</p>
-            <% else %>
-                <p><%= @order_histories.total_count %>件の注文履歴があります。</p>
-                <% @order_histories.each do |order_history| %>
-                    <div class="order-info">
-                        <div class="order-info1">
-                            <div class="order-date">
-                                注文日時：<%= l order_history.created_at %>
-                            </div>
-                            <div class="order-number">
-                                注文番号：<%= order_history.order_number %>
-                            </div>
-                            <div class="order-status">
-                                注文状況：<%= order_history.status %>
-                            </div>
-
-                            <div class="order-detail-hisotory-btn">
-                                <%= link_to "詳細を見る", order_history_detail_path(order_history), id: "order-history-detail-link" %>
-                            </div>
-                        </div>
-
-                        <div class="order-info2">
-                            <% order_history.order_details.each do |order_detail| %>
-                                <div class="order-product-detail">
-                                    <%= link_to product_path(order_detail.product_id), class: "product-link-order-history" do %>
-                                        <%= image_tag order_detail.product.images.first, class: "product-image-order-history" %>
-                                        <div class="order-product-name-price">
-                                            <div class="order-product-name">
-                                                <%= order_detail.product.name %>
-                                            </div>
-                                            <% end %>
-                                            <div class="order-product-price">
-                                                <%= number_to_currency(order_detail.product.taxin_price, strip_insignificant_zeros: true) %> × <%= order_detail.quantity %>
-                                            </div>
-                                        </div>
-                                </div>
-                            <% end %>
-
-                            <div class="total-amount">
-                                合計金額：<%= number_to_currency(order_history.billing_amount, strip_insignificant_zeros: true) %>
-                            </div>
-                        </div>
-                    </div>
-                <% end %>
-                <div class="order-history-paginate">
-                    <%= paginate @order_histories %>
+        <div class="ec-mypageBody-right">
+            <div class="userInfo-change-form" >
+                <div class="mypageTop-link">
+                    <%= link_to "< マイページTOP", mypage_path %>
                 </div>
-            <% end %>
+                <div class="mypage-title">
+                    <h2>注文履歴</h2>
+                </div>
+            
+                <div class="order-history-body">
+                    <% if @order_histories.empty? %>
+                        <p>注文した商品がありません。</p>
+                    <% else %>
+                        <p><%= @order_histories.total_count %>件の注文履歴があります。</p>
+                        <% @order_histories.each do |order_history| %>
+                            <div class="order-info">
+                                <div class="order-info1">
+                                    <div class="order-date">
+                                        注文日時：<%= l order_history.created_at %>
+                                    </div>
+                                    <div class="order-number">
+                                        注文番号：<%= order_history.order_number %>
+                                    </div>
+                                    <div class="order-status">
+                                        注文状況：<%= order_history.status %>
+                                    </div>
+
+                                    <div class="order-detail-hisotory-btn">
+                                        <%= link_to "詳細を見る", order_history_detail_path(order_history), id: "order-history-detail-link" %>
+                                    </div>
+                                </div>
+
+                                <div class="order-info2">
+                                    <% order_history.order_details.each do |order_detail| %>
+                                        <div class="order-product-detail">
+                                            <%= link_to product_path(order_detail.product_id), class: "product-link-order-history" do %>
+                                                <%= image_tag order_detail.product.images.first, class: "product-image-order-history" %>
+                                                <div class="order-product-name-price">
+                                                    <div class="order-product-name">
+                                                        <%= order_detail.product.name %>
+                                                    </div>
+                                                    <% end %>
+                                                    <div class="order-product-price">
+                                                        <%= number_to_currency(order_detail.product.taxin_price, strip_insignificant_zeros: true) %> × <%= order_detail.quantity %>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    <% end %>
+
+                                    <div class="total-amount">
+                                        合計金額：<%= number_to_currency(order_history.billing_amount, strip_insignificant_zeros: true) %>
+                                    </div>
+                                </div>
+                            </div>
+                        <% end %>
+                        <div class="order-history-paginate">
+                            <%= paginate @order_histories %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
         </div>
     </div>
-  </div>
 </div>
 

@@ -1,0 +1,29 @@
+<footer>
+    <div class="ec-footerRole">
+        <div class="footer-body">
+            <div class="footer-product-category">
+                <h5 class="product-category-title">商品カテゴリー</h3>
+                <% @categories.each do |category| %>
+                    <%= link_to category.name, products_list_path(category_id: category.id), id: "footer-link", class: "category-menu-link" %>
+                <% end %>
+            </div>
+            <div class="footer-menu-link" >
+                <%= link_to "会社概要", "#", id: "footer-link" %>
+                <%= link_to "プライバシポリシー", "#", id: "footer-link" %>
+                <%= link_to "特定商取引に基づく表示", "#", id: "footer-link" %>
+                <%= link_to "ご利用規約", "#", id: "footer-link" %>
+                <%= link_to "お問い合わせ", "#", id: "footer-link" %>
+            </div>
+            <div class="footer-menu-link">
+                <%= link_to "カートを見る", customer_carts_index_path, id: "footer-link" %>
+                <%= link_to "新規会員登録", sign_up_path, id: "footer-link" %>
+                <%= link_to "お気に入り", favorites_path, id: "footer-link" %>
+                <%= link_to "ログイン", mypage_login_path, id: "footer-link" %>     
+                <%= link_to "ショッピングガイド", "#", id: "footer-link" %>           
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="copyright_title">Copyright©Online Store All Rights Reserved.</div>
+        </div>
+    </div>
+</footer>

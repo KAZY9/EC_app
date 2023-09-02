@@ -15,19 +15,19 @@ User.create!(
     admin: true
   )
 
-  User.create!(
-    username: "山田太郎",
-    postal_code: "1008111",
-    prefecture_code: "東京都",
-    city: "千代田区千代田",
-    street_and_others: "１－１宮内庁",
-    tel: "08011112222",
-    email: "gi09ty01@gmail.com",
-    password: "Passw0rd1!",
-    password_confirmation: "Passw0rd1!",
-    agreement: true,
-    admin: false
-  )
+User.create!(
+  username: "山田太郎",
+  postal_code: "1008111",
+  prefecture_code: "東京都",
+  city: "千代田区千代田",
+  street_and_others: "１－１宮内庁",
+  tel: "08011112222",
+  email: "gi09ty01@gmail.com",
+  password: "Passw0rd1!",
+  password_confirmation: "Passw0rd1!",
+  agreement: true,
+  admin: false
+)
 
 
 #商品データを追加
@@ -42,7 +42,8 @@ User.create!(
                     shape: SHAPE.sample,
                     carrying_style: CARRYING_STYLE.sample,
                     style: STYLE.sample,
-                    closure_method: CLOSURE_METHOD.sample
+                    closure_method: CLOSURE_METHOD.sample,
+                    category_id: Faker::Number.between(from: 2, to: 4)
                 )
     product.images.attach(io: File.open(Rails.root.join('app/assets/images/snowman01.webp')),
                         filename: 'snowman01.webp')
@@ -70,4 +71,15 @@ for tax in taxes
     rate: tax[0],
     start_date: tax[1],
     end_date: tax[2])
+end
+
+#商品カテゴリーを追加
+product_categories = [["全てのバッグ"],
+                     ["ショルダーバッグ"],
+                     ["リュックサック(バックパック)"],
+                     ["トートバッグ"]]
+for product_category in product_categories
+  Category.create!(
+    name: product_category[0]
+  )
 end

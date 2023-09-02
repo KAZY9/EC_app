@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get 'carts/index'
   end
   scope module: :customer do
+    get 'products/list', to: 'products#product_list'
     resources :products, only: [:show] do
       resource :favorites, only: [:create, :destroy]
       delete 'destroy_favorite_item', to: 'favorites#destroy_favorite_item', as: 'destroy_favorite_item'
