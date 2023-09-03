@@ -1,0 +1,28 @@
+<div class="products-list">
+    <%= render 'searches/filter_search'%>
+    <div class="product-list-body">
+        <div class="hot-products-whole">
+            <div class="products-list-normal">
+                <p class="search-result">
+                    <%= @category.name %>
+                </p>
+            </div>
+            <% if @products.nil? || @products.empty? %>
+                <p class="product-mssg-customer">商品が登録されていません</p>
+            <% else %>
+                <div class="product-list-category">
+                    <% @products.each do |product| %>
+                        <div class="product-item-category">
+                            <%= link_to product_path(product) do %>
+                                <%= image_tag product.images.first, class: "product-image-customer" %>
+                                <p class="product-name-index"><%= product.name %></p>
+                                <p class="product-price-index"><%= number_to_currency(product.taxin_price, strip_insignificant_zeros: true) %><span class="taxin-customer">(税込)</span></p>
+                            <% end %>
+                        </div>
+                    <% end %>
+                </div>
+                <div class="category-paginate"><%= paginate @products %></div>
+            <% end %>
+        </div>
+   </div>
+</div>

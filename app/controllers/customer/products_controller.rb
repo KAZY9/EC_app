@@ -23,4 +23,15 @@ class Customer::ProductsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def product_list   
+    if params[:category_id].present?
+      @category = Category.find(params[:category_id])
+      if params[:category_id].to_i == 1
+        @products = Product.all.page(params[:page]).per(12)
+      else
+        @products = Product.where(category_id: params[:category_id]).page(params[:page]).per(12)
+      end
+    end
+  end
 end
