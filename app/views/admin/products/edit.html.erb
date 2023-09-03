@@ -142,6 +142,32 @@
                         </div>
                     </dd>
                 </dl>
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :category_id, "カテゴリー", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form checkbox-field">
+                        <div class="ec-field">
+                            <div class="check_box">
+                                <%= f.select :category_id, Product.category_ids, { selected: Product.category_ids[@product.category_id], prompt: '選択してください'}, class: "form-select w75" %>
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
+                <dl class="element">
+                    <dt class="element-label">
+                        <%= f.label :closure_method, "公開設定", class: "control-label" %>
+                        <span class="ec-required">必須</span>
+                    </dt>
+                    <dd class="element-form checkbox-field">
+                        <div class="ec-field">
+                            <div class="check_box">
+                                <%= f.select :release_flag, Product.release_flags, { selected: Product.release_flags[@product.release_flag], prompt: '選択してください'}, class: "form-select w75" %>
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
             </div>
             <div class="form-group actions">
                 <%= f.submit class: "btn btn-secondary" %>

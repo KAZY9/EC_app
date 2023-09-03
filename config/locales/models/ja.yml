@@ -35,6 +35,7 @@ ja:
         style: テイスト
         closure_method: 開閉方法
         images: 商品画像
+        release_flag: 公開設定
   time: 
     formats: 
       default: "%Y/%m/%d %H:%M:%S"

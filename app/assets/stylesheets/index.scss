@@ -124,7 +124,7 @@ ul li {
 }
 
 #link_admin_product_list_header, #link_admin_product_new_header,
-#link_admin_logout_header, #link_admin_order_history_new_header {
+#link_admin_logout_header, #link_admin_order_history_head {
   font-size: 15px;
   font-family: HiraMinProN-W6;
   font-weight: bold;
@@ -210,7 +210,8 @@ a {
 
 #link_top, #link_mypage, #link_cart, #link_favorite, 
 #link_order_history, #link_login, #link_sign_up,
-#link_logout, #link_admin_product_list, #link_admin_product_new  {
+#link_logout, #link_admin_product_list, #link_admin_product_new,
+#link_admin_order_history {
   display: block;
   color: rgb(100, 100, 100);
   font-family: 'Zen Antique', serif;
@@ -219,7 +220,8 @@ a {
 
 #link_top:hover, #link_mypage:hover, #link_cart:hover, #link_favorite:hover, 
 #link_order_history:hover, #link_login:hover, #link_sign_up:hover,
-#link_logout:hover, #link_admin_product_list:hover, #link_admin_product_new:hover {
+#link_logout:hover, #link_admin_product_list:hover, #link_admin_product_new:hover,
+#link_admin_order_history:hover {
   color: #337ab7;
 }
 
@@ -2107,7 +2109,7 @@ h4 {
   margin-top: 10px;
 }
 
-.product-imageAndName, .price, .createdAt, .updatedAt, .dummy {
+.product-imageAndName, .price, .createdAt, .updatedAt, .releaseFlag, .dummy {
   padding-left: 10px;
   width: 20%;
 }
@@ -2460,7 +2462,8 @@ button {
 }
 
 .product-color, .product-stock, .product-brand, .product-shape, .product-carrying_style,
-.roduct-carrying_style, .product-style, .product-closure_method, .product-quantity {
+.roduct-carrying_style, .product-style, .product-closure_method, .product-quantity,
+.product-release_flag, .product-category {
   display: flex;
   align-items: center;
   font-size: 20px;

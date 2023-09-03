@@ -1,6 +1,6 @@
 class Customer::ProductsController < ApplicationController
   def index
-    @products_latest = Product.latest.limit(10)
+    @products_latest = Product.where(release_flag: 0).latest.limit(10)
     latest_product_ids = @products_latest.pluck(:id)
 
     # @products_recommend = Product.limit(10)
@@ -28,9 +28,9 @@ class Customer::ProductsController < ApplicationController
     if params[:category_id].present?
       @category = Category.find(params[:category_id])
       if params[:category_id].to_i == 1
-        @products = Product.all.page(params[:page]).per(12)
+        @products = Product.where(release_flag: 0).page(params[:page]).per(12)
       else
-        @products = Product.where(category_id: params[:category_id]).page(params[:page]).per(12)
+        @products = Product.where(category_id: params[:category_id], release_flag: 0).page(params[:page]).per(12)
       end
     end
   end

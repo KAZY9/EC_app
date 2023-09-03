@@ -47,10 +47,13 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :stock, :color, :brand, :shape, 
-                                    :carrying_style, :closure_method, :style, images: [])
+    pp = params.require(:product).permit(:name, :description, :price, :stock, :color, :brand, :shape, 
+                                    :carrying_style, :closure_method, :style, :release_flag, 
+                                    :category_id, images: [])
+    pp[:release_flag] = params[:product][:release_flag].to_i
+    pp[:category_id] = params[:product][:category_id].to_i
+    return pp
   end
-  
 
   def set_product
     @product = Product.find(params[:id])

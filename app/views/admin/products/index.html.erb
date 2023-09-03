@@ -17,6 +17,7 @@
           <th class="price">価格</th>
           <th class="createdAt">作成日</th>
           <th class="updatedAt">更新日</th>
+          <th class="releaseFlag">公開設定</th>
           <th class="dummy"></th>
         </tr>
       </thead>
@@ -49,6 +50,9 @@
               </td>
               <td class="products-admin-list-item">
                 <span><%= l product.updated_at, format: :short %></span>
+              </td>
+              <td class="products-admin-list-item">
+                <span><%= product.release_flag %></span>
               </td>
               <td class="products-admin-list-item">
                 <%= link_to edit_admin_product_path(product), class: "product-edit-link" do %>
