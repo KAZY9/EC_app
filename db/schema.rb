@@ -134,7 +134,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_03_070018) do
     t.string "style", null: false
     t.string "closure_method", null: false
     t.integer "category_id", null: false
-    t.integer "release_flag", null: false
+    t.integer "release_flag", default: 0, null: false
   end
 
   create_table "shippings", charset: "utf8mb3", force: :cascade do |t|
