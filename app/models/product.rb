@@ -14,9 +14,23 @@ class Product < ApplicationRecord
       validates :carrying_style
       validates :style
       validates :closure_method
-      # validates :images
+      validates :images
+      validates :release_flag
+      validates :category_id
   end
   validate :validate_images_count, :validate_image_file_size
+
+  enum :category_id, {
+    "未設定": 0,
+    "ショルダーバッグ": 1,
+    "リュックサック(バックパック)": 2,
+    "トートバッグ": 3
+  } 
+
+  enum :release_flag, {
+    "公開": 0,
+    "非公開": 1
+  } 
 
   def taxin_price
     current_date = Time.zone.now

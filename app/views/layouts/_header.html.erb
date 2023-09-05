@@ -25,7 +25,7 @@
                     <% if current_user && current_user.admin? %>
                         <li><%= link_to "商品一覧(管理)", admin_products_path, id: "link_admin_product_list_header" %></li>
                         <li><%= link_to "商品登録", new_admin_product_path, id: "link_admin_product_new_header" %></li>
-                        <li><%= link_to "注文履歴(管理)", admin_order_history_path, id: "link_admin_order_history_new_header" %></li>
+                        <li><%= link_to "注文履歴(管理)", admin_order_history_path, id: "link_admin_order_history_head" %></li>
                         <li><%= link_to "ログアウト", destroy_user_session_path, id: "link_admin_logout_header" %></li>
                     <% else %>
                         <li>
@@ -61,7 +61,7 @@
                         <% if current_user && current_user.admin? && !(current_user == @user) %>
                             <li><%= link_to "商品一覧", admin_products_path, id: "link_admin_product_list" %></li>
                             <li><%= link_to "商品登録", new_admin_product_path, id: "link_admin_product_new" %></li>
-                             <li><%= link_to "注文履歴(管理)", admin_order_history_path, id: "link_admin_order_history_new_header" %></li>
+                             <li><%= link_to "注文履歴(管理)", admin_order_history_path, id: "link_admin_order_history" %></li>
                         <% else %> 
                             <li><%= link_to "TOP", root_path, id: "link_top" %></li>
                             <li><%= link_to "マイページ", mypage_path, id: "link_mypage" %></li>

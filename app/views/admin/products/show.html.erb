@@ -52,6 +52,14 @@
                 <p>開閉方法：</p>
                 <p><%= @product.closure_method %></p>
             </div>
+             <div class="product-category">
+                <p>カテゴリー：</p>
+                <p><%= @product.category_id %></p>
+            </div>
+            <div class="product-release_flag">
+                <p>公開設定：</p>
+                <p><%= @product.release_flag %></p>
+            </div>
              <div class="editAndList-link">
               <%= link_to edit_admin_product_path(@product), class: "product-edit-link" do %>
                 商品の編集
