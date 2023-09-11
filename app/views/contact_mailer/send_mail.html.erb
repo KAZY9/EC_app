@@ -2,7 +2,7 @@
 <% if @contact.tel.present? %>
     【Tel】<%= @contact.tel %><br>
 <% end %>
-<% if @contact.postal_code.present? || @contact.prefecture_code.present? || @contact.city.present? || @contact.street_and_others.present? %>
+<% if @contact.postal_code.present? && @contact.prefecture_code.present? && @contact.city.present? && @contact.street_and_others.present? %>
     【住所】<br>
     &nbsp;〒<%= @contact.postal_code %><br>
     &nbsp;<%= @contact.prefecture_code %><br>
