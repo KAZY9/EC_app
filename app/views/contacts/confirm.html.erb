@@ -1,0 +1,111 @@
+<div class="ec-wholePage">
+  <div class="ec-pageHeader">
+    <h2 class="title">お問い合わせ内容確認</h2>
+  </div>
+
+  <div class="ec-formBody">
+      <div class="ec-borderedDefs">
+        <dl class="element">
+          <dt class="element-label">
+            <label class="control-label">お名前</label>
+            <span class="ec-required">必須</span>
+          </dt>
+          <dd class="element-form">
+            <div class="output">
+              <%= @contact.name %>
+            </div>
+          </dd>
+        </dl>
+
+        <dl class="element">
+          <dt class="element-label">
+            <label class="control-label">お名前(カナ)</label>
+          </dt>
+          <dd class="element-form">
+            <div class="output">
+              <%= @contact.name_kana %>
+            </div>
+          </dd>
+        </dl>
+
+        <dl class="element">
+          <dt class="element-label">
+            <label class="control-label">住所</label>
+          </dt>
+          <dd class="element-form">
+            <div class="output">
+                〒<%= @contact.postal_code %><br /><%= @contact.prefecture_code %><br /><%= @contact.city %><br /><%= @contact.street_and_others %>
+            </div>
+          </dd> 
+        </dl>
+
+        <dl class="element">
+          <dt class="element-label">
+            <label class="control-label">メールアドレス</label>
+            <span class="ec-required">必須</span>
+          </dt>
+          <dd class="element-form">
+            <div class="output">
+              <%= @contact.email %>
+            </div>
+          </dd>
+        </dl>
+
+        <dl class="element">
+          <dt class="element-label">
+            <label class="control-label">電話番号</label>
+          </dt>
+          <dd class="element-form">
+            <div class="output">
+              <%= @contact.tel %>
+            </div>
+          </dd>
+        </dl>
+
+        <dl class="element">
+          <dt class="element-label">
+            <label class="control-label">タイトル</label>
+            <span class="ec-required">必須</span>
+          </dt>
+          <dd class="element-form">
+            <div class="output">
+              <%= @contact.subject %>
+            </div>
+          </dd>
+        </dl>
+
+        <dl class="element">
+          <dt class="element-label">
+            <label class="control-label">お問い合わせ内容</label>
+            <span class="ec-required">必須</span>
+          </dt>
+          <dd class="element-form">
+            <div class="output">
+              <%= @contact.message %>
+            </div>
+          </dd>
+        </dl>
+    </div>
+    <%= form_with model: @contact, url: contact_path(@contact), local: true, data: { turbo: false }, html: { class: "entry-form" } do |f| %>  
+        <%= f.hidden_field :name %>
+        <%= f.hidden_field :name_kana %>
+        <%= f.hidden_field :postal_code %>
+        <%= f.hidden_field :prefecture_code %>
+        <%= f.hidden_field :city %>
+        <%= f.hidden_field :street_and_others %>
+        <%= f.hidden_field :email %>
+        <%= f.hidden_field :tel %>
+        <%= f.hidden_field :subject %>
+        <%= f.hidden_field :message %>
+
+        <div class="ec-buttuons">
+            <div class="form-group actions">
+                <%= f.submit "送信する", class: "btn btn-danger" %>
+            </div>
+            <div class="form-group actions">
+                <%= f.submit "戻る", name: :back, class: "btn btn-secondary"%>
+            </div>
+        </div>
+    <% end %>
+  </div>
+</div>

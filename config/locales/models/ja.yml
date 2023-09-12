@@ -36,6 +36,13 @@ ja:
         closure_method: 開閉方法
         images: 商品画像
         release_flag: 公開設定
+      contact:
+        name: お名前
+        postal_code: 郵便番号
+        tel: 電話番号
+        email: メールアドレス
+        subject: タイトル
+        message: お問い合わせ内容
   time: 
     formats: 
       default: "%Y/%m/%d %H:%M:%S"

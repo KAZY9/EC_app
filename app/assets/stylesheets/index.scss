@@ -10,6 +10,10 @@
   width: 95% !important;
 }
 
+.h200 {
+  height: 200px !important;
+}
+
 .w-150px {
   width: 150px !important;
 }
@@ -2882,4 +2886,10 @@ button {
 
 .pagination {
   justify-content: center;
+}
+
+/* お問い合わせ */
+
+.message-element {
+  border-bottom: 1px dotted #ccc;
 }

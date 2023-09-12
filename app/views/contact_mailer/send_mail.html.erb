@@ -1,0 +1,15 @@
+<%= @contact.name %> 様 から問い合わせがありました。<br>
+<% if @contact.tel.present? %>
+    【Tel】<%= @contact.tel %><br>
+<% end %>
+<% if @contact.postal_code.present? && @contact.prefecture_code.present? && @contact.city.present? && @contact.street_and_others.present? %>
+    【住所】<br>
+    &nbsp;〒<%= @contact.postal_code %><br>
+    &nbsp;<%= @contact.prefecture_code %><br>
+    &nbsp;<%= @contact.city %><br>
+    &nbsp;<%= @contact.street_and_others %><br>
+<% end %>
+【email】<%= @contact.email %><br>
+【用件】<%= @contact.subject %><br>
+【お問い合わせ内容】<br>
+&nbsp;<%= @contact.message %>

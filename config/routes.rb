@@ -67,6 +67,12 @@ Rails.application.routes.draw do
   get 'filter_search', to: 'searches#filter_search'
   get 'order_search', to: 'searches#order_search'
 
+  get '/contact', to: 'contacts#new'
+  post '/contact/confirm', to: 'contacts#confirm'
+  get '/contact/confirm', to: redirect('/contact')
+  post '/contact', to: 'contacts#create'
+  get '/contact/complete', to: 'contacts#complete'
+
   get '/mypage/', to: 'pages#mypage'
   get '/pages/show', to: 'pages#show'
 
