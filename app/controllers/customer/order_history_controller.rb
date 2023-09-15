@@ -1,5 +1,5 @@
 class Customer::OrderHistoryController < ApplicationController
-    before_action :authenticate_user!
+    before_action :sign_in_required
     before_action :is_admin?
 
     def index

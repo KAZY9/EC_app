@@ -1,114 +1,123 @@
-<div class="ec-cart-page">
-    <div class="cart-page-body" >
-        <div class="cart-title">
-          <h2>ショッピングカート</h2>
-        </div>
+<div class="ec-mypageLayout">
+    <div class="ec-mypageBody">
+        <%= render 'layouts/side_menu' %>
 
-        <div class="ec-cartRole__progress">
-            <ul class="ec-progress">
-                <li class="ec-progress__item is-complete">
-                    <div class="ec-progress__number">1</div>
-                    <div class="ec-progress__label">カートの商品</div>
-                </li>
-                <li class="ec-progress__item">
-                    <div class="ec-progress__number">2</div>
-                    <div class="ec-progress__label">ご注文手続き</div>
-                </li>
-                <li class="ec-progress__item">
-                    <div class="ec-progress__number">3</div>
-                    <div class="ec-progress__label">ご注文内容確認</div>
-                </li>
-                <li class="ec-progress__item">
-                    <div class="ec-progress__number">4</div>
-                    <div class="ec-progress__label">注文完了</div>
-                </li>
-            </ul>
-        </div>
+        <div class="ec-mypageBody-right">
+            <div class="userInfo-change-form" >
+                <div class="mypageTop-link">
+                    <%= link_to "< マイページTOP", mypage_path %>
+                </div>
+                <div class="mypage-title">
+                    <h2>ショッピングカート</h2>
+                </div>
 
-        <div class="cart-contents">
-            <% if @cart_list.empty? || @cart_list.nil? %>
-                <div class="ec-alert-warning-box">
-                    <div class="ec-alert-warning">
-                        <p class="ec-alert-warning__text">
-                            <span><i class="fa-solid fa-triangle-exclamation"></i></span>
-                            現在カート内に商品はございません。
-                        </p>
-                    </div>
+                <div class="ec-cartRole__progress">
+                    <ul class="ec-progress">
+                        <li class="ec-progress__item is-complete">
+                            <div class="ec-progress__number">1</div>
+                            <div class="ec-progress__label">カートの商品</div>
+                        </li>
+                        <li class="ec-progress__item">
+                            <div class="ec-progress__number">2</div>
+                            <div class="ec-progress__label">ご注文手続き</div>
+                        </li>
+                        <li class="ec-progress__item">
+                            <div class="ec-progress__number">3</div>
+                            <div class="ec-progress__label">ご注文内容確認</div>
+                        </li>
+                        <li class="ec-progress__item">
+                            <div class="ec-progress__number">4</div>
+                            <div class="ec-progress__label">注文完了</div>
+                        </li>
+                    </ul>
                 </div>
-            <% else %>
-                <p class="total-price-mssg">商品の合計金額は「<span><%= number_to_currency(@total_price, strip_insignificant_zeros: true) %></span>」です。</p>
-                <table class="products-items">
-                    <thead class="product-title">
-                        <tr>
-                            <th class="product-delete-title">削除</th>
-                            <th class="product-info-title">商品内容</th>
-                            <th class="cart-quantity-title">数量</th>
-                            <th class="cart-subtotal-title">小計</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% @cart_list.each do |cart_item|  %>
-                            <tr class="product-cart">
-                                <td class="product-delete">
-                                    <%=  button_to cart_path(cart_item.id), method: :delete, remote: true, form: { onSubmit: "return confirmDelete();"}, id: "delete_btn-cart" do %>
-                                        <i class="fa-solid fa-xmark fa-lg" style="color: #85898e;"></i>
-                                    <% end %>
-                                </td>
-                                <td class="product-info">
-                                    <%=  link_to product_path(cart_item.product_id) do %>
-                                        <%= image_tag cart_item.product.images.first, class: "product-image-cart" %>
-                                    <% end %>
-                                    <div class="product-name_and_color">
-                                        <%=  link_to product_path(cart_item.product_id) do %>
-                                            <p class="product-name-cart"><%= cart_item.product.name %></p>
-                                        <% end %>
-                                        <p class="product-color-cart"><%= cart_item.product.color %></p>
-                                        <p class="product-price-cart"><%= number_to_currency(cart_item.product.taxin_price, strip_insignificant_zeros: true) %></p>
-                                        <p class="product-subtotal-cart">小計：<%= number_to_currency(cart_item.sum_of_price, strip_insignificant_zeros: true) %></p>
-                                    </div>
-                                </td>
-                                <td class="cart-quantity">
-                                    <div class="item-quantity">
-                                        <span class="quantity_number"><span class="quantity-title">数量：</span><%= cart_item.quantity %></span>
-                                        <div class="quantity-change_btn">
-                                            <% unless cart_item.quantity <= 1 %>
-                                                <%= link_to decrease_cart_path(cart_item), data: { "turbo-method": :patch }, class: "decrease_btn" do %>
-                                                    <i class="fa-solid fa-minus" style="color: #333333;"></i>
-                                                <% end %>
-                                            <% else %>
-                                                <button class="decrease_btn">
-                                                    <i class="fa-solid fa-minus" style="color: #85898e;"></i>
-                                                </button>
+
+                <div class="cart-contents">
+                    <% if @cart_list.empty? || @cart_list.nil? %>
+                        <div class="ec-alert-warning-box">
+                            <div class="ec-alert-warning">
+                                <p class="ec-alert-warning__text">
+                                    <span><i class="fa-solid fa-triangle-exclamation"></i></span>
+                                    現在カート内に商品はございません。
+                                </p>
+                            </div>
+                        </div>
+                    <% else %>
+                        <p class="total-price-mssg">商品の合計金額は「<span><%= number_to_currency(@total_price, strip_insignificant_zeros: true) %></span>」です。</p>
+                        <table class="products-items">
+                            <thead class="product-title">
+                                <tr>
+                                    <th class="product-delete-title">削除</th>
+                                    <th class="product-info-title">商品内容</th>
+                                    <th class="cart-quantity-title">数量</th>
+                                    <th class="cart-subtotal-title">小計</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @cart_list.each do |cart_item|  %>
+                                    <tr class="product-cart">
+                                        <td class="product-delete">
+                                            <%=  button_to cart_path(cart_item.id), method: :delete, remote: true, form: { onSubmit: "return confirmDelete();"}, id: "delete_btn-cart" do %>
+                                                <i class="fa-solid fa-xmark fa-lg" style="color: #85898e;"></i>
                                             <% end %>
-                                            <% unless cart_item.quantity >= cart_item.product.stock %>
-                                                <%= link_to increase_cart_path(cart_item), data: { "turbo-method": :patch }, class: "increase_btn" do %>
-                                                    <i class="fa-solid fa-plus" style="color: #333333;"></i>
-                                                <% end %>
-                                            <% else %>
-                                                <button class="increase_btn">
-                                                    <i class="fa-solid fa-plus" style="color: #85898e;"></i>
-                                                </button>
+                                        </td>
+                                        <td class="product-info">
+                                            <%=  link_to product_path(cart_item.product_id) do %>
+                                                <%= image_tag cart_item.product.images.first, class: "product-image-cart" %>
                                             <% end %>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="cart-subtotal">
-                                    <p class="subtotal_number">
-                                        <%= number_to_currency(cart_item.sum_of_price, strip_insignificant_zeros: true) %>
-                                    </p>
-                                </td>
-                            </tr>
-                        <% end %>
-                    </tbody>
-                </table>
-                <div class="ec-cartRole_actions">
-                    <div class="ec-cartRole__total">
-                        合計：<span class="ec-cartRole__totalAmount"><%= number_to_currency(@total_price, strip_insignificant_zeros: true) %></span>
-                    </div>
-                    <%= link_to "レジに進む", orders_path, class: "ec-blockBtn--action" %>
-                    <%= link_to "お買い物を続ける", root_path, class: "ec-blockBtn--cancel" %>
+                                            <div class="product-name_and_color">
+                                                <%=  link_to product_path(cart_item.product_id) do %>
+                                                    <p class="product-name-cart"><%= cart_item.product.name %></p>
+                                                <% end %>
+                                                <p class="product-color-cart"><%= cart_item.product.color %></p>
+                                                <p class="product-price-cart"><%= number_to_currency(cart_item.product.taxin_price, strip_insignificant_zeros: true) %></p>
+                                                <p class="product-subtotal-cart">小計：<%= number_to_currency(cart_item.sum_of_price, strip_insignificant_zeros: true) %></p>
+                                            </div>
+                                        </td>
+                                        <td class="cart-quantity">
+                                            <div class="item-quantity">
+                                                <span class="quantity_number"><span class="quantity-title">数量：</span><%= cart_item.quantity %></span>
+                                                <div class="quantity-change_btn">
+                                                    <% unless cart_item.quantity <= 1 %>
+                                                        <%= link_to decrease_cart_path(cart_item), data: { "turbo-method": :patch }, class: "decrease_btn" do %>
+                                                            <i class="fa-solid fa-minus" style="color: #333333;"></i>
+                                                        <% end %>
+                                                    <% else %>
+                                                        <button class="decrease_btn">
+                                                            <i class="fa-solid fa-minus" style="color: #85898e;"></i>
+                                                        </button>
+                                                    <% end %>
+                                                    <% unless cart_item.quantity >= cart_item.product.stock %>
+                                                        <%= link_to increase_cart_path(cart_item), data: { "turbo-method": :patch }, class: "increase_btn" do %>
+                                                            <i class="fa-solid fa-plus" style="color: #333333;"></i>
+                                                        <% end %>
+                                                    <% else %>
+                                                        <button class="increase_btn">
+                                                            <i class="fa-solid fa-plus" style="color: #85898e;"></i>
+                                                        </button>
+                                                    <% end %>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="cart-subtotal">
+                                            <p class="subtotal_number">
+                                                <%= number_to_currency(cart_item.sum_of_price, strip_insignificant_zeros: true) %>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                        <div class="ec-cartRole_actions">
+                            <div class="ec-cartRole__total">
+                                合計：<span class="ec-cartRole__totalAmount"><%= number_to_currency(@total_price, strip_insignificant_zeros: true) %></span>
+                            </div>
+                            <%= link_to "レジに進む", orders_path, class: "ec-blockBtn--action" %>
+                            <%= link_to "お買い物を続ける", root_path, class: "ec-blockBtn--cancel" %>
+                        </div>
+                    <% end %>
                 </div>
-            <% end %>
+            </div>
         </div>
     </div>
 </div>
