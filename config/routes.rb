@@ -74,7 +74,8 @@ Rails.application.routes.draw do
   get '/contact/complete', to: 'contacts#complete'
 
   get '/mypage/', to: 'pages#mypage'
-  get '/pages/show', to: 'pages#show'
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # 未定義のURLリクエストが来た場合に全て 'products#index' にリダイレクト
+  get '*path', to: redirect('/'), constraints: ->(req) { req.path.exclude? 'rails/active_storage' }
+
 end

@@ -1,5 +1,5 @@
 class Customer::CartsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :sign_in_required
   before_action :set_cart_item, only: [:increase, :decrease, :destroy]
 
   def index

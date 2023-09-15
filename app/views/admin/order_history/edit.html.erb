@@ -1,128 +1,123 @@
-<div class="ec-mypageLayout">
-  <div class="ec-mypageBody">
-    <div class="ec-mypageBody-right">
-      <div class="userInfo-change-form" >
-        <div class="mypage-title">
-          <h2>注文履歴詳細</h2>
-        </div>
+<div class="ec-admin-product">      
+    <div class="product-register-header">
+        <h2 class="title">注文履歴詳細</h2>
+    </div>
         
-        <div class="order-history-body">
-            <div class="ec-borderedDefs order-history-detail-body">
-                <%= form_with model: @order, url: admin_order_history_detail_update_url(@order) , local: true, data: { turbo: false }, class: "product-update-form"  do |f| %>
-                    <dl class="element">
-                        <p class="control-label">注文日時</p>
-                        <dd class="element-form order-history-form">
-                            <%= l @order.created_at %>
-                        </dd>
-                    </dl>
+    <div class="admin-pro-body">
+        <div class="ec-borderedDefs">
+            <%= form_with model: @order, url: admin_order_history_detail_update_url(@order) , local: true, data: { turbo: false }, class: "product-update-form"  do |f| %>
+                <dl class="element">
+                    <p class="control-label">注文日時</p>
+                    <dd class="element-form order-history-form">
+                        <%= l @order.created_at %>
+                    </dd>
+                </dl>
 
-                    <dl class="element">
-                        <p class="control-label">注文番号</p>
-                        <dd class="element-form order-history-form">
-                            <%= @order.order_number %>
-                        </dd>
-                    </dl>
+                <dl class="element">
+                    <p class="control-label">注文番号</p>
+                    <dd class="element-form order-history-form">
+                        <%= @order.order_number %>
+                    </dd>
+                </dl>
 
-                    <dl class="element">
-                        <p class="control-label">注文状況</p>
-                        <dd class="element-form order-history-form">
-                            <%= f.select :status, options_for_select(Order.statuses, selected: Order.statuses[@order.status]) %>
-                            
-                        </dd>
-                    </dl>
+                <dl class="element">
+                    <p class="control-label">注文状況</p>
+                    <dd class="element-form order-history-form">
+                        <%= f.select :status, options_for_select(Order.statuses, selected: Order.statuses[@order.status]) %>
+                        
+                    </dd>
+                </dl>
 
-                    <dl class="element">
-                        <p class="control-label">お客様情報</p>
-                        <dd class="element-form order-history-form">
-                            <% if @order.present? %>
-                                <%= @order.user.username %>
-                                <% if @order.user.username_kana %>
-                                    (<%= @user.user.username_kana%>)
-                                <% end %><br>
-                                <span>〒</span><%= @order.user.postal_code %>
-                                <%= @order.user.prefecture_code %>
-                                <%= @order.user.city %>
-                                <%= @order.user.street_and_others %><br>
-                                <%= @order.user.tel %><br>
-                                <%= @order.user.email %>
-                            <% end %>
-                        </dd>
-                    </dl>
+                <dl class="element">
+                    <p class="control-label">お客様情報</p>
+                    <dd class="element-form order-history-form">
+                        <% if @order.present? %>
+                            <%= @order.user.username %>
+                            <% if @order.user.username_kana.present? %>
+                                (<%= @order.user.username_kana %>)
+                            <% end %><br>
+                            <span>〒</span><%= @order.user.postal_code %>
+                            <%= @order.user.prefecture_code %>
+                            <%= @order.user.city %>
+                            <%= @order.user.street_and_others %><br>
+                            <%= @order.user.tel %><br>
+                            <%= @order.user.email %>
+                        <% end %>
+                    </dd>
+                </dl>
 
-                    <dl class="element">
-                        <p class="control-label">注文商品</p>
-                        <dd class="element-form order-history-form">
-                            <% if @order.present? %>
-                                <% @order.order_details.each do |order_detail| %>
-                                    <div class="order-product-detail">
-                                        <%= link_to product_path(order_detail.product_id), class: "product-link-order-history" do %>
-                                            <%= image_tag order_detail.product.images.first, class: "product-image-order-history" %>
-                                            <div class="order-product-name-price">
-                                                <div class="order-product-name">
-                                                    <%= order_detail.product.name %>
-                                                </div>
-                                                <% end %>
-                                                <div class="order-product-price">
-                                                    <%= number_to_currency(order_detail.product.taxin_price, strip_insignificant_zeros: true) %> × <%= order_detail.quantity %>
-                                                </div>
+                <dl class="element">
+                    <p class="control-label">注文商品</p>
+                    <dd class="element-form order-history-form">
+                        <% if @order.present? %>
+                            <% @order.order_details.each do |order_detail| %>
+                                <div class="order-product-detail">
+                                    <%= link_to product_path(order_detail.product_id), class: "product-link-order-history" do %>
+                                        <%= image_tag order_detail.product.images.first, class: "product-image-order-history" %>
+                                        <div class="order-product-name-price">
+                                            <div class="order-product-name">
+                                                <%= order_detail.product.name %>
                                             </div>
-                                    </div>
-                                <% end %>
-
-                                <div class="total-amount">
-                                    合計金額：<%= number_to_currency(@order.billing_amount, strip_insignificant_zeros: true) %>
+                                            <% end %>
+                                            <div class="order-product-price">
+                                                <%= number_to_currency(order_detail.product.taxin_price, strip_insignificant_zeros: true) %> × <%= order_detail.quantity %>
+                                            </div>
+                                        </div>
                                 </div>
                             <% end %>
-                        </dd>
-                    </dl>
 
-                    <dl class="element">
-                        <p class="control-label">お届け先</p>
-                        <dd class="element-form order-history-form">
-                            <% if @order.present? %>
-                            <p class="address-info">
-                                    <%= @order.company if @order.company.present?%>
-                                    <%= @order.name %>様<br />
-                                    〒<%= @order.postal_code %>&nbsp;<%= @order.prefecture_code %>
-                                    <%= @order.city %>&nbsp;<%= @order.street_and_others %><br />
-                                    <%= @order.tel %>
-                                </p>
-                            <% end %>
-                            <div class="shipping_info">
-                                <p class="shipping_date">お届け日：<%= @order.delivery_date %></p>
-                                <p class="shipping_time">お届け時間：<%= @order.delivery_time %></p>
+                            <div class="total-amount">
+                                合計金額：<%= number_to_currency(@order.billing_amount, strip_insignificant_zeros: true) %>
                             </div>
-                        </dd>
+                        <% end %>
+                    </dd>
+                </dl>
+
+                <dl class="element">
+                    <p class="control-label">お届け先</p>
+                    <dd class="element-form order-history-form">
+                        <% if @order.present? %>
+                        <p class="address-info">
+                                <%= @order.company if @order.company.present?%>
+                                <%= @order.name %>様<br />
+                                〒<%= @order.postal_code %>&nbsp;<%= @order.prefecture_code %>
+                                <%= @order.city %>&nbsp;<%= @order.street_and_others %><br />
+                                <%= @order.tel %>
+                            </p>
+                        <% end %>
+                        <div class="shipping_info">
+                            <p class="shipping_date">お届け日：<%= @order.delivery_date %></p>
+                            <p class="shipping_time">お届け時間：<%= @order.delivery_time %></p>
+                        </div>
+                    </dd>
+                </dl>
+
+                <dl class="element payment_method-field">
+                    <p class="control-label">お支払方法</p>
+                    <dd class="element-form order-history-form">
+                        <%= @order.payment_method %>
+                    </dd>
+                </dl>
+
+                <% if @order.payment_method == "クレジット決済" %>
+                    <dl class="registered-credit-confirm">
+                        <p class="control-label">登録済クレジットカード決済</p>
+                        <% if @card_info %>
+                            <div class="card-registered element-form order-history-form">
+                                <p class="card-info-registered"><span>カード番号：</span>************<%= @card_info.last4 %></p>
+                                <p class="card-info-registered"><span>有効期限：</span><%= @card_info.exp_year %>年<%= @card_info.exp_month %>月</p>
+                                <p class="card-info-registered"><span>名義人：</span><%= @card_info.name %></P>
+                            </div>
+                        <% end %>
                     </dl>
-
-                    <dl class="element payment_method-field">
-                        <p class="control-label">お支払方法</p>
-                        <dd class="element-form order-history-form">
-                            <%= @order.payment_method %>
-                        </dd>
-                    </dl>
-
-                    <% if @order.payment_method == "クレジット決済" %>
-                        <dl class="registered-credit-confirm">
-                            <p class="control-label">登録済クレジットカード決済</p>
-                            <% if @card_info %>
-                                <div class="card-registered element-form order-history-form">
-                                    <p class="card-info-registered"><span>カード番号：</span>************<%= @card_info.last4 %></p>
-                                    <p class="card-info-registered"><span>有効期限：</span><%= @card_info.exp_year %>年<%= @card_info.exp_month %>月</p>
-                                    <p class="card-info-registered"><span>名義人：</span><%= @card_info.name %></P>
-                                </div>
-                            <% end %>
-                        </dl>
-                    <% end %>
-
-                    <div class="order-status-update-btn">
-                        <%= f.submit "更新する", class: "ec-blockBtn--action" %>
-                        <%= link_to "戻る",  admin_order_history_detail_path, class: "ec-blockBtn--cancel" %>
-                    </div>
                 <% end %>
-            </div>
+
+                <div class="order-status-update-btn">
+                    <%= f.submit "更新する", class: "ec-blockBtn--action" %>
+                    <%= link_to "戻る",  admin_order_history_detail_path, class: "ec-blockBtn--cancel" %>
+                </div>
+            <% end %>
         </div>
     </div>
-  </div>
 </div>
 

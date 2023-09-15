@@ -40,7 +40,7 @@
                     <dd class="element-form">
                         <% if @user.present? %>
                             <%= @user.username %>
-                            <% if @user.username_kana %>
+                            <% if @user.username_kana.present? %>
                                 (<%= @user.username_kana%>)
                             <% end %><br>
                             <span>〒</span><%= @user.postal_code %>
@@ -168,7 +168,7 @@
                         </dt>   
                         
                         <dd id="registered-credit-select">
-                            <% if @cards_list %>
+                            <% if @cards_list.present? %>
                                 <div class="credit-table">
                                     <table>
                                         <thead>
