@@ -43,7 +43,7 @@ User.create!(
                     carrying_style: CARRYING_STYLE.sample,
                     style: STYLE.sample,
                     closure_method: CLOSURE_METHOD.sample,
-                    category_id: Faker::Number.between(from: 2, to: 4)
+                    category_id: Faker::Number.between(from: 0, to: 3)
                 )
     product.images.attach(io: File.open(Rails.root.join('app/assets/images/snowman01.webp')),
                         filename: 'snowman01.webp')
