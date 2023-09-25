@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function() {
+document.addEventListener('DOMContentLoaded', function() {
   // DOM 要素を取得
   const yearSelectElm = document.querySelector('[name="user[birthday(1i)]"]');
   const monthSelectElm = document.querySelector('[name="user[birthday(2i)]"]');

@@ -1,5 +1,5 @@
 var payjp = null; 
-document.addEventListener("turbo:load", function() { 
+document.addEventListener('DOMContentLoaded', function() { 
     var cardForm = document.querySelector('#card_form');
     if (cardForm) {
         	

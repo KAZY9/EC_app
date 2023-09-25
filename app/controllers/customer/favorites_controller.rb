@@ -1,6 +1,6 @@
 class Customer::FavoritesController < ApplicationController
     before_action :set_product, except: [:index]
-    before_action :set_favorite, only: [:destroy, :destroy_favorite_item]
+    before_action :set_favorite, only: [:destroy_favorite_item]
     before_action :authenticate_user!
 
     def index
@@ -9,21 +9,15 @@ class Customer::FavoritesController < ApplicationController
     end
   
     def create
-      @favorite = Favorite.create(user_id: current_user.id, product_id: @product.id)
-      render turbo_stream: turbo_stream.replace(
-        'add-favorite-button',
-        partial: 'customer/favorites/favorites',
-        locals: { product: @product, liked: true },
-      )
+      product = Product.find(params[:product_id])
+      favorite = current_user.favorites.new(product_id: product.id)
+      favorite.save
     end
     
     def destroy
-      @favorite.destroy
-      render turbo_stream: turbo_stream.replace(
-        'add-favorite-button',
-        partial: 'customer/favorites/favorites',
-        locals: { product: @product, liked: false },
-      )
+      product = Product.find(params[:product_id])
+      favorite = current_user.favorites.find_by(product_id: product.id)
+      favorite.destroy
     end
 
     def destroy_favorite_item
@@ -36,7 +30,7 @@ class Customer::FavoritesController < ApplicationController
 
     def set_product
       if params[:product_id].present?
-        @product = Product.find(params[:product_id])
+        product = Product.find(params[:product_id])
       else
         redirect_to root_path
       end

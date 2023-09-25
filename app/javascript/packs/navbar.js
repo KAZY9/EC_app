@@ -1,4 +1,4 @@
-$(document).on("turbo:load", function () {
+$(document).ready(function () {
     var $navbarToggle = $('#navbar-toggle');
     var $hiddenMenu = $('.hidden-menu');
     var $hiddenMenuLinks = $('#hidden-menu a');
