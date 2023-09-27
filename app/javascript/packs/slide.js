@@ -1,4 +1,4 @@
-$(document).on("turbo:load", function(){
+$(document).ready(function(){
     $('.slick-main').slick({
         slidesToShow: 1,
         slidesToScroll: 1,

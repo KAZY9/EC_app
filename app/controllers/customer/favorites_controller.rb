@@ -10,20 +10,10 @@ class Customer::FavoritesController < ApplicationController
   
     def create
       @favorite = Favorite.create(user_id: current_user.id, product_id: @product.id)
-      render turbo_stream: turbo_stream.replace(
-        'add-favorite-button',
-        partial: 'customer/favorites/favorites',
-        locals: { product: @product, liked: true },
-      )
     end
     
     def destroy
       @favorite.destroy
-      render turbo_stream: turbo_stream.replace(
-        'add-favorite-button',
-        partial: 'customer/favorites/favorites',
-        locals: { product: @product, liked: false },
-      )
     end
 
     def destroy_favorite_item

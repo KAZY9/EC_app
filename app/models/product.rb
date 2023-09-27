@@ -14,7 +14,7 @@ class Product < ApplicationRecord
       validates :carrying_style
       validates :style
       validates :closure_method
-      validates :images
+      # validates :images
       validates :release_flag
       validates :category_id
   end

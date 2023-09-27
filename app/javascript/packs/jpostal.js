@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function () {
+document.addEventListener('DOMContentLoaded', function () {
 	$('#user_postal_code').jpostal({
 		postcode : [
 			'#user_postal_code'

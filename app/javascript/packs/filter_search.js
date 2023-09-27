@@ -1,4 +1,4 @@
-$(document).on("turbo:load", function () {  
+$(document).ready(function () {  
 
     $('.brand-toggle').click(function() {
         $('.search-brand').slideToggle();
