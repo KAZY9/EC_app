@@ -1,15 +1,13 @@
-<div class="ec-mypageLayout">
-  <div class="ec-mypageBody">
-    <div class="ec-mypageBody-right">
-      <div class="userInfo-change-form" >
-        <div class="mypage-title">
-          <h2>注文履歴</h2>
-        </div>
+<div class="ec-admin-product">
+    <div class="product-register-header">
+        <h2 class="title">注文履歴</h2>
+    </div>
         
-        <div class="order-history-body">
+    <div class="admin-pro-body">
+        <div class="ec-borderedDefs">
             <%= render 'searches/order_search' %>
             <div class="order-history-info">
-                <% if @order %>
+                <% if @order.present? %>
                     <div class="order-info order-search">
                         <div class="order-info1">
                             <div class="order-date">
@@ -55,6 +53,8 @@
             </div>
         </div>
     </div>
-  </div>
+    <div class="order-history-paginate-admin">
+        <%= paginate @order %>
+    </div>
 </div>
 

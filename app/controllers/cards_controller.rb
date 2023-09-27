@@ -3,20 +3,14 @@ class CardsController < ApplicationController
   before_action :init_payjp, only: [:new, :create, :destroy]
 
   def new
-    # cards = Card.where(user_id: current_user.id)
-    # @cards = []
-    # cards.each do |card|
-    #   customer = Payjp::Customer.retrieve(card.customer_id)
-    #   @cards.concat(customer.cards.data)
-    # end
     cards = Card.where(user_id: current_user.id)
     @cards_list = []
     cards.each do |card|
         customer = Payjp::Customer.retrieve(card.customer_id)
         @cards_list.append({
-            'customer' => customer.cards.data,
-            'id' => card.id 
-            })
+          'customer' => customer.cards.data,
+          'id' => card.id 
+        })
     end
   end
 

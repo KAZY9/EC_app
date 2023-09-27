@@ -25,7 +25,7 @@ class SearchesController < ApplicationController
 
     def order_search
         order_number = params[:order_number]
-        @order = Order.includes(:order_details, order_details: :product).find_by(order_number: order_number)
+        @order = Order.includes(:order_details, order_details: :product).where(order_number: order_number).page(params[:page]).per(12)
     end
 end
 
