@@ -1825,7 +1825,8 @@ p {
 /* 新規会員登録画面、登録確認画面、会員情報編集画面 */
 
 .ec-wholePage {
-  margin: 110px auto 0;
+  margin: 0 auto;
+  margin-top: 110px;
   flex: 1;
 }
 
