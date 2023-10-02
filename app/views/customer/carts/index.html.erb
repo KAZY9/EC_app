@@ -57,7 +57,7 @@
                                 <% @cart_list.each do |cart_item|  %>
                                     <tr class="product-cart">
                                         <td class="product-delete">
-                                            <%=  button_to cart_path(cart_item.id), method: :delete, remote: true, form: { onSubmit: "return confirmDelete();"}, id: "delete_btn-cart" do %>
+                                            <%=  button_to cart_path(cart_item.id), method: :delete, form: { onSubmit: "return confirmDelete();"}, id: "delete_btn-cart" do %>
                                                 <i class="fa-solid fa-xmark fa-lg" style="color: #85898e;"></i>
                                             <% end %>
                                         </td>
@@ -79,7 +79,7 @@
                                                 <span class="quantity_number"><span class="quantity-title">数量：</span><%= cart_item.quantity %></span>
                                                 <div class="quantity-change_btn">
                                                     <% unless cart_item.quantity <= 1 %>
-                                                        <%= link_to decrease_cart_path(cart_item), data: { "turbo-method": :patch }, class: "decrease_btn" do %>
+                                                        <%= link_to decrease_cart_path(cart_item), method: :patch, class: "decrease_btn" do %>
                                                             <i class="fa-solid fa-minus" style="color: #333333;"></i>
                                                         <% end %>
                                                     <% else %>
@@ -88,7 +88,7 @@
                                                         </button>
                                                     <% end %>
                                                     <% unless cart_item.quantity >= cart_item.product.stock %>
-                                                        <%= link_to increase_cart_path(cart_item), data: { "turbo-method": :patch }, class: "increase_btn" do %>
+                                                        <%= link_to increase_cart_path(cart_item), method: :patch, class: "increase_btn" do %>
                                                             <i class="fa-solid fa-plus" style="color: #333333;"></i>
                                                         <% end %>
                                                     <% else %>
