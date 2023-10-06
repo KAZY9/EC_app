@@ -12,10 +12,9 @@
 ・Nginx  
 ・Unicorn  
 ・Aws  
-  VPC  
-  EC2  
-  RDS  
-  Route53
+  &nbsp;VPC  
+  &nbsp;EC2  
+  &nbsp;RDS 
 
 ## 機能一覧
 ・ユーザー登録、ログイン、パスワード再設定機能(devise)  
